@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--suppress JavaFxDefaultTag -->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.octicons.OctIconView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org._brown_tech._controller.DeskUI">
+    <children>
+        <StackPane fx:id="topBarPane" disable="true" layoutX="226.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="1214.0" style="-fx-background-color: linear-gradient(#FFB900, #F0D801);" styleClass="sub_menu_buttons" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <AnchorPane fx:id="accountsSubMenuItemsPane" layoutX="10.0" layoutY="10.0" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <HBox layoutX="33.0" layoutY="14.0" prefHeight="36.0" prefWidth="333.0" spacing="20.0">
+                            <children>
+                                <VBox prefHeight="37.0" prefWidth="63.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_accounts_pane" prefHeight="28.0" prefWidth="64.0" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" text="View" textFill="WHITE">
+                                            <styleClass>
+                                                <String fx:value="sub_menu_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <AnchorPane fx:id="accountsViewLine" prefHeight="2.0" prefWidth="63.0" style="-fx-background-color: #FFFFFF;" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="37.0" prefWidth="62.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_add_user_pane" prefHeight="35.0" prefWidth="78.0" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" text="Add" textFill="rgb(0, 0, 0)">
+                                            <styleClass>
+                                                <String fx:value="sub_menu_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <AnchorPane fx:id="addUserLine" prefHeight="2.0" prefWidth="78.0" style="-fx-background-color: transparent;" />
+                                    </children>
+                                </VBox>
+                                <VBox layoutX="93.0" layoutY="10.0" prefHeight="37.0" prefWidth="58.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_edit_user_pane" prefHeight="35.0" prefWidth="78.0" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" text="Edit" textFill="rgb(0, 0, 0)">
+                                            <styleClass>
+                                                <String fx:value="sub_menu_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <AnchorPane fx:id="editUserLine" prefHeight="2.0" prefWidth="78.0" style="-fx-background-color: transparent;" />
+                                    </children>
+                                </VBox>
+                                <VBox layoutX="191.0" layoutY="10.0" prefHeight="37.0" prefWidth="90.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_remove_user_pane" prefHeight="35.0" prefWidth="93.0" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" text="Remove" textFill="rgb(0, 0, 0)">
+                                            <styleClass>
+                                                <String fx:value="sub_menu_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <AnchorPane fx:id="removeUserLine" prefHeight="2.0" prefWidth="78.0" style="-fx-background-color: transparent;" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="paymentsSubMenuItemsPane" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <HBox layoutX="33.0" layoutY="14.0" prefHeight="36.0" prefWidth="180.0" spacing="20.0">
+                            <children>
+                                <VBox prefHeight="34.0" prefWidth="98.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_payments_summary_pane" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" text="Summary" textFill="WHITE">
+                                            <styleClass>
+                                                <String fx:value="sub_menu_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <AnchorPane fx:id="paySummaryLine" prefHeight="2.0" prefWidth="104.0" style="-fx-background-color: #FFFFFF;" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="37.0" prefWidth="97.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_cheques_pane" prefHeight="35.0" prefWidth="97.0" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" text="Cheque" textFill="rgb(0, 0, 0)">
+                                            <styleClass>
+                                                <String fx:value="sub_menu_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <AnchorPane fx:id="chequeLine" prefHeight="2.0" prefWidth="97.0" style="-fx-background-color: transparent;" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="purchasesSubMenuItemsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="64.0" prefWidth="1214.0">
+                    <children>
+                        <HBox layoutX="33.0" layoutY="14.0" prefHeight="36.0" prefWidth="199.0" spacing="20.0">
+                            <children>
+                                <VBox prefHeight="37.0" prefWidth="82.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_sales_summary_pane" prefHeight="33.0" prefWidth="106.0" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" text="Summary" textFill="WHITE">
+                                            <styleClass>
+                                                <String fx:value="sub_menu_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <AnchorPane fx:id="summaryLine" prefHeight="2.0" prefWidth="104.0" style="-fx-background-color: #FFFFFF;" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="37.0" prefWidth="97.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_receipts_pane" prefHeight="35.0" prefWidth="97.0" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" text="Receipts" textFill="rgb(0, 0, 0)">
+                                            <styleClass>
+                                                <String fx:value="sub_menu_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <AnchorPane fx:id="receiptLine" prefHeight="2.0" prefWidth="97.0" style="-fx-background-color: transparent;" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="stockSubMenuItemsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="64.0" prefWidth="1214.0">
+                    <children>
+                        <HBox layoutX="33.0" layoutY="14.0" prefHeight="37.0" prefWidth="341.0" spacing="20.0">
+                            <children>
+                                <VBox prefHeight="24.0" prefWidth="63.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_stock_pane" prefHeight="28.0" prefWidth="64.0" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" styleClass="handCursor" text="View" textFill="WHITE" />
+                                        <AnchorPane fx:id="viewLine" prefHeight="2.0" prefWidth="63.0" style="-fx-background-color: #FFFFFF;" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="37.0" prefWidth="58.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_add_stock_pane" prefHeight="35.0" prefWidth="58.0" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" text="Add" textFill="rgb(0, 0, 0)">
+                                            <styleClass>
+                                                <String fx:value="sub_menu_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <AnchorPane fx:id="addLine" prefHeight="2.0" prefWidth="58.0" style="-fx-background-color: transparent;" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="37.0" prefWidth="83.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_update_stock_pane" prefHeight="35.0" prefWidth="83.0" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" text="Update" textFill="rgb(0, 0, 0)">
+                                            <styleClass>
+                                                <String fx:value="sub_menu_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <AnchorPane fx:id="updateLine" prefHeight="2.0" prefWidth="83.0" style="-fx-background-color: transparent;" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="37.0" prefWidth="77.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" onAction="#view_delete_stock_pane" prefHeight="35.0" prefWidth="77.0" ripplerFill="#ffe886" style="-fx-background-radius: 0px;" text="Delete" textFill="rgb(0, 0, 0)">
+                                            <styleClass>
+                                                <String fx:value="sub_menu_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <AnchorPane fx:id="deleteLine" prefHeight="2.0" prefWidth="77.0" style="-fx-background-color: transparent;" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+            </children>
+            <effect>
+                <DropShadow color="#00000092" height="6.08" radius="2.5625" width="6.17" />
+            </effect>
+        </StackPane>
+        <StackPane fx:id="leftSideMenuPane" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="226.0" style="-fx-background-color: rgb(255, 255, 255);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="902.0" prefWidth="226.0">
+                    <children>
+                        <VBox alignment="TOP_CENTER" layoutY="150.0" prefHeight="367.0" prefWidth="226.0" spacing="30.0">
+                            <children>
+                                <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="226.0">
+                                    <children>
+                                        <JFXButton focusTraversable="false" graphicTextGap="35.0" onAction="#show_dashboard" prefHeight="50.0" prefWidth="226.0" ripplerFill="#ffd5a5" style="-fx-background-radius: 0px; -fx-background-color: linear-gradient( #FFB900, #F0D801);" text="Dashboard" textFill="#8e4b02">
+                                            <graphic>
+                                                <OctIconView fill="#8e4b02" glyphName="DASHBOARD" size="20" />
+                                            </graphic>
+                                            <styleClass>
+                                                <String fx:value="menu_buttons" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <JFXButton focusTraversable="false" graphicTextGap="75.0" onAction="#show_stock" prefHeight="50.0" prefWidth="266.0" ripplerFill="#ffd5a5" style="-fx-background-radius: 0px;" text="Stock" textFill="#868686">
+                                            <graphic>
+                                                <MaterialDesignIconView fill="#868686" glyphName="ARCHIVE" size="20" />
+                                            </graphic>
+                                            <styleClass>
+                                                <String fx:value="menu_buttons" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <JFXButton focusTraversable="false" graphicTextGap="40.0" layoutX="10.0" layoutY="166.0" onAction="#show_purchases" prefHeight="50.0" prefWidth="266.0" ripplerFill="#ffd5a5" style="-fx-background-radius: 0px;" text="Purchases" textFill="#868686">
+                                            <graphic>
+                                                <MaterialDesignIconView fill="#868686" glyphName="CART" size="20" />
+                                            </graphic>
+                                            <styleClass>
+                                                <String fx:value="menu_buttons" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <JFXButton focusTraversable="false" graphicTextGap="45.0" layoutX="10.0" layoutY="244.0" onAction="#show_payments" prefHeight="50.0" prefWidth="266.0" ripplerFill="#ffd5a5" style="-fx-background-radius: 0px;" text="Payments" textFill="#868686">
+                                            <graphic>
+                                                <MaterialDesignIconView fill="#868686" glyphName="CASH_MULTIPLE" size="20" />
+                                            </graphic>
+                                            <styleClass>
+                                                <String fx:value="menu_buttons" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <JFXButton focusTraversable="false" graphicTextGap="50.0" layoutX="10.0" layoutY="322.0" onAction="#show_statistics" prefHeight="50.0" prefWidth="266.0" ripplerFill="#ffd5a5" style="-fx-background-radius: 0px;" text="Statistics" textFill="#868686">
+                                            <graphic>
+                                                <MaterialDesignIconView fill="#868686" glyphName="CHART_BAR" size="20" />
+                                            </graphic>
+                                            <styleClass>
+                                                <String fx:value="menu_buttons" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <JFXButton focusTraversable="false" graphicTextGap="47.0" layoutX="10.0" layoutY="478.0" onAction="#show_accounts" prefHeight="50.0" prefWidth="266.0" ripplerFill="#ffd5a5" style="-fx-background-radius: 0px;" text="Accounts" textFill="#868686">
+                                            <graphic>
+                                                <MaterialDesignIconView fill="#868686" glyphName="ACCOUNT_BOX" size="20" />
+                                            </graphic>
+                                            <styleClass>
+                                                <String fx:value="menu_buttons" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                    </children>
+                                </VBox>
+                                <JFXButton onAction="#log_out_from_my_account" prefHeight="36.0" prefWidth="168.0" ripplerFill="#fca1a1" style="-fx-background-radius: 0px; -fx-border-color: #cc0c0c; -fx-border-radius: 0px;" text="Log out" textFill="#cc0c0c">
+                                    <styleClass>
+                                        <String fx:value="handCursor" />
+                                        <String fx:value="menu_buttons" />
+                                    </styleClass>
+                                </JFXButton>
+                            </children>
+                        </VBox>
+                        <ImageView fitHeight="129.0" fitWidth="118.0" layoutX="54.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../_images/_background/loginScreen.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+            </children>
+            <effect>
+                <DropShadow color="#00000039" height="5.8" offsetX="1.0" radius="2.4924999999999997" width="6.17" />
+            </effect>
+        </StackPane>
+        <StackPane fx:id="deskPane" layoutX="226.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="836.0" prefWidth="1214.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
+            <children>
+                <StackPane fx:id="accountsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="836.0" prefWidth="1214.0">
+                    <children>
+                        <StackPane fx:id="accountsRemovePane" opacity="0.0" prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <VBox layoutX="328.0" layoutY="116.0" maxWidth="559.0" minWidth="510.0" prefHeight="605.0" prefWidth="559.0">
+                                            <children>
+                                                <AnchorPane minWidth="506.0" prefHeight="54.0" prefWidth="506.0" styleClass="tableHeader">
+                                                    <children>
+                                                        <Label layoutX="21.0" layoutY="17.0" styleClass="header2Texts" text="Users" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <ScrollPane minWidth="506.0" prefHeight="553.0" prefWidth="559.0">
+                                                    <content>
+                                                        <VBox fx:id="accountsBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="557.0" spacing="3.0">
+                                                            <padding>
+                                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                    </content>
+                                                </ScrollPane>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                        <StackPane fx:id="accountsEditPane" opacity="0.0" prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <Label layoutX="298.0" layoutY="33.0" lineSpacing="20.0" styleClass="important_info" text="Hello there, this page can only edit the adminstators' accountObj info." wrapText="true" />
+                                        <VBox layoutX="412.0" layoutY="147.0" prefHeight="643.0" prefWidth="390.0" spacing="50.0">
+                                            <children>
+                                                <JFXTextField fx:id="oldNewFirstnameTF" focusColor="#dd7600" labelFloat="true" prefHeight="50.0" prefWidth="364.0" promptText="Firstname" styleClass="input_text" />
+                                                <JFXTextField fx:id="oldNewSurnameTF" focusColor="#dd7600" labelFloat="true" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="364.0" promptText="Surname" styleClass="input_text" />
+                                                <JFXTextField fx:id="oldNewEmailTF" focusColor="#dd7600" labelFloat="true" layoutX="10.0" layoutY="210.0" prefHeight="50.0" prefWidth="364.0" promptText="Email" styleClass="input_text" />
+                                                <JFXTextField fx:id="oldNewUsernameTF" focusColor="#dd7600" labelFloat="true" prefHeight="50.0" prefWidth="364.0" promptText="User name" styleClass="input_text" />
+                                                <StackPane prefHeight="50.0" prefWidth="390.0">
+                                                    <children>
+                                                        <JFXTextField fx:id="actualPwd" focusColor="#dd7600" opacity="0.0" prefHeight="50.0" prefWidth="292.0" promptText="Password" styleClass="input_text" unFocusColor="#4d4d4d">
+                                                            <StackPane.margin>
+                                                                <Insets right="40.0" />
+                                                            </StackPane.margin>
+                                                        </JFXTextField>
+                                                        <JFXPasswordField fx:id="passwordTF" focusColor="#dd7600" prefHeight="50.0" prefWidth="292.0" promptText="Password" styleClass="input_text" unFocusColor="#4d4d4d">
+                                                            <StackPane.margin>
+                                                                <Insets right="40.0" />
+                                                            </StackPane.margin>
+                                                        </JFXPasswordField>
+                                                        <MaterialDesignIconView fx:id="newPswdEye" fill="#838182" glyphName="EYE_OFF" layoutX="30.0" layoutY="44.0" onMouseClicked="#show_typed_password" size="20" styleClass="handCursor">
+                                                            <StackPane.margin>
+                                                                <Insets left="350.0" />
+                                                            </StackPane.margin>
+                                                        </MaterialDesignIconView>
+                                                    </children>
+                                                </StackPane>
+                                                <StackPane prefHeight="50.0" prefWidth="390.0">
+                                                    <children>
+                                                        <JFXTextField fx:id="actualConfrimPwd" focusColor="#dd7600" opacity="0.0" prefHeight="50.0" prefWidth="292.0" promptText="Confirm password" styleClass="input_text" unFocusColor="#4d4d4d">
+                                                            <StackPane.margin>
+                                                                <Insets right="40.0" />
+                                                            </StackPane.margin>
+                                                        </JFXTextField>
+                                                        <JFXPasswordField fx:id="confrimPasswordTF" focusColor="#dd7600" prefHeight="50.0" prefWidth="292.0" promptText="Confirm password" styleClass="input_text" unFocusColor="#4d4d4d">
+                                                            <StackPane.margin>
+                                                                <Insets right="40.0" />
+                                                            </StackPane.margin>
+                                                        </JFXPasswordField>
+                                                        <MaterialDesignIconView fx:id="newConfirmPswdEye" fill="#838182" glyphName="EYE_OFF" layoutX="30.0" layoutY="44.0" onMouseClicked="#show_typed_password" size="20" styleClass="handCursor">
+                                                            <StackPane.margin>
+                                                                <Insets left="350.0" />
+                                                            </StackPane.margin>
+                                                        </MaterialDesignIconView>
+                                                    </children>
+                                                </StackPane>
+                                                <JFXButton onAction="#edit_administrator_s_account" prefHeight="43.0" prefWidth="390.0" ripplerFill="#aeaeae" style="-fx-border-color: #000000;" text="Save">
+                                                    <styleClass>
+                                                        <String fx:value="super_buttons_text" />
+                                                        <String fx:value="handCursor" />
+                                                    </styleClass>
+                                                </JFXButton>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                        <StackPane fx:id="accountsAddPane" opacity="0.0" prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="364.0" spacing="40.0">
+                                    <children>
+                                        <JFXTextField fx:id="newFirstNameTF" focusColor="#dd7600" labelFloat="true" prefHeight="50.0" prefWidth="364.0" promptText="Firstname" styleClass="input_text" />
+                                        <JFXTextField fx:id="newSurnameTF" focusColor="#dd7600" labelFloat="true" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="364.0" promptText="Surname" styleClass="input_text" />
+                                        <JFXTextField fx:id="newEmailTF" focusColor="#dd7600" labelFloat="true" prefHeight="50.0" prefWidth="364.0" promptText="Email" styleClass="input_text" />
+                                        <JFXTextField fx:id="newUsernameTF" focusColor="#dd7600" labelFloat="true" layoutX="10.0" layoutY="100.0" prefHeight="50.0" prefWidth="364.0" promptText="User name" styleClass="input_text" />
+                                        <Label lineSpacing="20.0" styleClass="dashboard_navigation_text_label" text="For new users the default password is '1234'.&#10;Once logged in they will be able to change their password." wrapText="true">
+                                            <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                            </cursor>
+                                        </Label>
+                                        <JFXButton onAction="#add_user" prefHeight="43.0" prefWidth="364.0" ripplerFill="#aeaeae" style="-fx-border-color: #000000;" text="Save">
+                                            <styleClass>
+                                                <String fx:value="super_buttons_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXButton>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </StackPane>
+                        <StackPane fx:id="accountsViewPane">
+                            <children>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <AnchorPane layoutX="432.0" layoutY="27.0" prefHeight="64.0" prefWidth="350.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 2;">
+                                            <effect>
+                                                <DropShadow color="#00000033" height="12.1" radius="5.55" width="12.1" />
+                                            </effect>
+                                            <children>
+                                                <StackPane layoutX="19.0" layoutY="10.0" prefHeight="43.0" prefWidth="311.0" style="-fx-background-color: #F1F1F1; -fx-background-radius: 30px;">
+                                                    <children>
+                                                        <JFXTextField fx:id="accountParamTF" focusColor="#405aa800" onAction="#find_account" prefHeight="49.0" prefWidth="311.0" promptText="Type a username ..." styleClass="search_text" unFocusColor="#4d4d4d00">
+                                                            <padding>
+                                                                <Insets left="40.0" right="20.0" />
+                                                            </padding>
+                                                        </JFXTextField>
+                                                        <OctIconView fill="#a0a0a0" glyphName="SEARCH" size="17">
+                                                            <StackPane.margin>
+                                                                <Insets right="260.0" />
+                                                            </StackPane.margin>
+                                                        </OctIconView>
+                                                    </children>
+                                                </StackPane>
+                                            </children>
+                                        </AnchorPane>
+                                        <MaterialDesignIconView fill="#0072cd" glyphName="REFRESH" layoutX="354.0" layoutY="70.0" onMouseClicked="#reload_accounts" size="30" styleClass="handCursor" />
+                                        <JFXTreeTableView fx:id="accountsTable" layoutX="142.0" layoutY="132.0" prefHeight="664.0" prefWidth="930.0" stylesheets="@../_css/table_style.css">
+                                            <columns>
+                                                <TreeTableColumn fx:id="accUsernameCol" minWidth="-Infinity" prefWidth="200.0" text="Username" />
+                                                <TreeTableColumn fx:id="accFirstnameCol" minWidth="161.0" prefWidth="223.0" text="Firstname" />
+                                                <TreeTableColumn fx:id="accSurnameCol" minWidth="126.0" prefWidth="207.0" text="Surname" />
+                                                <TreeTableColumn fx:id="accEmailCol" minWidth="161.0" prefWidth="298.0" text="Email" />
+                                            </columns>
+                                        </JFXTreeTableView>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                    </children>
+                </StackPane>
+                <StackPane fx:id="statisticsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="836.0" prefWidth="1214.0">
+                    <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <JFXComboBox editable="true" focusColor="#dd7600" labelFloat="true" layoutX="204.0" layoutY="502.0" onAction="#plot_area_chart_with_parameters" prefHeight="33.0" prefWidth="180.0" promptText="Year">
+                                    <styleClass>
+                                        <String fx:value="search_comboBox" />
+                                        <String fx:value="input" />
+                                    </styleClass>
+                                </JFXComboBox>
+                                <AreaChart fx:id="areaChart" layoutX="122.0" layoutY="35.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="1031.0">
+                                    <xAxis>
+                                        <CategoryAxis side="BOTTOM" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                    </yAxis>
+                                </AreaChart>
+                                <Group layoutX="179.0" layoutY="595.0">
+                                    <children>
+                                        <HBox layoutX="10.0" spacing="100.0">
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="Jan" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="janProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="Apr" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="aprProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="Jul" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="julProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="Oct" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="octProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </HBox>
+                                        <HBox layoutY="81.0" spacing="100.0">
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="Feb" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="febProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="May" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="mayProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="Aug" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="augProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="Nov" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="novProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </HBox>
+                                        <HBox layoutX="3.0" layoutY="157.0" spacing="100.0">
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="Mar" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="marProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="Jun" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="junProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="Sep" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="sepProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type3" text="Dec" textFill="#b6afaf" />
+                                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                                        <Label fx:id="decProfitLbl" styleClass="italics_za_profit_Data" text="Ksh 0.0" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </Group>
+                                <HBox alignment="CENTER_LEFT" layoutX="480.0" layoutY="498.0" spacing="20.0">
+                                    <children>
+                                        <Label styleClass="grey_title_type3" text="Profit for the year" textFill="#b6afaf" />
+                                        <Pane prefHeight="40.0" prefWidth="2.0" style="-fx-background-color:  linear-gradient(#FFB900, #F0D801);" />
+                                        <Label fx:id="yearProfitLbl" styleClass="italics_za_summary_Data" text="Ksh 0.0" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </StackPane>
+                <StackPane fx:id="paymentsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="836.0" prefWidth="1214.0">
+                    <children>
+                        <StackPane fx:id="paymentsChequePane" opacity="0.0" prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <StackPane layoutX="238.0" layoutY="22.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="250.0">
+                                            <children>
+                                                <PieChart fx:id="chequePieChart" labelLineLength="500.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" titleSide="BOTTOM">
+                                                    <styleClass>
+                                                        <String fx:value="piechartAndLinegraph" />
+                                                        <String fx:value="chart-area-symbol" />
+                                                        <String fx:value="chart-legend" />
+                                                        <String fx:value="chart-pie" />
+                                                        <String fx:value="chart-pie-label" />
+                                                        <String fx:value="chart-pie-label-line" />
+                                                        <String fx:value="chart-plot-background" />
+                                                        <String fx:value="default-color0" />
+                                                        <String fx:value="default-color1" />
+                                                    </styleClass>
+                                                    <stylesheets>
+                                                        <URL value="@../_css/chequeChartColor.css" />
+                                                        <URL value="@../_css/pie_chart_style_bluePrint.css" />
+                                                    </stylesheets>
+                                                </PieChart>
+                                                <Circle fill="WHITE" radius="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                                    <StackPane.margin>
+                                                        <Insets bottom="30.0" />
+                                                    </StackPane.margin>
+                                                </Circle>
+                                                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                                    <StackPane.margin>
+                                                        <Insets bottom="100.0" />
+                                                    </StackPane.margin>
+                                                    <image>
+                                                        <Image url="@../_images/_icons/Paycheque_50px_1.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label id="chequeCount" fx:id="chequeCountLbl" text="#">
+                                                    <StackPane.margin>
+                                                        <Insets />
+                                                    </StackPane.margin>
+                                                </Label>
+                                                <Label layoutX="121.0" layoutY="113.0" styleClass="grey_title_type1" text="Cheques" textFill="#b5b5b5">
+                                                    <StackPane.margin>
+                                                        <Insets top="40.0" />
+                                                    </StackPane.margin>
+                                                </Label>
+                                            </children>
+                                        </StackPane>
+                                        <HBox alignment="CENTER_LEFT" layoutX="761.0" layoutY="93.0" spacing="20.0">
+                                            <children>
+                                                <Label styleClass="grey_title_type2" text="Approved" textFill="#b6afaf" />
+                                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="2.0" style="-fx-background-color: rgb(0, 0, 0);" />
+                                                <Label fx:id="aprvdChqLbl" styleClass="cheque_amounts" text="Ksh 0.0" />
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" layoutX="771.0" layoutY="153.0" spacing="20.0">
+                                            <children>
+                                                <Label styleClass="grey_title_type2" text="Pending" textFill="#b6afaf" />
+                                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="2.0" style="-fx-background-color: rgb(0, 0, 0);" />
+                                                <Label fx:id="pndChqLbl" styleClass="cheque_amounts" text="Ksh 0.0" />
+                                            </children>
+                                        </HBox>
+                                        <VBox layoutX="110.0" layoutY="307.0" prefHeight="491.0" prefWidth="994.0">
+                                            <children>
+                                                <AnchorPane prefHeight="58.0" prefWidth="994.0" styleClass="tableHeader">
+                                                    <children>
+                                                        <Group layoutX="30.0" layoutY="10.0">
+                                                            <children>
+                                                                <Label layoutX="99.0" styleClass="header2Texts" text="Cheque number" textFill="#999999" />
+                                                                <Label styleClass="header2Texts" text="Receipt" textFill="#999999" />
+                                                                <Label layoutX="418.0" layoutY="1.0" styleClass="header2Texts" text="Bank" textFill="#999999" />
+                                                                <Label layoutX="673.0" styleClass="header2Texts" text="Amount" textFill="#999999" />
+                                                                <Label layoutX="285.0" layoutY="1.0" styleClass="header2Texts" text="Date Due" textFill="#999999" />
+                                                                <Label layoutX="853.0" styleClass="header2Texts" text="Status" textFill="#999999" />
+                                                            </children>
+                                                        </Group>
+                                                    </children>
+                                                </AnchorPane>
+                                                <ScrollPane prefHeight="467.0" prefWidth="994.0">
+                                                    <content>
+                                                        <VBox fx:id="chequeBox" prefHeight="452.0" prefWidth="975.0" spacing="3.0">
+                                                            <padding>
+                                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                    </content>
+                                                </ScrollPane>
+                                            </children>
+                                        </VBox>
+                                        <MaterialDesignIconView fill="#0072cd" glyphName="REFRESH" layoutX="1001.0" layoutY="283.0" onMouseClicked="#reload_payments" size="30" styleClass="handCursor" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                        <StackPane fx:id="paymentsSummaryPane">
+                            <children>
+                                <AnchorPane prefHeight="960.0" prefWidth="1069.0">
+                                    <children>
+                                        <StackPane layoutX="333.0" layoutY="29.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="420.0">
+                                            <children>
+                                                <PieChart fx:id="paymentsPieChart" labelLineLength="500.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" titleSide="BOTTOM">
+                                                    <styleClass>
+                                                        <String fx:value="piechartAndLinegraph" />
+                                                        <String fx:value="chart-area-symbol" />
+                                                        <String fx:value="chart-legend" />
+                                                        <String fx:value="chart-pie" />
+                                                        <String fx:value="chart-pie-label" />
+                                                        <String fx:value="chart-pie-label-line" />
+                                                        <String fx:value="chart-plot-background" />
+                                                        <String fx:value="default-color0" />
+                                                        <String fx:value="default-color1" />
+                                                        <String fx:value="default-color2" />
+                                                    </styleClass>
+                                                    <stylesheets>
+                                                        <URL value="@../_css/pie_chart_style_bluePrint.css" />
+                                                        <URL value="@../_css/paymentsColor.css" />
+                                                    </stylesheets>
+                                                </PieChart>
+                                                <Circle fill="WHITE" radius="189.0" stroke="#a8254a" strokeType="INSIDE" strokeWidth="0.0">
+                                                    <StackPane.margin>
+                                                        <Insets bottom="30.0" />
+                                                    </StackPane.margin>
+                                                </Circle>
+                                                <Label fx:id="sum_of_returnsLbl" alignment="CENTER" prefHeight="29.0" prefWidth="358.0" styleClass="sum_of_cash_mpesa_and_cheque" text="Ksh 0.0">
+                                                    <StackPane.margin>
+                                                        <Insets top="130.0" />
+                                                    </StackPane.margin>
+                                                </Label>
+                                                <Label layoutX="121.0" layoutY="113.0" styleClass="grey_title_type2" text="Amount Received" textFill="#d8d8d8">
+                                                    <StackPane.margin>
+                                                        <Insets top="220.0" />
+                                                    </StackPane.margin>
+                                                </Label>
+                                                <ImageView fitHeight="129.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                                                    <StackPane.margin>
+                                                        <Insets bottom="150.0" />
+                                                    </StackPane.margin>
+                                                    <image>
+                                                        <Image url="@../_images/_pictures/PNGIX.com_money-emoji-png_472593.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </StackPane>
+                                        <Group layoutX="468.0" layoutY="535.0">
+                                            <children>
+                                                <HBox alignment="CENTER" layoutX="20.0" spacing="10.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type2" text="Cash" textFill="#b6afaf" />
+                                                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="2.0" style="-fx-background-color: #2A2929;" />
+                                                        <Label fx:id="cashReturnsLbl" styleClass="individual_amounts" text="Ksh 0.0" textFill="#7e7b7b" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" layoutX="7.0" layoutY="92.0" spacing="10.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type2" text="Mpesa" textFill="#b6afaf" />
+                                                        <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="2.0" style="-fx-background-color: #2A2929;" />
+                                                        <Label fx:id="mpesaReturnsLbl" styleClass="individual_amounts" text="Ksh 0.0" textFill="#7e7b7b" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" layoutY="185.0" spacing="10.0">
+                                                    <children>
+                                                        <Label styleClass="grey_title_type2" text="Cheque" textFill="#b6afaf" />
+                                                        <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="2.0" style="-fx-background-color: #2A2929;" />
+                                                        <Label fx:id="chequeReturnsLbl" styleClass="individual_amounts" text="Ksh 0.0" textFill="#7e7b7b" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </Group>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                    </children>
+                </StackPane>
+                <StackPane fx:id="purchasesPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="836.0" prefWidth="1214.0">
+                    <children>
+                        <StackPane fx:id="purchaseReceiptsPane" opacity="0.0" prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <AnchorPane layoutX="431.0" layoutY="24.0" prefHeight="64.0" prefWidth="352.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 2;">
+                                            <effect>
+                                                <DropShadow color="#00000033" height="12.1" radius="5.55" width="12.1" />
+                                            </effect>
+                                            <children>
+                                                <StackPane layoutX="19.0" layoutY="10.0" prefHeight="43.0" prefWidth="311.0" style="-fx-background-color: #F1F1F1; -fx-background-radius: 30px;">
+                                                    <children>
+                                                        <JFXTextField fx:id="rcptNoParamTF" focusColor="#405aa800" onAction="#load_specific_receipt_data" prefHeight="48.0" prefWidth="311.0" promptText="Type a receipt number..." styleClass="search_text" unFocusColor="#4d4d4d00">
+                                                            <padding>
+                                                                <Insets left="40.0" right="20.0" />
+                                                            </padding>
+                                                        </JFXTextField>
+                                                        <OctIconView fill="#a0a0a0" glyphName="SEARCH" size="17">
+                                                            <StackPane.margin>
+                                                                <Insets right="260.0" />
+                                                            </StackPane.margin>
+                                                        </OctIconView>
+                                                    </children>
+                                                </StackPane>
+                                            </children>
+                                        </AnchorPane>
+                                        <MaterialDesignIconView fill="#0072cd" glyphName="REFRESH" layoutX="350.0" layoutY="67.0" onMouseClicked="#reload_receipts" size="30" styleClass="handCursor" />
+                                        <JFXTreeTableView fx:id="receiptsTable" layoutX="99.0" layoutY="116.0" prefHeight="691.0" prefWidth="1016.0" stylesheets="@../_css/table_style.css">
+                                            <columns>
+                                                <TreeTableColumn fx:id="receiptCol" prefWidth="83.0" text="Receipt" />
+                                                <TreeTableColumn fx:id="rcptDateCol" prefWidth="278.0" text="Date" />
+                                                <TreeTableColumn fx:id="codeCol" prefWidth="164.0" text="Serial" />
+                                                <TreeTableColumn fx:id="qtyCol" prefWidth="92.0" text="Quantity" />
+                                                <TreeTableColumn fx:id="sellingPriceCol" prefWidth="135.0" text="Selling Price" />
+                                                <TreeTableColumn fx:id="buyPricePriceCol" prefWidth="132.0" text="Buying Price" />
+                                                <TreeTableColumn fx:id="typeOfStockCol" prefWidth="132.0" text="Type" />
+                                            </columns>
+                                        </JFXTreeTableView>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                        <StackPane fx:id="purchaseSummaryPane">
+                            <children>
+                                <AnchorPane>
+                                    <children>
+                                        <JFXTreeTableView fx:id="salesTable" layoutX="126.0" layoutY="172.0" prefHeight="625.0" prefWidth="962.0" stylesheets="@../_css/table_style.css">
+                                            <columns>
+                                                <TreeTableColumn fx:id="dateCol" prefWidth="363.0" text="Date" />
+                                                <TreeTableColumn fx:id="saleRcptCol" prefWidth="113.0" text="Receipt" />
+                                                <TreeTableColumn fx:id="saleAmtCol" prefWidth="144.0" text="Amount" />
+                                                <TreeTableColumn fx:id="paidAsCol" prefWidth="124.0" text="Payment type" />
+                                                <TreeTableColumn fx:id="soldByCol" prefWidth="217.0" text="Sold By" />
+                                            </columns>
+                                            <styleClass>
+                                                <String fx:value="tree-table-row-cell" />
+                                                <String fx:value="tree-table-view" />
+                                            </styleClass>
+                                        </JFXTreeTableView>
+                                        <HBox layoutX="475.0" layoutY="118.0" spacing="20.0">
+                                            <children>
+                                                <JFXRadioButton fx:id="allRb" onAction="#load_all_sales" selected="true" style="-jfx-selected-color: #0072CD; -jfx-unselected-color: #5a5a5a;" text="All">
+                                                    <toggleGroup>
+                                                        <ToggleGroup fx:id="sale_period" />
+                                                    </toggleGroup>
+                                                </JFXRadioButton>
+                                                <JFXRadioButton fx:id="todayRb" onAction="#load_sales_of_provided_days" style="-jfx-selected-color: #0072CD; -jfx-unselected-color: #5a5a5a;" text="Today" toggleGroup="$sale_period" />
+                                                <JFXRadioButton fx:id="yesterdayRb" onAction="#load_sales_of_provided_days" style="-jfx-selected-color: #0072CD; -jfx-unselected-color: #5a5a5a;" text="Yesterday" toggleGroup="$sale_period" />
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="TOP_CENTER" layoutX="259.0" layoutY="27.0" prefHeight="62.0" prefWidth="697.0" spacing="40.0">
+                                            <children>
+                                                <AnchorPane prefHeight="62.0" prefWidth="298.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 2;">
+                                                    <effect>
+                                                        <DropShadow color="#00000033" height="12.1" radius="5.55" width="12.1" />
+                                                    </effect>
+                                                    <children>
+                                                        <StackPane layoutX="19.0" layoutY="10.0" prefHeight="43.0" prefWidth="260.0" style="-fx-background-color: #F1F1F1; -fx-background-radius: 30px;">
+                                                            <children>
+                                                                <OctIconView fill="#a0a0a0" glyphName="SEARCH" size="17">
+                                                                    <StackPane.margin>
+                                                                        <Insets right="210.0" />
+                                                                    </StackPane.margin>
+                                                                </OctIconView>
+                                                                <JFXDatePicker fx:id="dateDp" defaultColor="#0074cc" editable="false" onAction="#search_for_sale" prefHeight="43.0" prefWidth="210.0" promptText="Date">
+                                                                    <styleClass>
+                                                                        <String fx:value="search_text" />
+                                                                        <String fx:value="jfx-date-picker" />
+                                                                        <String fx:value="handCursor" />
+                                                                    </styleClass>
+                                                                    <StackPane.margin>
+                                                                        <Insets left="40.0" right="10.0" />
+                                                                    </StackPane.margin>
+                                                                </JFXDatePicker>
+                                                            </children>
+                                                        </StackPane>
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="62.0" prefWidth="355.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 2;">
+                                                    <effect>
+                                                        <DropShadow color="#00000033" height="12.1" radius="5.55" width="12.1" />
+                                                    </effect>
+                                                    <children>
+                                                        <StackPane layoutX="22.0" layoutY="10.0" prefHeight="43.0" prefWidth="311.0" style="-fx-background-color: #F1F1F1; -fx-background-radius: 30px;">
+                                                            <children>
+                                                                <OctIconView fill="#a0a0a0" glyphName="SEARCH" size="17">
+                                                                    <StackPane.margin>
+                                                                        <Insets right="260.0" />
+                                                                    </StackPane.margin>
+                                                                </OctIconView>
+                                                                <JFXComboBox fx:id="monthCbx" focusColor="#405aa800" nodeOrientation="RIGHT_TO_LEFT" onAction="#search_for_sale" prefHeight="45.0" prefWidth="293.0" promptText="Month" unFocusColor="#4d4d4d00" visibleRowCount="6">
+                                                                    <styleClass>
+                                                                        <String fx:value="search_comboBox" />
+                                                                        <String fx:value="jfx-combo-box" />
+                                                                        <String fx:value="handCursor" />
+                                                                    </styleClass>
+                                                                    <padding>
+                                                                        <Insets left="10.0" right="26.0" />
+                                                                    </padding>
+                                                                </JFXComboBox>
+                                                            </children>
+                                                        </StackPane>
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                    </children>
+                </StackPane>
+                <StackPane fx:id="stockPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="836.0" prefWidth="1214.0">
+                    <children>
+                        <StackPane fx:id="stockDeletePane" opacity="0.0" prefHeight="858.0" prefWidth="1214.0">
+                            <children>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <StackPane layoutX="397.0" layoutY="125.0" prefHeight="682.0" prefWidth="420.0">
+                                            <children>
+                                                <VBox fx:id="delResultsPane" alignment="CENTER" disable="true" opacity="0.0" spacing="15.0">
+                                                    <children>
+                                                        <Label styleClass="dashboard_titles" text="Details" textFill="#a8a8a8" />
+                                                        <AnchorPane prefHeight="567.0" prefWidth="420.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 3px;">
+                                                            <effect>
+                                                                <DropShadow color="#0000002d" height="12.1" radius="5.55" width="12.1" />
+                                                            </effect>
+                                                            <children>
+                                                                <ImageView fx:id="delProdImageView" fitHeight="228.0" fitWidth="265.0" layoutX="78.0" layoutY="26.0" pickOnBounds="true">
+                                                                    <image>
+                                                                        <Image url="@../_images/_pictures/noimage.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                                <VBox layoutX="28.0" layoutY="303.0" prefHeight="243.0" prefWidth="364.0" spacing="20.0">
+                                                                    <children>
+                                                                        <HBox alignment="CENTER" prefHeight="125.0" prefWidth="339.0" spacing="20.0">
+                                                                            <children>
+                                                                                <VBox alignment="CENTER_LEFT" spacing="20.0">
+                                                                                    <children>
+                                                                                        <Label styleClass="bio_key" text="Name" textFill="#c9c9c9" />
+                                                                                        <Label styleClass="bio_key" text="Description" textFill="#c9c9c9" />
+                                                                                        <Label styleClass="bio_key" text="Ratings" textFill="#c9c9c9" />
+                                                                                        <Label styleClass="bio_key" text="Stock" textFill="#c9c9c9" />
+                                                                                    </children>
+                                                                                </VBox>
+                                                                                <VBox prefHeight="208.0" prefWidth="280.0" spacing="18.0">
+                                                                                    <children>
+                                                                                        <Label fx:id="delProdNameLbl" prefHeight="21.0" prefWidth="279.0" styleClass="bio_object" text="#" textFill="#787878" wrapText="true" />
+                                                                                        <Label fx:id="delDescriptionLbl" prefHeight="21.0" prefWidth="288.0" styleClass="bio_object" text="#" textFill="#787878" wrapText="true" />
+                                                                                        <ImageView fx:id="delRatingsImageView" fitHeight="16.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                                                            <image>
+                                                                                                <Image url="@../_images/_icons/5_star.png" />
+                                                                                            </image>
+                                                                                            <viewport>
+                                                                                                <Rectangle2D />
+                                                                                            </viewport>
+                                                                                        </ImageView>
+                                                                                        <Label fx:id="delStockQuantityLbl" prefHeight="21.0" prefWidth="282.0" styleClass="bio_object" text="#" textFill="#787878" wrapText="true" />
+                                                                                    </children>
+                                                                                </VBox>
+                                                                            </children>
+                                                                        </HBox>
+                                                                        <Label styleClass="bio_object" text="Pricing" textFill="#0072cd" />
+                                                                        <HBox spacing="20.0">
+                                                                            <children>
+                                                                                <VBox alignment="CENTER_LEFT" spacing="20.0">
+                                                                                    <children>
+                                                                                        <Label styleClass="bio_key" text="Buying Price" textFill="#c9c9c9" />
+                                                                                        <Label styleClass="bio_key" text="Marked Price" textFill="#c9c9c9" />
+                                                                                    </children>
+                                                                                </VBox>
+                                                                                <VBox alignment="CENTER_LEFT" spacing="15.0">
+                                                                                    <children>
+                                                                                        <Label fx:id="delBuyingPriceLbl" prefHeight="21.0" prefWidth="207.0" styleClass="bio_object" text="Kes 0.0" textFill="#787878" wrapText="true" />
+                                                                                        <Label fx:id="delMarkedPriceLbl" prefHeight="21.0" prefWidth="207.0" styleClass="bio_object" text="Kes 0.0" textFill="#787878" wrapText="true" />
+                                                                                    </children>
+                                                                                </VBox>
+                                                                            </children>
+                                                                        </HBox>
+                                                                    </children>
+                                                                </VBox>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#delete_stock_item" prefHeight="60.0" prefWidth="60.0" ripplerFill="#ffc5b8" style="-fx-background-radius: 60px; -fx-text-fill: linear-gradient(#FFB900, #F0D801);" text="Delete" textFill="#dd7600">
+                                                            <effect>
+                                                                <InnerShadow />
+                                                            </effect>
+                                                            <graphic>
+                                                                <MaterialDesignIconView glyphName="DELETE" size="38" style="-fx-fill: linear-gradient(#F80505, #FF7B36);" />
+                                                            </graphic>
+                                                            <styleClass>
+                                                                <String fx:value="super_buttons_text" />
+                                                                <String fx:value="handCursor" />
+                                                            </styleClass>
+                                                        </JFXButton>
+                                                    </children>
+                                                </VBox>
+                                                <Label fx:id="delSearchResultLbl" styleClass="zero_result_info" text="Am really not sure of what to look for" />
+                                            </children>
+                                        </StackPane>
+                                        <AnchorPane layoutX="369.0" layoutY="26.0" prefHeight="64.0" prefWidth="477.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 2;">
+                                            <effect>
+                                                <DropShadow color="#00000033" height="12.1" radius="5.55" width="12.1" />
+                                            </effect>
+                                            <children>
+                                                <StackPane layoutX="12.0" layoutY="10.0" prefHeight="43.0" prefWidth="454.0" style="-fx-background-color: #F1F1F1; -fx-background-radius: 30px;">
+                                                    <children>
+                                                        <JFXTextField fx:id="prodCodeDelParTF" focusColor="#405aa800" onAction="#find_stock_item" prefHeight="48.0" prefWidth="311.0" promptText="Type a serial number..." styleClass="search_text" unFocusColor="#4d4d4d00">
+                                                            <padding>
+                                                                <Insets left="40.0" right="20.0" />
+                                                            </padding>
+                                                        </JFXTextField>
+                                                        <OctIconView fill="#a0a0a0" glyphName="SEARCH" size="17">
+                                                            <StackPane.margin>
+                                                                <Insets right="400.0" />
+                                                            </StackPane.margin>
+                                                        </OctIconView>
+                                                    </children>
+                                                </StackPane>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                        <StackPane fx:id="stockUpdatePane" opacity="0.0" prefHeight="827.0" prefWidth="1214.0">
+                            <children>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <AnchorPane layoutX="369.0" layoutY="27.0" prefHeight="64.0" prefWidth="477.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 2;">
+                                            <effect>
+                                                <DropShadow color="#00000033" height="12.1" radius="5.55" width="12.1" />
+                                            </effect>
+                                            <children>
+                                                <StackPane layoutX="11.0" layoutY="10.0" prefHeight="43.0" prefWidth="454.0" style="-fx-background-color: #F1F1F1; -fx-background-radius: 30px;">
+                                                    <children>
+                                                        <JFXTextField fx:id="prodCodeUpParTF" focusColor="#405aa800" onAction="#find_stock_item" prefHeight="50.0" prefWidth="311.0" promptText="Type a serial number ..." styleClass="search_text" unFocusColor="#4d4d4d00">
+                                                            <padding>
+                                                                <Insets left="40.0" right="20.0" />
+                                                            </padding>
+                                                        </JFXTextField>
+                                                        <OctIconView fill="#a0a0a0" glyphName="SEARCH" size="17">
+                                                            <StackPane.margin>
+                                                                <Insets right="400.0" />
+                                                            </StackPane.margin>
+                                                        </OctIconView>
+                                                    </children>
+                                                </StackPane>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane fx:id="updateDetailsPane" disable="true" layoutX="576.0" layoutY="121.0" opacity="0.0" prefHeight="691.0" prefWidth="618.0" style="-fx-background-color: rgb(255, 255, 255); -fx-background-radius: 5px;">
+                                            <children>
+                                                <Label layoutX="271.0" layoutY="14.0" styleClass="dashboard_titles" text="New Bio" textFill="#a8a8a8" />
+                                                <JFXComboBox fx:id="newProdStarsCbx" focusColor="#dd7600" labelFloat="true" layoutX="295.0" layoutY="254.0" prefHeight="33.0" prefWidth="99.0" promptText="Stars" unFocusColor="#4d4d4d">
+                                                    <styleClass>
+                                                        <String fx:value="input_text" />
+                                                        <String fx:value="handCursor" />
+                                                    </styleClass>
+                                                </JFXComboBox>
+                                                <JFXTextField fx:id="newProdQtyTF" focusColor="#dd7600" labelFloat="true" layoutX="296.0" layoutY="167.0" prefHeight="33.0" prefWidth="180.0" promptText="Quantity" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                                <VBox alignment="TOP_CENTER" layoutX="64.0" layoutY="79.0" prefHeight="210.0" prefWidth="199.0">
+                                                    <children>
+                                                        <ImageView fx:id="prodImageView1" fitHeight="171.0" fitWidth="202.0" pickOnBounds="true">
+                                                            <image>
+                                                                <Image url="@../_images/_pictures/noimage.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                        <JFXButton onAction="#load_new_image_of_product_we_want_to_update" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: rgb(0, 0, 0); -fx-background-radius: 0px;" text="choose image" textFill="WHITE">
+                                                            <styleClass>
+                                                                <String fx:value="menu_buttons" />
+                                                                <String fx:value="handCursor" />
+                                                            </styleClass>
+                                                        </JFXButton>
+                                                    </children>
+                                                </VBox>
+                                                <JFXTextField fx:id="newBuyingPriceTF" focusColor="#dd7600" labelFloat="true" layoutX="64.0" layoutY="342.0" prefHeight="33.0" prefWidth="207.0" promptText="Buying Price" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                                <JFXTextField fx:id="newMarkedPriceTF" focusColor="#dd7600" labelFloat="true" layoutX="354.0" layoutY="342.0" prefHeight="33.0" prefWidth="207.0" promptText="Marked Price" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                                <JFXTextArea fx:id="newDescriptionTA" focusColor="#dd7600" labelFloat="true" layoutX="64.0" layoutY="501.0" prefHeight="81.0" prefWidth="499.0" promptText="Description" styleClass="input_text" />
+                                                <JFXButton layoutX="247.0" layoutY="625.0" onAction="#update_stock_details" prefHeight="42.0" prefWidth="129.0" ripplerFill="#ffd29e" style="-fx-border-color: linear-gradient( #FFB900, #F0D801); -fx-background-radius: 0px; -fx-border-radius: 0px; -fx-border-width: 2px; -fx-text-fill: linear-gradient( #FFB900, #F0D801);" text="SAVE" textFill="#dd7600">
+                                                    <effect>
+                                                        <InnerShadow />
+                                                    </effect>
+                                                    <styleClass>
+                                                        <String fx:value="super_buttons_text" />
+                                                        <String fx:value="handCursor" />
+                                                    </styleClass>
+                                                </JFXButton>
+                                                <JFXTextField fx:id="newProdSerialTF" focusColor="rgb(240, 191, 23)" labelFloat="true" layoutX="295.0" layoutY="78.0" onAction="#check_if_the_serial_exists" prefHeight="40.0" prefWidth="265.0" promptText="serial number" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                                <JFXTextField fx:id="newProdNameTF" focusColor="rgb(240, 191, 23)" labelFloat="true" layoutX="64.0" layoutY="420.0" prefHeight="40.0" prefWidth="499.0" promptText="name" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                            </children>
+                                            <effect>
+                                                <DropShadow color="#00000039" />
+                                            </effect>
+                                        </AnchorPane>
+                                        <StackPane fx:id="oldBioPane" layoutX="68.0" layoutY="150.0" prefHeight="613.0" prefWidth="413.0">
+                                            <children>
+                                                <VBox fx:id="updateResultsPane" alignment="TOP_CENTER" opacity="0.0" spacing="15.0">
+                                                    <children>
+                                                        <Label styleClass="dashboard_titles" text="Old Bio" textFill="#a8a8a8" />
+                                                        <AnchorPane fx:id="resultPane" prefHeight="582.0" prefWidth="354.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 3px;">
+                                                            <effect>
+                                                                <DropShadow color="#0000002d" height="12.1" radius="5.55" width="12.1" />
+                                                            </effect>
+                                                            <children>
+                                                                <ImageView fx:id="oldProdImageView" fitHeight="228.0" fitWidth="265.0" layoutX="75.0" layoutY="31.0" pickOnBounds="true">
+                                                                    <image>
+                                                                        <Image url="@../_images/_pictures/noimage.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                                <VBox layoutX="18.0" layoutY="311.0" prefHeight="243.0" prefWidth="378.0" spacing="20.0">
+                                                                    <children>
+                                                                        <HBox prefHeight="119.0" prefWidth="433.0" spacing="20.0">
+                                                                            <children>
+                                                                                <VBox alignment="CENTER_LEFT" spacing="20.0">
+                                                                                    <children>
+                                                                                        <Label styleClass="bio_key" text="Name" textFill="#c9c9c9" />
+                                                                                        <Label styleClass="bio_key" text="Description" textFill="#c9c9c9" />
+                                                                                        <Label styleClass="bio_key" text="Ratings" textFill="#c9c9c9" />
+                                                                                        <Label styleClass="bio_key" text="Stock" textFill="#c9c9c9" />
+                                                                                    </children>
+                                                                                </VBox>
+                                                                                <VBox prefHeight="208.0" prefWidth="280.0" spacing="18.0">
+                                                                                    <children>
+                                                                                        <Label fx:id="oldProdNameLbl" prefHeight="21.0" prefWidth="279.0" styleClass="bio_object" text="#" textFill="#787878" wrapText="true" />
+                                                                                        <Label fx:id="oldDescriptionLbl" prefHeight="21.0" prefWidth="288.0" styleClass="bio_object" text="#" textFill="#787878" wrapText="true" />
+                                                                                        <ImageView fx:id="oldRatingsImageView" fitHeight="16.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                                                            <image>
+                                                                                                <Image url="@../_images/_icons/4_star.png" />
+                                                                                            </image>
+                                                                                            <viewport>
+                                                                                                <Rectangle2D />
+                                                                                            </viewport>
+                                                                                        </ImageView>
+                                                                                        <Label fx:id="oldStockQuantityLbl" prefHeight="21.0" prefWidth="282.0" styleClass="bio_object" text="#" textFill="#787878" wrapText="true" />
+                                                                                    </children>
+                                                                                </VBox>
+                                                                            </children>
+                                                                        </HBox>
+                                                                        <Label styleClass="bio_object" text="Pricing" textFill="#0072cd" />
+                                                                        <HBox spacing="20.0">
+                                                                            <children>
+                                                                                <VBox alignment="CENTER_LEFT" spacing="20.0">
+                                                                                    <children>
+                                                                                        <Label styleClass="bio_key" text="Buying Price" textFill="#c9c9c9" />
+                                                                                        <Label styleClass="bio_key" text="Marked Price" textFill="#c9c9c9" />
+                                                                                    </children>
+                                                                                </VBox>
+                                                                                <VBox alignment="CENTER_LEFT" spacing="15.0">
+                                                                                    <children>
+                                                                                        <Label fx:id="oldBuyingPriceLbl" prefHeight="21.0" prefWidth="207.0" styleClass="bio_object" text="Kes 0.0" textFill="#787878" wrapText="true" />
+                                                                                        <Label fx:id="oldMarkedPriceLbl" prefHeight="21.0" prefWidth="207.0" styleClass="bio_object" text="Kes 0.0" textFill="#787878" wrapText="true" />
+                                                                                    </children>
+                                                                                </VBox>
+                                                                            </children>
+                                                                        </HBox>
+                                                                    </children>
+                                                                </VBox>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                                </VBox>
+                                                <Label fx:id="updateSearchResultLbl" styleClass="zero_result_info" text="Am really not sure of what to look for" />
+                                            </children>
+                                        </StackPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                        <StackPane fx:id="stockaddPane" opacity="0.0" prefHeight="917.0" prefWidth="1064.0">
+                            <children>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <JFXTextField fx:id="prodSerialTF" focusColor="rgb(240, 191, 23)" labelFloat="true" layoutX="490.0" layoutY="83.0" onAction="#check_if_the_serial_exists" prefHeight="40.0" prefWidth="426.0" promptText="serial number" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                        <JFXTextField fx:id="prodQtyTF" focusColor="rgb(240, 191, 23)" labelFloat="true" layoutX="490.0" layoutY="184.0" prefHeight="40.0" prefWidth="203.0" promptText="quantity" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                        <VBox layoutX="167.0" layoutY="418.0" spacing="60.0">
+                                            <children>
+                                                <JFXTextField fx:id="prodNameTF" focusColor="rgb(240, 191, 23)" labelFloat="true" prefHeight="40.0" prefWidth="426.0" promptText="name" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                                <JFXTextField fx:id="prodDescriptionTF" focusColor="rgb(240, 191, 23)" labelFloat="true" prefHeight="40.0" prefWidth="717.0" promptText="description" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                                <HBox spacing="50.0">
+                                                    <children>
+                                                        <JFXTextField fx:id="prodMarkedPriceTF" focusColor="rgb(240, 191, 23)" labelFloat="true" prefHeight="40.0" prefWidth="213.0" promptText="marked price" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                                        <JFXTextField fx:id="prodBuyingPriceTF" focusColor="rgb(240, 191, 23)" labelFloat="true" prefHeight="40.0" prefWidth="213.0" promptText="buying price" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                        <JFXComboBox fx:id="prodRatingsCbx" focusColor="rgb(240, 191, 23)" layoutX="490.0" layoutY="304.0" prefHeight="40.0" prefWidth="213.0" promptText="ratings">
+                                            <styleClass>
+                                                <String fx:value="input_text" />
+                                                <String fx:value="handCursor" />
+                                            </styleClass>
+                                        </JFXComboBox>
+                                        <JFXButton layoutX="490.0" layoutY="749.0" onAction="#upload_product" prefHeight="50.0" prefWidth="155.0" ripplerFill="#ffd29e" style="-fx-background-radius: 2px; -fx-border-radius: 2px; -fx-border-color: linear-gradient( #FFB900, #F0D801); -fx-border-width: 2px; -fx-background-color: rgb(255, 255, 255); -fx-text-fill: linear-gradient( #FFB900, #F0D801);" text="Upload" textFill="#dd7600">
+                                            <styleClass>
+                                                <String fx:value="handCursor" />
+                                                <String fx:value="super_buttons_text" />
+                                            </styleClass>
+                                        </JFXButton>
+                                        <VBox layoutX="160.0" layoutY="44.0" prefHeight="300.0" prefWidth="235.0">
+                                            <children>
+                                                <ImageView fx:id="prodView" fitHeight="251.0" fitWidth="235.0" pickOnBounds="true">
+                                                    <image>
+                                                        <Image url="@../_images/_pictures/noimage.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <JFXButton onAction="#choose_image_from_local_drive" prefHeight="50.0" prefWidth="255.0" ripplerFill="#b5b5b5" style="-fx-background-radius: 0px; -fx-background-color: rgb(0, 0, 0);" text="choose image" textFill="WHITE">
+                                                    <styleClass>
+                                                        <String fx:value="handCursor" />
+                                                        <String fx:value="menu_buttons" />
+                                                    </styleClass>
+                                                </JFXButton>
+                                            </children>
+                                            <effect>
+                                                <DropShadow color="#00000049" height="30.0" offsetY="10.0" radius="14.5" spread="0.06" width="30.0" />
+                                            </effect>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                        <StackPane fx:id="stockViewPane" prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <AnchorPane layoutX="368.0" layoutY="27.0" prefHeight="64.0" prefWidth="477.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 2;">
+                                            <effect>
+                                                <DropShadow color="#00000033" height="12.1" radius="5.55" width="12.1" />
+                                            </effect>
+                                            <children>
+                                                <StackPane layoutX="19.0" layoutY="10.0" prefHeight="43.0" prefWidth="440.0" style="-fx-background-color: #F1F1F1; -fx-background-radius: 30px;">
+                                                    <children>
+                                                        <JFXTextField fx:id="stockParameterTF" focusColor="#405aa800" onAction="#find_stock_item" prefHeight="44.0" prefWidth="311.0" promptText="Type Something..." styleClass="search_text" unFocusColor="#4d4d4d00">
+                                                            <padding>
+                                                                <Insets left="40.0" right="20.0" />
+                                                            </padding>
+                                                        </JFXTextField>
+                                                        <OctIconView fill="#a0a0a0" glyphName="SEARCH" size="17">
+                                                            <StackPane.margin>
+                                                                <Insets right="390.0" />
+                                                            </StackPane.margin>
+                                                        </OctIconView>
+                                                    </children>
+                                                </StackPane>
+                                            </children>
+                                        </AnchorPane>
+                                        <MaterialDesignIconView fill="#0072cd" glyphName="REFRESH" layoutX="274.0" layoutY="70.0" onMouseClicked="#reload_stock" size="30" styleClass="handCursor" />
+                                        <JFXTreeTableView fx:id="stockTable" layoutX="37.0" layoutY="124.0" prefHeight="674.0" prefWidth="1138.0" stylesheets="@../_css/table_style.css">
+                                            <columns>
+                                                <TreeTableColumn fx:id="prodCodeCol" prefWidth="171.0" text="Code" />
+                                                <TreeTableColumn fx:id="prodNameCol" prefWidth="162.0" text="Name" />
+                                                <TreeTableColumn fx:id="prodDescriptionCol" prefWidth="275.0" text="Description" />
+                                                <TreeTableColumn fx:id="prodCountCol" prefWidth="75.0" text="Count" />
+                                                <TreeTableColumn fx:id="prodRatingsCol" minWidth="123.0" prefWidth="142.0" text="Ratings" />
+                                                <TreeTableColumn fx:id="prodBuyPriceCol" prefWidth="118.0" text="Buying P." />
+                                                <TreeTableColumn fx:id="prodMarkedPriceCol" minWidth="0.0" prefWidth="101.0" text="Marked P." />
+                                                <TreeTableColumn fx:id="prodStatusCol" minWidth="0.0" prefWidth="92.0" text="Status" />
+                                            </columns>
+                                        </JFXTreeTableView>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </StackPane>
+                    </children>
+                </StackPane>
+                <StackPane fx:id="dashBoardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="836.0" prefWidth="1214.0">
+                    <children>
+                        <AnchorPane>
+                            <children>
+                                <StackPane layoutX="425.0" layoutY="225.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="364.0">
+                                    <children>
+                                        <PieChart fx:id="productVersusServicesPie" labelLineLength="500.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" titleSide="BOTTOM">
+                                            <styleClass>
+                                                <String fx:value="piechartAndLinegraph" />
+                                                <String fx:value="chart-area-symbol" />
+                                                <String fx:value="chart-legend" />
+                                                <String fx:value="chart-pie" />
+                                                <String fx:value="chart-pie-label" />
+                                                <String fx:value="chart-pie-label-line" />
+                                                <String fx:value="chart-plot-background" />
+                                                <String fx:value="default-color0" />
+                                                <String fx:value="default-color1" />
+                                                <String fx:value="default-color2" />
+                                                <String fx:value="default-color3" />
+                                                <String fx:value="default-color4" />
+                                                <String fx:value="default-color5" />
+                                            </styleClass>
+                                            <stylesheets>
+                                                <URL value="@../_css/pie_chart_style_bluePrint.css" />
+                                                <URL value="@../_css/salesColor.css" />
+                                            </stylesheets>
+                                        </PieChart>
+                                        <Circle fill="WHITE" radius="158.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                            <StackPane.margin>
+                                                <Insets bottom="30.0" />
+                                            </StackPane.margin>
+                                        </Circle>
+                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                            <StackPane.margin>
+                                                <Insets bottom="100.0" />
+                                            </StackPane.margin>
+                                            <image>
+                                                <Image url="@../_images/_icons/Paycheque_50px_1.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Label fx:id="returnsSumLbl" alignment="CENTER" prefHeight="23.0" prefWidth="206.0" styleClass="sale_amount" text="0.0">
+                                            <StackPane.margin>
+                                                <Insets />
+                                            </StackPane.margin>
+                                        </Label>
+                                        <Label layoutX="121.0" layoutY="113.0" styleClass="grey_title_type1" text="Returns" textFill="#d8d8d8">
+                                            <StackPane.margin>
+                                                <Insets top="70.0" />
+                                            </StackPane.margin>
+                                        </Label>
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </StackPane>
+            </children>
+        </StackPane>
+    </children>
+    <stylesheets>
+        <URL value="@../_css/universal.css" />
+        <URL value="@../_css/backend_style.css" />
+    </stylesheets>
+</AnchorPane>

@@ -1,0 +1,27 @@
+.chart-pie-label-line {
+    -fx-stroke: #2C2C2C;
+    -fx-fill: #2C2C2C;
+}
+.chart-pie-label {
+    -fx-font-family: 'Montserrat Medium';
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-letter-spacing: 2px;
+    -fx-fill: #2C2C2C;
+}
+.chart-legend {
+    -fx-stroke: #FFFF00;
+}
+.chart-area-symbol {
+    -fx-background-radius: 3px;
+}
+.chart {
+    -fx-background-color: transparent;
+}
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+.chart-pie {
+    -fx-border-color: derive(-fx-pie-color, 1%);
+    -fx-border-width: 0px;
+}

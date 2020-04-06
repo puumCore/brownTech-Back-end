@@ -1,0 +1,9 @@
+.account_name_txt{
+    -fx-font-family: 'Montserrat SemiBold';
+    -fx-font-size: 22px;
+ }
+ .account_info_txt{
+    -fx-font-family: 'Montserrat SemiBold';
+    -fx-font-size: 14px;
+    -fx-font-style: italic; 
+ }

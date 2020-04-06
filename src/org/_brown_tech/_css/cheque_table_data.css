@@ -1,0 +1,9 @@
+#removetxt{
+    -fx-font-family: 'Montserrat SemiBold';
+    -fx-font-size: 16px;
+    -fx-text-align: right;
+}
+.tableData {
+    -fx-font-family: 'Fira Sans SemiBold';
+    -fx-font-size: 18px;
+ }

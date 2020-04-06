@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--suppress JavaFxDefaultTag -->
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane style="-fx-background-color: #FFFFFF; -fx-background-radius: 3px;" stylesheets="@../_css/users_style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org._brown_tech._controller.AdminUI">
+    <children>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="551.0">
+            <children>
+                <Label fx:id="nameLbl" layoutX="21.0" layoutY="25.0" prefHeight="28.0" prefWidth="507.0" styleClass="account_name_txt" wrapText="true" />
+                <Label layoutX="21.0" layoutY="68.0" styleClass="account_info_txt" text="The user has exclusive priviledges." textFill="#424242" />
+            </children>
+        </AnchorPane>
+    </children>
+    <effect>
+        <DropShadow color="#00000070" />
+    </effect>
+</StackPane>

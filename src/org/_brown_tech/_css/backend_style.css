@@ -1,0 +1,152 @@
+.handCursor {
+   -fx-cursor: hand;
+}
+.input_text {
+   -fx-font-family: 'Fira Sans Medium';
+   -fx-font-size:  16px;
+   -fx-text-fill: #000000;
+   -fx-prompt-text-fill: #bdbdbd;
+}
+.money_input {
+   -fx-font-family: 'Fira Sans Medium';
+   -fx-font-size:  22px;
+   -fx-text-fill: #000000;
+   -fx-prompt-text-fill: #bdbdbd;
+}
+.menu_buttons {
+   -fx-font-family: 'HelveticaNeueLT Std Med Cn';
+   -fx-font-size:  16px;
+}
+.sale_amount {
+   -fx-font-family: 'Fira Sans Medium';
+   -fx-font-size:  22px;
+}
+.grey_title_type1 {
+   -fx-font-family: 'Fira Sans Medium';
+   -fx-font-size:  16px;
+}
+.sub_menu_buttons {
+   -fx-font-family: 'HelveticaNeueLT Std Med Cn';
+   -fx-font-size:  16px;
+}
+.search_text, .search_comboBox {
+   -fx-font-family: 'Fira Sans Medium';
+   -fx-font-size:  14px;
+   -fx-text-fill: #000000;
+   -fx-prompt-text-fill: #bdbdbd;
+}
+.search_btn {
+   -fx-font-family: 'Fira Sans Semibold';
+   -fx-font-size:  16px;
+}
+.jfx-date-picker {
+   -fx-prompt-text-fill: #afafaf;
+}
+.jfx-date-picker .jfx-text-field{
+   -jfx-focus-color: transparent;
+   -jfx-unfocus-color: transparent;
+}
+.jfx-combo-box {
+   -fx-prompt-text-fill: #afafaf;
+}
+.jfx-combo-box .cell {
+   -fx-text-fill: rgb(0, 0, 0);
+}
+.jfx-radio-button {
+   -fx-font-family: 'Fira Sans Medium';
+   -fx-font-size: 16px;
+}
+.grey_title_type2, #chequeCount {
+   -fx-font-family: 'Fira Sans Medium';
+   -fx-font-size:  16px;
+}
+.sum_of_cash_mpesa_and_cheque, .individual_amounts {
+   -fx-font-family: 'Fira Sans Medium';
+   -fx-font-size:  22px;
+}
+.cheque_amounts {
+   -fx-font-family: 'Fira Sans Medium';
+   -fx-font-size:  20px;
+}
+.tableHeader {
+   -fx-pref-height: 52px;
+   -fx-background-color: #e0e0e0;
+}
+.header2Texts{
+   -fx-font-family: 'Montserrat SemiBold';
+   -fx-font-size: 14px;
+}
+.scroll-pane {
+   -fx-background-color: rgb(255, 255, 255);
+}
+
+.scroll-bar:horizontal,
+.scroll-bar:vertical {
+   -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal.track,
+.scroll-bar:vertical.track {
+   -fx-background-color: transparent;
+   -fx-border-color: transparent;
+   -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+   -fx-background-color: linear-gradient( #FFB900, #F0D801);
+   -fx-background-radius: 5em;
+}
+.scroll-bar:vertical {
+  -fx-pref-width: 16.5;
+  -fx-padding: 3;
+}
+.scroll-bar:horizontal {
+  -fx-pref-height: 16.5;
+  -fx-padding: 3;
+}
+.scroll-bar, .scroll-bar:pressed, .scroll-bar:focused {
+  -fx-font-size: 15;
+}
+.grey_title_type3{
+   -fx-font-family: 'Fira Sans SemiBold';
+   -fx-font-size: 16px;
+   -fx-font-style: italic;
+}
+.italics_za_summary_Data{
+   -fx-font-family: 'Montserrat SemiBold';
+   -fx-font-size: 22px;
+   -fx-font-style: italic;
+}
+.italics_za_profit_Data {
+   -fx-font-family: 'Montserrat SemiBold';
+   -fx-font-size: 18px;
+}
+.dashboard_navigation_text_label {
+   -fx-font-family: 'Montserrat SemiBold';
+   -fx-font-size: 12px;
+}
+.super_buttons_text {
+   -fx-font-family: 'Fira Sans SemiBold';
+   -fx-font-size: 18px;
+}
+.important_info {
+   -fx-font-family: 'Montserrat SemiBold';
+    -fx-font-size: 18px;
+}
+.zero_result_info {
+   -fx-font-family: 'Fira Sans';
+   -fx-font-size: 13px;
+}
+.bio_key {
+   -fx-font-family: 'Fira Sans';
+   -fx-font-size: 12px;
+}
+.bio_object {
+   -fx-font-family: 'Fira Sans Medium';
+   -fx-font-size: 14px;
+}
+.dashboard_titles {
+   -fx-font-family: 'Montserrat Medium';
+    -fx-font-size: 18px;
+}

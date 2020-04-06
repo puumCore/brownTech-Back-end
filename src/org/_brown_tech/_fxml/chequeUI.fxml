@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--suppress JavaFxDefaultTag -->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="969.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 2px;" stylesheets="@../_css/cheque_table_data.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org._brown_tech._controller.ChequeUI">
+    <effect>
+        <DropShadow color="#64646438" />
+    </effect>
+   <children>
+      <AnchorPane>
+         <children>
+            <Label fx:id="receiptLbl" layoutX="32.0" layoutY="11.0" prefHeight="23.0" prefWidth="73.0" styleClass="tableData" textFill="#383535" wrapText="true" />
+            <Label fx:id="chqNoLbl" layoutX="129.0" layoutY="11.0" prefHeight="23.0" prefWidth="115.0" styleClass="tableData" textFill="#383535" wrapText="true" />
+            <Label fx:id="dueDateLbl" layoutX="249.0" layoutY="12.0" prefHeight="23.0" prefWidth="145.0" styleClass="tableData" textFill="#383535" wrapText="true" />
+            <Label fx:id="bankLbl" layoutX="434.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="243.0" styleClass="tableData" textFill="#383535" wrapText="true" />
+            <Label fx:id="amtLbl" layoutX="703.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="135.0" styleClass="tableData" textFill="#383535" wrapText="true" />
+            <JFXButton id="removetxt" layoutX="862.0" layoutY="6.0" onAction="#approveCheque" prefHeight="33.0" prefWidth="100.0" style="-fx-background-color: #f74843; -fx-background-radius: 2px;" text="Approve" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--suppress JavaFxDefaultTag -->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" style="-fx-background-color: rgb(255, 255, 255);" stylesheets="@../_css/universal.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org._brown_tech._controller.RootUI">
+    <children>
+        <StackPane fx:id="phaseTwo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" style="-fx-background-color: rgb(255, 255, 255);" />
+        <StackPane fx:id="phaseOne" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" style="-fx-background-color: rgb(255, 255, 255);" stylesheets="@../_css/phaseOne.css">
+            <children>
+                <StackPane fx:id="loginPane" alignment="TOP_CENTER" opacity="0.0" prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fitHeight="201.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../_images/_background/loginScreen.png" />
+                            </image>
+                            <StackPane.margin>
+                                <Insets top="60.0" />
+                            </StackPane.margin>
+                        </ImageView>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <Group layoutX="545.0" layoutY="341.0">
+                                    <children>
+                                        <JFXTextField fx:id="usernameTF" focusColor="#405aa800" layoutY="8.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="350.0" style="-fx-border-color: linear-gradient(#FFB900, #F0D801); -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-border-width: 2px;" styleClass="input_text" unFocusColor="#4d4d4d00">
+                                            <padding>
+                                                <Insets left="10.0" right="10.0" />
+                                            </padding>
+                                        </JFXTextField>
+                                        <Label alignment="CENTER" layoutX="12.0" prefHeight="17.0" prefWidth="74.0" style="-fx-background-color: #FFFFFF;" styleClass="label_text" text="Username" textFill="#e27b00" />
+                                    </children>
+                                </Group>
+                                <Group layoutX="545.0" layoutY="429.0">
+                                    <children>
+                                        <StackPane layoutY="8.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="350.0" style="-fx-border-color: linear-gradient(#FFB900, #F0D801); -fx-border-radius: 5px; -fx-border-width: 2px;">
+                                            <children>
+                                                <JFXTextField fx:id="plainSiriTF" focusColor="#405aa800" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="50.0" prefWidth="350.0" styleClass="input_text" unFocusColor="#4d4d4d00">
+                                                    <padding>
+                                                        <Insets left="10.0" right="10.0" />
+                                                    </padding>
+                                                    <StackPane.margin>
+                                                        <Insets left="10.0" right="10.0" />
+                                                    </StackPane.margin>
+                                                </JFXTextField>
+                                                <JFXPasswordField fx:id="siriPF" focusColor="#405aa800" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="350.0" styleClass="input_text" unFocusColor="#4d4d4d00">
+                                                    <padding>
+                                                        <Insets left="10.0" right="10.0" />
+                                                    </padding>
+                                                    <StackPane.margin>
+                                                        <Insets left="10.0" right="10.0" />
+                                                    </StackPane.margin>
+                                                </JFXPasswordField>
+                                            </children>
+                                        </StackPane>
+                                        <Label alignment="CENTER" layoutX="12.0" prefHeight="17.0" prefWidth="68.0" style="-fx-background-color: #FFFFFF;" styleClass="label_text" text="Password" textFill="#e27b00" />
+                                    </children>
+                                </Group>
+                                <JFXButton id="show_hide_password" fx:id="hideShowSiriBtn" layoutX="771.0" layoutY="505.0" onAction="#show_or_hide_password" prefHeight="34.0" prefWidth="124.0" ripplerFill="#aeaeae" styleClass="handCursor" text="Show password" />
+                                <JFXButton id="login_btn" layoutX="545.0" layoutY="573.0" onAction="#allow_user_to_login" prefHeight="50.0" prefWidth="350.0" ripplerFill="#ffd29e" style="-fx-border-color: linear-gradient(#FFB900, #F0D801); -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-border-width: 2px; -fx-text-fill: linear-gradient(#FFB900, #F0D801);" styleClass="handCursor" text="Login">
+                                    <textFill>
+                                        <LinearGradient endX="1.0" endY="1.0">
+                                            <stops>
+                                                <Stop color="BLACK" />
+                                                <Stop color="WHITE" offset="1.0" />
+                                            </stops>
+                                        </LinearGradient>
+                                    </textFill>
+                                </JFXButton>
+                                <JFXButton id="forgot_password_btn" layoutX="589.0" layoutY="823.0" onAction="#reset_user_password" prefHeight="43.0" prefWidth="262.0" ripplerFill="#a8a8a8" styleClass="handCursor" text="Can't remember your password ?" textFill="#686868" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </StackPane>
+                <StackPane fx:id="splashPane" prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fitHeight="484.0" fitWidth="503.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../_images/_background/splashScreen.png" />
+                            </image>
+                        </ImageView>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <JFXProgressBar fx:id="loadingBar" layoutX="1.0" layoutY="813.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="1440.0" progress="1.0" styleClass="progBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                <Label fx:id="threadUpdate" alignment="CENTER" layoutY="839.0" prefHeight="26.0" prefWidth="1440.0" styleClass="loading_text" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </StackPane>
+            </children>
+        </StackPane>
+    </children>
+</StackPane>

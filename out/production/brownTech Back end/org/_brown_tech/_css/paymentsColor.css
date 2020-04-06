@@ -1,0 +1,9 @@
+.default-color0.chart-pie {
+    -fx-pie-color: rgb(0, 109, 178);
+}
+.default-color1.chart-pie {
+    -fx-pie-color: rgb(238, 83, 79);
+}
+.default-color2.chart-pie {
+    -fx-pie-color: rgb(37, 198, 218);
+}
