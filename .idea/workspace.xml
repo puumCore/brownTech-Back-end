@@ -64,8 +64,12 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectId" id="1Za34Bk84FC8RyEY4hkzKOryY3q" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -270,30 +274,30 @@
     </state>
     <state x="-860" y="179" key="FileChooserDialogImpl/0.0.1366.738/-1280.-74.1280.994@-1280.-74.1280.994" timestamp="1585401625990" />
     <state x="448" y="188" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1585991008827" />
-    <state width="1323" height="157" key="GridCell.Tab.0.bottom" timestamp="1585991438157">
+    <state width="1323" height="157" key="GridCell.Tab.0.bottom" timestamp="1586686016318">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1237" height="239" key="GridCell.Tab.0.bottom/0.0.1366.738/-1280.-74.1280.994@-1280.-74.1280.994" timestamp="1585877178116" />
     <state width="1323" height="219" key="GridCell.Tab.0.bottom/0.0.1366.738/-1280.-74.1280.994@0.0.1366.738" timestamp="1585583965218" />
-    <state width="1323" height="157" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1585991438157" />
-    <state width="1323" height="157" key="GridCell.Tab.0.center" timestamp="1585991438157">
+    <state width="1323" height="157" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1586686016318" />
+    <state width="1323" height="157" key="GridCell.Tab.0.center" timestamp="1586686016318">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1237" height="239" key="GridCell.Tab.0.center/0.0.1366.738/-1280.-74.1280.994@-1280.-74.1280.994" timestamp="1585877178116" />
     <state width="1323" height="219" key="GridCell.Tab.0.center/0.0.1366.738/-1280.-74.1280.994@0.0.1366.738" timestamp="1585583965218" />
-    <state width="1323" height="157" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1585991438157" />
-    <state width="1323" height="157" key="GridCell.Tab.0.left" timestamp="1585991438157">
+    <state width="1323" height="157" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1586686016318" />
+    <state width="1323" height="157" key="GridCell.Tab.0.left" timestamp="1586686016318">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1237" height="239" key="GridCell.Tab.0.left/0.0.1366.738/-1280.-74.1280.994@-1280.-74.1280.994" timestamp="1585877178116" />
     <state width="1323" height="219" key="GridCell.Tab.0.left/0.0.1366.738/-1280.-74.1280.994@0.0.1366.738" timestamp="1585583965218" />
-    <state width="1323" height="157" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1585991438157" />
-    <state width="1323" height="157" key="GridCell.Tab.0.right" timestamp="1585991438157">
+    <state width="1323" height="157" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1586686016318" />
+    <state width="1323" height="157" key="GridCell.Tab.0.right" timestamp="1586686016318">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1237" height="239" key="GridCell.Tab.0.right/0.0.1366.738/-1280.-74.1280.994@-1280.-74.1280.994" timestamp="1585877178116" />
     <state width="1323" height="219" key="GridCell.Tab.0.right/0.0.1366.738/-1280.-74.1280.994@0.0.1366.738" timestamp="1585583965218" />
-    <state width="1323" height="157" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1585991438157" />
+    <state width="1323" height="157" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1586686016318" />
     <state x="-555" y="62" width="1268" height="672" key="SettingsEditor" timestamp="1585991015650">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

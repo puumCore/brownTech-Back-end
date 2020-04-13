@@ -11,6 +11,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import org._brown_tech._custom.Issues;
 import org._brown_tech._object.ChequeObj;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,10 +40,7 @@ public class ChequeUI extends Issues implements Initializable {
     private Label amtLbl;
 
     @FXML
-    void approveCheque(ActionEvent event) {
-        if (event == null) {
-            return;
-        }
+    void approveCheque(@NotNull ActionEvent event) {
         if (i_am_sure_of_it("approve this cheque")) {
             if (approve_cheque(chequeObj.getDateTime())) {
                 final JFXButton jfxButton = (JFXButton) event.getSource();

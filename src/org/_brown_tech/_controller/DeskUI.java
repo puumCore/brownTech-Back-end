@@ -589,6 +589,10 @@ public class DeskUI extends Issues implements Initializable {
     private Label returnsSumLbl;
 
     @FXML
+    private JFXComboBox<String> customYearCbx;
+
+
+    @FXML
     void add_user(ActionEvent event) {
         if (event != null) {
             if (newFirstNameTF.getText().trim().isEmpty() || newFirstNameTF.getText().isEmpty() || newFirstNameTF.getText() == null) {
@@ -918,18 +922,23 @@ public class DeskUI extends Issues implements Initializable {
 
     @FXML
     void plot_area_chart_with_parameters(@NotNull ActionEvent event) {
-        final JFXComboBox<String> jfxComboBox = (JFXComboBox<String>) event.getSource();
-        if (jfxComboBox.getValue().trim().isEmpty() || jfxComboBox.getValue().isEmpty() || jfxComboBox.getValue() == null) {
+        final JFXComboBox<?> jfxComboBox = (JFXComboBox<?>) event.getSource();
+        if (jfxComboBox.getValue().toString().trim().isEmpty() || jfxComboBox.getValue().toString().isEmpty() || jfxComboBox.getValue() == null) {
             empty_and_null_pointer_message(jfxComboBox).show();
             return;
         }
-        final String parameter = jfxComboBox.getValue().trim();
-        plot_line_graph_based_on_profit_per_month(load_profit_and_loss_trend_across_months_of_a_requested_year(parameter), parameter);
-        jfxComboBox.getItems().add(parameter);
+        final String parameter = jfxComboBox.getValue().toString().trim();
+        if (parameter.length() == 4) {
+            plot_line_graph_based_on_profit_per_month(load_profit_and_loss_trend_across_months_of_a_requested_year(parameter), parameter);
+            if (!customYearCbx.getItems().contains(parameter)) {
+                customYearCbx.getItems().add(parameter);
+            }
+        }
     }
 
     @FXML
     void reload_accounts(@NotNull MouseEvent event) {
+
         accountParamTF.setText("");
         set_up_accounts();
         final Node node = (Node) event.getSource();
@@ -2074,7 +2083,6 @@ public class DeskUI extends Issues implements Initializable {
     }
 
     private void animate_show_statistics(JFXButton jfxButton) {
-        boolean animation_has_occurred = false;
         if (statisticsPane.getOpacity() < 1) {
             for (int index = 1; index <= 6; ++index) {
                 if (index != 5) {
@@ -2094,12 +2102,11 @@ public class DeskUI extends Issues implements Initializable {
                 }
             }
             set_background_color_for_active_buttons(jfxButton);
-            animation_has_occurred = true;
         }
     }
 
     private void animate_show_payments(JFXButton jfxButton) {
-        boolean animation_has_occurred = false;
+
         if (paymentsPane.getOpacity() < 1) {
             for (int index = 1; index <= 6; ++index) {
                 if (index != 4) {
@@ -2128,12 +2135,11 @@ public class DeskUI extends Issues implements Initializable {
                 }
             }
             set_background_color_for_active_buttons(jfxButton);
-            animation_has_occurred = true;
         }
     }
 
     private void animate_show_purchases(JFXButton jfxButton) {
-        boolean animation_has_occurred = false;
+
         if (purchasesPane.getOpacity() < 1) {
             for (int index = 1; index <= 6; ++index) {
                 if (index != 3) {
@@ -2162,12 +2168,11 @@ public class DeskUI extends Issues implements Initializable {
                 }
             }
             set_background_color_for_active_buttons(jfxButton);
-            animation_has_occurred = true;
         }
     }
 
     private void animate_show_stock(JFXButton jfxButton) {
-        boolean animation_has_occurred = false;
+
         if (stockPane.getOpacity() < 1) {
             for (int index = 1; index <= 6; ++index) {
                 if (index != 2) {
@@ -2195,12 +2200,11 @@ public class DeskUI extends Issues implements Initializable {
                 }
             }
             set_background_color_for_active_buttons(jfxButton);
-            animation_has_occurred = true;
         }
     }
 
     private void animate_show_dashboard(JFXButton jfxButton) {
-        boolean animation_has_occurred = false;
+
         if (dashBoardPane.getOpacity() < 1) {
             for (int index = 1; index <= 6; ++index) {
                 if (index != 1) {
@@ -2219,7 +2223,6 @@ public class DeskUI extends Issues implements Initializable {
                 }
             }
             set_background_color_for_active_buttons(jfxButton);
-            animation_has_occurred = true;
         }
     }
 
@@ -2325,8 +2328,9 @@ public class DeskUI extends Issues implements Initializable {
         stock_leaflets.put(4, stockDeletePane);
     }
 
+    @NotNull
     private Boolean animate_show_accounts(JFXButton jfxButton) {
-        boolean animation_has_occurred = false;
+        boolean animation_has_occurred =  false;
         if (accountsPane.getOpacity() < 1) {
             for (int index = 1; index <= 6; ++index) {
                 if (index != 6) {
@@ -2355,7 +2359,7 @@ public class DeskUI extends Issues implements Initializable {
                 }
             }
             set_background_color_for_active_buttons(jfxButton);
-            animation_has_occurred = true;
+            animation_has_occurred =  true;
         }
         return animation_has_occurred;
     }

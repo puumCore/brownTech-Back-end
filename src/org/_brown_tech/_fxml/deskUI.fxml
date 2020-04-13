@@ -447,7 +447,7 @@
                     <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                             <children>
-                                <JFXComboBox editable="true" focusColor="#dd7600" labelFloat="true" layoutX="204.0" layoutY="502.0" onAction="#plot_area_chart_with_parameters" prefHeight="33.0" prefWidth="180.0" promptText="Year">
+                                <JFXComboBox fx:id="customYearCbx" editable="true" focusColor="#dd7600" labelFloat="true" layoutX="204.0" layoutY="502.0" onAction="#plot_area_chart_with_parameters" prefHeight="33.0" prefWidth="180.0" promptText="Year">
                                     <styleClass>
                                         <String fx:value="search_comboBox" />
                                         <String fx:value="input" />

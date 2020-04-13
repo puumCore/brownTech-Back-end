@@ -1,14 +1,9 @@
 package org._brown_tech._controller;
 
-import animatefx.animation.FadeOutLeft;
-import com.jfoenix.controls.JFXButton;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import org._brown_tech._custom.Issues;
 import org._brown_tech._object.User;
 
