@@ -4,16 +4,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import org._brown_tech._custom.Issues;
-import org._brown_tech._object.User;
+import org._brown_tech._custom.Brain;
+import org._brown_tech._object._actors.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @author Mandela
+ * @author Mandela aka puumInc
+ * @version 1.0.0
  */
-public class EmployeeUI extends Issues implements Initializable {
+public class EmployeeUI extends Brain implements Initializable {
 
     protected static User globalUser;
     private User user;
@@ -31,7 +32,7 @@ public class EmployeeUI extends Issues implements Initializable {
             question = "DEACTIVATE this account";
         }
         if (i_am_sure_of_it(question)) {
-            if (make_user_account_inactive_or_not(this.user.getUsername(), !this.user.isActive())) {
+            if (make_user_account_inactive_or_not(this.user)) {
                 this.user.setActive(!this.user.isActive());
                 if (this.user.isActive()) {
                     nameLbl.setText(this.user.getFullname());

@@ -11,6 +11,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 
+/**
+ * @author Mandela aka puumInc
+ * @version 1.0.0
+ */
 public class Main extends Application {
 
     public static final File RESOURCE_PATH = new File(System.getenv("JAVAFX_DEV_APP_HOME").concat("\\_brown_tech\\_pos\\"));
@@ -20,7 +24,7 @@ public class Main extends Application {
 
     @Override
     public void start(@NotNull Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/org/_brown_tech/_fxml/rootUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/_brown_tech/_fxml/sample.fxml"));
         Scene scene = new Scene(root);
         scene.setOnMousePressed(event2 -> {
             xOffset = event2.getSceneX();
@@ -35,6 +39,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(event -> System.exit(0));
         primaryStage.show();
         stage = primaryStage;
     }

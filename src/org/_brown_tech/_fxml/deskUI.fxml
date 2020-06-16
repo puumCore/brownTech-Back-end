@@ -209,7 +209,7 @@
             <children>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="902.0" prefWidth="226.0">
                     <children>
-                        <VBox alignment="TOP_CENTER" layoutY="150.0" prefHeight="367.0" prefWidth="226.0" spacing="30.0">
+                        <VBox alignment="TOP_CENTER" layoutY="268.0" prefHeight="367.0" prefWidth="226.0" spacing="30.0">
                             <children>
                                 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="226.0">
                                     <children>
@@ -269,19 +269,23 @@
                                         </JFXButton>
                                     </children>
                                 </VBox>
-                                <JFXButton onAction="#log_out_from_my_account" prefHeight="36.0" prefWidth="168.0" ripplerFill="#fca1a1" style="-fx-background-radius: 0px; -fx-border-color: #cc0c0c; -fx-border-radius: 0px;" text="Log out" textFill="#cc0c0c">
+                                <JFXButton onAction="#log_out_from_my_account" prefHeight="36.0" prefWidth="226.0" ripplerFill="#fca1a1" style="-fx-background-radius: 0px; -fx-border-radius: 0px;" text="Log out" textFill="#cc0c0c">
                                     <styleClass>
                                         <String fx:value="handCursor" />
                                         <String fx:value="menu_buttons" />
                                     </styleClass>
+                           <graphic>
+                              <MaterialDesignIconView fill="#cc0c0c" glyphName="LOGOUT" size="20" />
+                           </graphic>
                                 </JFXButton>
                             </children>
                         </VBox>
-                        <ImageView fitHeight="129.0" fitWidth="118.0" layoutX="54.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../_images/_background/loginScreen.png" />
-                            </image>
-                        </ImageView>
+                  <VBox alignment="TOP_CENTER" layoutX="51.0" layoutY="59.0" prefWidth="124.0" spacing="10.0">
+                     <children>
+                        <MaterialDesignIconView fill="#868686" glyphName="ACCOUNT" size="100" style="-fx-fill: linear-gradient( #FFB900, #F0D801);" />
+                        <Label id="fullname" fx:id="userFullnameTF" alignment="CENTER" prefHeight="15.0" prefWidth="127.0" wrapText="true" />
+                     </children>
+                  </VBox>
                     </children>
                 </AnchorPane>
             </children>
@@ -323,7 +327,7 @@
                             <children>
                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                     <children>
-                                        <Label layoutX="298.0" layoutY="33.0" lineSpacing="20.0" styleClass="important_info" text="Hello there, this page can only edit the adminstators' accountObj info." wrapText="true" />
+                                        <Label layoutX="298.0" layoutY="33.0" lineSpacing="20.0" styleClass="important_info" text="Hello there, this page can only be edited by the admin." wrapText="true" />
                                         <VBox layoutX="412.0" layoutY="147.0" prefHeight="643.0" prefWidth="390.0" spacing="50.0">
                                             <children>
                                                 <JFXTextField fx:id="oldNewFirstnameTF" focusColor="#dd7600" labelFloat="true" prefHeight="50.0" prefWidth="364.0" promptText="Firstname" styleClass="input_text" />
@@ -1047,7 +1051,7 @@
                                                 <JFXTextField fx:id="newBuyingPriceTF" focusColor="#dd7600" labelFloat="true" layoutX="64.0" layoutY="342.0" prefHeight="33.0" prefWidth="207.0" promptText="Buying Price" styleClass="input_text" unFocusColor="#4d4d4d" />
                                                 <JFXTextField fx:id="newMarkedPriceTF" focusColor="#dd7600" labelFloat="true" layoutX="354.0" layoutY="342.0" prefHeight="33.0" prefWidth="207.0" promptText="Marked Price" styleClass="input_text" unFocusColor="#4d4d4d" />
                                                 <JFXTextArea fx:id="newDescriptionTA" focusColor="#dd7600" labelFloat="true" layoutX="64.0" layoutY="501.0" prefHeight="81.0" prefWidth="499.0" promptText="Description" styleClass="input_text" />
-                                                <JFXButton layoutX="247.0" layoutY="625.0" onAction="#update_stock_details" prefHeight="42.0" prefWidth="129.0" ripplerFill="#ffd29e" style="-fx-border-color: linear-gradient( #FFB900, #F0D801); -fx-background-radius: 0px; -fx-border-radius: 0px; -fx-border-width: 2px; -fx-text-fill: linear-gradient( #FFB900, #F0D801);" text="SAVE" textFill="#dd7600">
+                                                <JFXButton layoutX="247.0" layoutY="625.0" onAction="#update_product_details" prefHeight="42.0" prefWidth="129.0" ripplerFill="#ffd29e" style="-fx-border-color: linear-gradient( #FFB900, #F0D801); -fx-background-radius: 0px; -fx-border-radius: 0px; -fx-border-width: 2px; -fx-text-fill: linear-gradient( #FFB900, #F0D801);" text="SAVE" textFill="#dd7600">
                                                     <effect>
                                                         <InnerShadow />
                                                     </effect>
@@ -1141,9 +1145,27 @@
                             <children>
                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                     <children>
-                                        <JFXTextField fx:id="prodSerialTF" focusColor="rgb(240, 191, 23)" labelFloat="true" layoutX="490.0" layoutY="83.0" onAction="#check_if_the_serial_exists" prefHeight="40.0" prefWidth="426.0" promptText="serial number" styleClass="input_text" unFocusColor="#4d4d4d" />
-                                        <JFXTextField fx:id="prodQtyTF" focusColor="rgb(240, 191, 23)" labelFloat="true" layoutX="490.0" layoutY="184.0" prefHeight="40.0" prefWidth="203.0" promptText="quantity" styleClass="input_text" unFocusColor="#4d4d4d" />
-                                        <VBox layoutX="167.0" layoutY="418.0" spacing="60.0">
+                              <VBox layoutX="206.0" layoutY="46.0" prefHeight="300.0" prefWidth="280.0">
+                                 <children>
+                                    <ImageView fx:id="prodView" fitHeight="251.0" fitWidth="284.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../brownTech%20Front%20end/src/org/_brown_tech/_images/_icons/noimage.png" />
+                                       </image>
+                                    </ImageView>
+                                    <JFXButton onAction="#choose_image_from_local_drive" prefHeight="50.0" prefWidth="285.0" ripplerFill="#ffd29e" style="-fx-background-radius: 0px; -fx-background-color: rgb(0, 0, 0);" text="choose image" textFill="WHITE">
+                                       <styleClass>
+                                          <String fx:value="handCursor" />
+                                          <String fx:value="menu_buttons" />
+                                       </styleClass>
+                                    </JFXButton>
+                                 </children>
+                                 <effect>
+                                    <DropShadow blurType="GAUSSIAN" color="#00000049" height="56.69" offsetY="10.0" radius="20.43" spread="0.06" width="27.03" />
+                                 </effect>
+                              </VBox>
+                                        <JFXTextField fx:id="prodSerialTF" focusColor="rgb(240, 191, 23)" labelFloat="true" layoutX="582.0" layoutY="75.0" onAction="#check_if_the_serial_exists" prefHeight="40.0" prefWidth="426.0" promptText="serial number" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                        <JFXTextField fx:id="prodQtyTF" focusColor="rgb(240, 191, 23)" labelFloat="true" layoutX="582.0" layoutY="176.0" prefHeight="40.0" prefWidth="203.0" promptText="quantity" styleClass="input_text" unFocusColor="#4d4d4d" />
+                                        <VBox layoutX="206.0" layoutY="410.0" spacing="60.0">
                                             <children>
                                                 <JFXTextField fx:id="prodNameTF" focusColor="rgb(240, 191, 23)" labelFloat="true" prefHeight="40.0" prefWidth="426.0" promptText="name" styleClass="input_text" unFocusColor="#4d4d4d" />
                                                 <JFXTextField fx:id="prodDescriptionTF" focusColor="rgb(240, 191, 23)" labelFloat="true" prefHeight="40.0" prefWidth="717.0" promptText="description" styleClass="input_text" unFocusColor="#4d4d4d" />
@@ -1155,36 +1177,18 @@
                                                 </HBox>
                                             </children>
                                         </VBox>
-                                        <JFXComboBox fx:id="prodRatingsCbx" focusColor="rgb(240, 191, 23)" layoutX="490.0" layoutY="304.0" prefHeight="40.0" prefWidth="213.0" promptText="ratings">
+                                        <JFXComboBox fx:id="prodRatingsCbx" focusColor="rgb(240, 191, 23)" labelFloat="true" layoutX="582.0" layoutY="296.0" prefHeight="40.0" prefWidth="213.0" promptText="ratings">
                                             <styleClass>
                                                 <String fx:value="input_text" />
                                                 <String fx:value="handCursor" />
                                             </styleClass>
                                         </JFXComboBox>
-                                        <JFXButton layoutX="490.0" layoutY="749.0" onAction="#upload_product" prefHeight="50.0" prefWidth="155.0" ripplerFill="#ffd29e" style="-fx-background-radius: 2px; -fx-border-radius: 2px; -fx-border-color: linear-gradient( #FFB900, #F0D801); -fx-border-width: 2px; -fx-background-color: rgb(255, 255, 255); -fx-text-fill: linear-gradient( #FFB900, #F0D801);" text="Upload" textFill="#dd7600">
+                                        <JFXButton layoutX="529.0" layoutY="741.0" onAction="#upload_product" prefHeight="50.0" prefWidth="155.0" ripplerFill="#ffd29e" style="-fx-background-radius: 2px; -fx-border-radius: 2px; -fx-border-color: linear-gradient( #FFB900, #F0D801); -fx-border-width: 2px; -fx-background-color: rgb(255, 255, 255); -fx-text-fill: linear-gradient( #FFB900, #F0D801);" text="Upload" textFill="#dd7600">
                                             <styleClass>
                                                 <String fx:value="handCursor" />
                                                 <String fx:value="super_buttons_text" />
                                             </styleClass>
                                         </JFXButton>
-                                        <VBox layoutX="160.0" layoutY="44.0" prefHeight="300.0" prefWidth="235.0">
-                                            <children>
-                                                <ImageView fx:id="prodView" fitHeight="251.0" fitWidth="235.0" pickOnBounds="true">
-                                                    <image>
-                                                        <Image url="@../_images/_pictures/noimage.png" />
-                                                    </image>
-                                                </ImageView>
-                                                <JFXButton onAction="#choose_image_from_local_drive" prefHeight="50.0" prefWidth="255.0" ripplerFill="#b5b5b5" style="-fx-background-radius: 0px; -fx-background-color: rgb(0, 0, 0);" text="choose image" textFill="WHITE">
-                                                    <styleClass>
-                                                        <String fx:value="handCursor" />
-                                                        <String fx:value="menu_buttons" />
-                                                    </styleClass>
-                                                </JFXButton>
-                                            </children>
-                                            <effect>
-                                                <DropShadow color="#00000049" height="30.0" offsetY="10.0" radius="14.5" spread="0.06" width="30.0" />
-                                            </effect>
-                                        </VBox>
                                     </children>
                                 </AnchorPane>
                             </children>

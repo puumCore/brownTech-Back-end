@@ -1,6 +1,7 @@
 package org._brown_tech._controller;
 
 import animatefx.animation.*;
+import com.google.gson.JsonObject;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
@@ -33,18 +34,20 @@ import javafx.util.Duration;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import org._brown_tech.Main;
-import org._brown_tech._custom.Issues;
-import org._brown_tech._object.AccountObj;
-import org._brown_tech._object.ChequeObj;
+import org._brown_tech._custom.Brain;
+import org._brown_tech._custom.Watchdog;
 import org._brown_tech._object.Product;
-import org._brown_tech._object.User;
+import org._brown_tech._object._actors.Account;
+import org._brown_tech._object._actors.User;
+import org._brown_tech._object._payments.Cheque;
 import org._brown_tech._outsourced.BCrypt;
 import org._brown_tech._outsourced.PasswordDialog;
-import org._brown_tech._table_model.Account;
-import org._brown_tech._table_model.Purchase;
-import org._brown_tech._table_model.Receipt;
-import org._brown_tech._table_model.Stock;
+import org._brown_tech._table_model.AccountModel;
+import org._brown_tech._table_model.PurchaseModel;
+import org._brown_tech._table_model.ReceiptModel;
+import org._brown_tech._table_model.StockModel;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -61,9 +64,10 @@ import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 /**
- * @author Mandela
+ * @author Mandela aka puumInc
+ * @version 1.0.0
  */
-public class DeskUI extends Issues implements Initializable {
+public class DeskUI extends Brain implements Initializable {
 
     private final HashMap<Integer, StackPane> desk_stackPanes = new HashMap<>();
     private final HashMap<Integer, AnchorPane> sub_menu_anchorPanes = new HashMap<>();
@@ -93,10 +97,10 @@ public class DeskUI extends Issues implements Initializable {
     private final ObservableList<String> listOfIn_ActiveStaffUsername = FXCollections.observableArrayList();
     private final Product productToAdd = new Product();
     private final Product productToUpdate = new Product();
-    private Product product = null;
+    private Product myProduct = null;
     private String PATH_TO_IMAGE_OF_NEW_PRODUCT = INPUT_STREAM_TO_NO_IMAGE;
-    private String PATH_TO_IMAGE_OF_UPDATED_PRODUCT = null;
-    private UnaryOperator<TextFormatter.Change> integerFilter = change -> {
+    private String PATH_TO_IMAGE_OF_UPDATED_PRODUCT = INPUT_STREAM_TO_NO_IMAGE;
+    private final UnaryOperator<TextFormatter.Change> integerFilter = change -> {
         String newText = change.getControlNewText();
         if (newText.matches("-?([1-9][0-9]*)?")) {
             return change;
@@ -113,7 +117,7 @@ public class DeskUI extends Issues implements Initializable {
         }
         return null;
     };
-    private StringConverter<Integer> converter = new IntegerStringConverter() {
+    private final StringConverter<Integer> converter = new IntegerStringConverter() {
         @Nullable
         @Override
         public Integer fromString(@NotNull String string) {
@@ -124,7 +128,6 @@ public class DeskUI extends Issues implements Initializable {
         }
     };
     private Product productToDelete = null;
-    private AccountObj accountObjForUserWhoJustLoggedIn = null;
 
     @FXML
     private StackPane topBarPane;
@@ -247,19 +250,19 @@ public class DeskUI extends Issues implements Initializable {
     private StackPane accountsAddPane;
 
     @FXML
-    private JFXTreeTableView<Account> accountsTable;
+    private JFXTreeTableView<AccountModel> accountsTable;
 
     @FXML
-    private TreeTableColumn<Account, String> accUsernameCol;
+    private TreeTableColumn<AccountModel, String> accUsernameCol;
 
     @FXML
-    private TreeTableColumn<Account, String> accFirstnameCol;
+    private TreeTableColumn<AccountModel, String> accFirstnameCol;
 
     @FXML
-    private TreeTableColumn<Account, String> accSurnameCol;
+    private TreeTableColumn<AccountModel, String> accSurnameCol;
 
     @FXML
-    private TreeTableColumn<Account, String> accEmailCol;
+    private TreeTableColumn<AccountModel, String> accEmailCol;
 
     @FXML
     private StackPane statisticsPane;
@@ -355,49 +358,49 @@ public class DeskUI extends Issues implements Initializable {
     private JFXTextField rcptNoParamTF;
 
     @FXML
-    private JFXTreeTableView<Receipt> receiptsTable;
+    private JFXTreeTableView<ReceiptModel> receiptsTable;
 
     @FXML
-    private TreeTableColumn<Receipt, String> receiptCol;
+    private TreeTableColumn<ReceiptModel, String> receiptCol;
 
     @FXML
-    private TreeTableColumn<Receipt, String> rcptDateCol;
+    private TreeTableColumn<ReceiptModel, String> rcptDateCol;
 
     @FXML
-    private TreeTableColumn<Receipt, String> codeCol;
+    private TreeTableColumn<ReceiptModel, String> codeCol;
 
     @FXML
-    private TreeTableColumn<Receipt, String> qtyCol;
+    private TreeTableColumn<ReceiptModel, String> qtyCol;
 
     @FXML
-    private TreeTableColumn<Receipt, String> sellingPriceCol;
+    private TreeTableColumn<ReceiptModel, String> sellingPriceCol;
 
     @FXML
-    private TreeTableColumn<Receipt, String> buyPricePriceCol;
+    private TreeTableColumn<ReceiptModel, String> buyPricePriceCol;
 
     @FXML
-    private TreeTableColumn<Receipt, String> typeOfStockCol;
+    private TreeTableColumn<ReceiptModel, String> typeOfStockCol;
 
     @FXML
     private StackPane purchaseSummaryPane;
 
     @FXML
-    private JFXTreeTableView<Purchase> salesTable;
+    private JFXTreeTableView<PurchaseModel> salesTable;
 
     @FXML
-    private TreeTableColumn<Purchase, String> dateCol;
+    private TreeTableColumn<PurchaseModel, String> dateCol;
 
     @FXML
-    private TreeTableColumn<Purchase, String> saleRcptCol;
+    private TreeTableColumn<PurchaseModel, String> saleRcptCol;
 
     @FXML
-    private TreeTableColumn<Purchase, String> saleAmtCol;
+    private TreeTableColumn<PurchaseModel, String> saleAmtCol;
 
     @FXML
-    private TreeTableColumn<Purchase, String> paidAsCol;
+    private TreeTableColumn<PurchaseModel, String> paidAsCol;
 
     @FXML
-    private TreeTableColumn<Purchase, String> soldByCol;
+    private TreeTableColumn<PurchaseModel, String> soldByCol;
 
     @FXML
     private JFXRadioButton allRb;
@@ -553,31 +556,31 @@ public class DeskUI extends Issues implements Initializable {
     private JFXTextField stockParameterTF;
 
     @FXML
-    private JFXTreeTableView<Stock> stockTable;
+    private JFXTreeTableView<StockModel> stockTable;
 
     @FXML
-    private TreeTableColumn<Stock, String> prodCodeCol;
+    private TreeTableColumn<StockModel, String> prodCodeCol;
 
     @FXML
-    private TreeTableColumn<Stock, String> prodNameCol;
+    private TreeTableColumn<StockModel, String> prodNameCol;
 
     @FXML
-    private TreeTableColumn<Stock, String> prodDescriptionCol;
+    private TreeTableColumn<StockModel, String> prodDescriptionCol;
 
     @FXML
-    private TreeTableColumn<Stock, String> prodCountCol;
+    private TreeTableColumn<StockModel, String> prodCountCol;
 
     @FXML
-    private TreeTableColumn<Stock, ImageView> prodRatingsCol;
+    private TreeTableColumn<StockModel, ImageView> prodRatingsCol;
 
     @FXML
-    private TreeTableColumn<Stock, String> prodBuyPriceCol;
+    private TreeTableColumn<StockModel, String> prodBuyPriceCol;
 
     @FXML
-    private TreeTableColumn<Stock, String> prodMarkedPriceCol;
+    private TreeTableColumn<StockModel, String> prodMarkedPriceCol;
 
     @FXML
-    private TreeTableColumn<Stock, String> prodStatusCol;
+    private TreeTableColumn<StockModel, String> prodStatusCol;
 
     @FXML
     private StackPane dashBoardPane;
@@ -591,6 +594,8 @@ public class DeskUI extends Issues implements Initializable {
     @FXML
     private JFXComboBox<String> customYearCbx;
 
+    @FXML
+    private Label userFullnameTF;
 
     @FXML
     void add_user(ActionEvent event) {
@@ -617,27 +622,27 @@ public class DeskUI extends Issues implements Initializable {
             final ObservableList<String> listOfAllUsernames = FXCollections.observableArrayList();
             listOfAllUsernames.addAll(listOfActiveStaffUsername);
             listOfAllUsernames.addAll(listOfIn_ActiveStaffUsername);
-            if (listOfAllUsernames.contains(newUsernameTF.getText().trim()) || RootUI.LOGGED_IN_USER.equals(newUsernameTF.getText().trim())) {
+            if (listOfAllUsernames.contains(newUsernameTF.getText().trim()) || myAccount.getUsername().equals(newUsernameTF.getText().trim())) {
                 warning_message("Taken!", "The username you have selected is already taken, enter a new one").show();
                 return;
             }
             final String passwordForNewAccount = BCrypt.hashpw("1234", BCrypt.gensalt(14));
-            final AccountObj newUserAccountObj = new AccountObj();
-            newUserAccountObj.setFirstname(newFirstNameTF.getText().trim());
-            newUserAccountObj.setSurname(newSurnameTF.getText().trim());
-            newUserAccountObj.setEmail(newEmailTF.getText().trim());
-            newUserAccountObj.setUsername(newUsernameTF.getText().trim());
-            newUserAccountObj.setAdmin(false);
-            newUserAccountObj.setSiri(passwordForNewAccount);
-            if (add_staff_new_account(newUserAccountObj)) {
+            final Account newUserAccount = new Account();
+            newUserAccount.setFname(newFirstNameTF.getText().trim());
+            newUserAccount.setSurname(newSurnameTF.getText().trim());
+            newUserAccount.setEmail(newEmailTF.getText().trim());
+            newUserAccount.setUsername(newUsernameTF.getText().trim());
+            newUserAccount.setAdmin(false);
+            newUserAccount.setPassword(passwordForNewAccount);
+            if (create_new_account_for_staff(newUserAccount)) {
                 set_up_accounts();
                 newFirstNameTF.setText("");
                 newSurnameTF.setText("");
                 newEmailTF.setText("");
                 newUsernameTF.setText("");
-                success_notification("Account has been created").show();
+                success_notification("AccountModel has been created").show();
             } else {
-                error_message("Failed!", "Account account was not created").show();
+                error_message("Failed!", "AccountModel account was not created").show();
             }
         }
     }
@@ -669,12 +674,30 @@ public class DeskUI extends Issues implements Initializable {
                 prodCodeDelParTF.requestFocus();
                 return;
             }
-            if (i_am_sure_of_it("delete this item")) {
-                if (delete_product(productToDelete)) {
-                    prodCodeDelParTF.setText("");
-                    setup_stock_pane();
-                    display_current_details_of_an_item(null);
-                    success_notification("Item has been deleted");
+            final int selectedChoice = choose_between_making_an_item_temporarily_or_permanently_unAvailable();
+            if (selectedChoice != 0) {
+                String promptInfo, successInfo, errorInfo;
+                boolean makePermanent;
+                if (selectedChoice == 1) {
+                    promptInfo = "temporarily delete this item";
+                    successInfo = "Item has been temporarily made unavailable";
+                    errorInfo = "I was not able to temporarily delete this item";
+                    makePermanent = false;
+                } else {
+                    promptInfo = "permanently delete this item";
+                    successInfo = "Item has been permanently made unavailable";
+                    errorInfo = "I was not able to permanently delete this item";
+                    makePermanent = true;
+                }
+                if (i_am_sure_of_it(promptInfo)) {
+                    if (delete_product(productToDelete, makePermanent)) {
+                        prodCodeDelParTF.setText("");
+                        setup_stock_pane();
+                        display_current_details_of_an_item(null);
+                        success_notification(successInfo);
+                    } else {
+                        error_message("Failed!", errorInfo);
+                    }
                 }
             }
         }
@@ -685,29 +708,29 @@ public class DeskUI extends Issues implements Initializable {
         if (event == null) {
             return;
         }
-        final AccountObj updatedAdminAccountObj = new AccountObj();
+        final Account updatedAdminAccount = new Account();
         if (!oldNewFirstnameTF.getText().trim().isEmpty() || !oldNewFirstnameTF.getText().isEmpty() || oldNewFirstnameTF.getText() != null) {
-            if (!accountObjForUserWhoJustLoggedIn.getFirstname().equals(oldNewFirstnameTF.getText().trim())) {
-                updatedAdminAccountObj.setFirstname(oldNewFirstnameTF.getText().trim());
+            if (!Brain.myAccount.getFname().equals(oldNewFirstnameTF.getText().trim())) {
+                updatedAdminAccount.setFname(oldNewFirstnameTF.getText().trim());
             }
         }
         if (!oldNewSurnameTF.getText().trim().isEmpty() || !oldNewSurnameTF.getText().isEmpty() || oldNewSurnameTF.getText() != null) {
-            if (!accountObjForUserWhoJustLoggedIn.getSurname().equals(oldNewSurnameTF.getText().trim())) {
-                updatedAdminAccountObj.setSurname(oldNewSurnameTF.getText().trim());
+            if (!Brain.myAccount.getSurname().equals(oldNewSurnameTF.getText().trim())) {
+                updatedAdminAccount.setSurname(oldNewSurnameTF.getText().trim());
             }
         }
         if (!oldNewEmailTF.getText().trim().isEmpty() || !oldNewEmailTF.getText().isEmpty() || oldNewEmailTF.getText() != null) {
-            if (!accountObjForUserWhoJustLoggedIn.getEmail().equals(oldNewEmailTF.getText().trim())) {
+            if (!Brain.myAccount.getEmail().equals(oldNewEmailTF.getText().trim())) {
                 if (!email_is_in_correct_format(newEmailTF.getText().trim())) {
                     error_message("Bad Email address", "The email seems not to be in its correct format").show();
                     return;
                 }
-                updatedAdminAccountObj.setEmail(oldNewEmailTF.getText().trim());
+                updatedAdminAccount.setEmail(oldNewEmailTF.getText().trim());
             }
         }
         if (!oldNewUsernameTF.getText().trim().isEmpty() || !oldNewUsernameTF.getText().isEmpty() || oldNewUsernameTF.getText() != null) {
-            if (!accountObjForUserWhoJustLoggedIn.getUsername().equals(oldNewUsernameTF.getText().trim())) {
-                updatedAdminAccountObj.setUsername(oldNewUsernameTF.getText().trim());
+            if (!Brain.myAccount.getUsername().equals(oldNewUsernameTF.getText().trim())) {
+                updatedAdminAccount.setUsername(oldNewUsernameTF.getText().trim());
             }
         }
         String newPassword_typeA = "", newPassword_typeB = "";
@@ -745,7 +768,7 @@ public class DeskUI extends Issues implements Initializable {
             return;
         }
         String newSiri = newPassword_typeA;
-        if (updatedAdminAccountObj.getUsername() == null && updatedAdminAccountObj.getFirstname() == null && updatedAdminAccountObj.getSurname() == null && updatedAdminAccountObj.getEmail() == null && newSiri.isEmpty()) {
+        if (updatedAdminAccount.getUsername() == null && updatedAdminAccount.getFname() == null && updatedAdminAccount.getSurname() == null && updatedAdminAccount.getEmail() == null && newSiri.isEmpty()) {
             warning_message("Wait!", "First edit any detail to continue...").show();
             return;
         }
@@ -756,53 +779,62 @@ public class DeskUI extends Issues implements Initializable {
                 if (password_copy.get().isEmpty()) {
                     error_message("No password entered", "Please type a password to confirm the actions you request to be done.").show();
                 } else {
-                    if (BCrypt.checkpw(password_copy.get(), accountObjForUserWhoJustLoggedIn.getSiri())) {
+                    if (BCrypt.checkpw(password_copy.get(), Brain.myAccount.getPassword())) {
                         boolean passwordOrUsernameHasBeenUpdated = false;
-                        if (!updatedAdminAccountObj.getUsername().isEmpty()) {
-                            if (update_account_username(RootUI.LOGGED_IN_USER, updatedAdminAccountObj.getUsername())) {
+                        if (!updatedAdminAccount.getUsername().isEmpty()) {
+                            myAccount.setUsername(updatedAdminAccount.getUsername());
+                            Account account = update_account(myAccount);
+                            if (account == null) {
+                                error_message("Failed!", "I was not able to save your new username").show();
+                            } else {
                                 oldNewUsernameTF.setText("");
-                                RootUI.LOGGED_IN_USER = updatedAdminAccountObj.getUsername();
                                 success_notification("Your new username has been saved").show();
                                 passwordOrUsernameHasBeenUpdated = true;
-                            } else {
-                                error_message("Failed!", "I was not able to save your new username").show();
                             }
                         }
-                        if (!updatedAdminAccountObj.getSiri().isEmpty()) {
-                            final String newHashedSiri = BCrypt.hashpw(updatedAdminAccountObj.getSiri(), BCrypt.gensalt(14));
-                            if (update_account_siri(RootUI.LOGGED_IN_USER, newHashedSiri)) {
+                        if (!updatedAdminAccount.getPassword().isEmpty()) {
+                            final String newHashedSiri = BCrypt.hashpw(updatedAdminAccount.getPassword(), BCrypt.gensalt(14));
+                            myAccount.setPassword(newHashedSiri);
+                            Account account = update_account(myAccount);
+                            if (account == null) {
+                                error_message("Failed!", "I was not able to save your new password").show();
+                            } else {
                                 passwordTF.setText("");
                                 actualPwd.setText("");
                                 confrimPasswordTF.setText("");
                                 actualConfrimPwd.setText("");
                                 passwordOrUsernameHasBeenUpdated = true;
                                 success_notification("Your new password has been saved").show();
-                            } else {
-                                error_message("Failed!", "I was not able to save your new password").show();
                             }
                         }
-                        if (!updatedAdminAccountObj.getFirstname().isEmpty()) {
-                            if (update_account_firstname(RootUI.LOGGED_IN_USER, updatedAdminAccountObj.getFirstname())) {
+                        if (!updatedAdminAccount.getFname().isEmpty()) {
+                            myAccount.setFname(updatedAdminAccount.getFname());
+                            Account account = update_account(myAccount);
+                            if (account == null) {
+                                error_message("Failed!", "I was not able to save your new firstname").show();
+                            } else {
                                 oldNewFirstnameTF.setText("");
                                 success_notification("Your new firstname has been saved").show();
-                            } else {
-                                error_message("Failed!", "I was not able to save your new firstname").show();
                             }
                         }
-                        if (!updatedAdminAccountObj.getSurname().isEmpty()) {
-                            if (update_account_surname(RootUI.LOGGED_IN_USER, updatedAdminAccountObj.getSurname())) {
+                        if (!updatedAdminAccount.getSurname().isEmpty()) {
+                            myAccount.setSurname(updatedAdminAccount.getSurname());
+                            Account account = update_account(myAccount);
+                            if (account == null) {
+                                error_message("Failed!", "I was not able to save your new surname").show();
+                            } else {
                                 oldNewSurnameTF.setText("");
                                 success_notification("Your new surname has been saved").show();
-                            } else {
-                                error_message("Failed!", "I was not able to save your new surname").show();
                             }
                         }
-                        if (!updatedAdminAccountObj.getEmail().isEmpty()) {
-                            if (update_account_email(RootUI.LOGGED_IN_USER, updatedAdminAccountObj.getEmail())) {
+                        if (!updatedAdminAccount.getEmail().isEmpty()) {
+                            myAccount.setEmail(updatedAdminAccount.getEmail());
+                            Account account = update_account(myAccount);
+                            if (account == null) {
+                                error_message("Failed!", "I was not able to save your new email").show();
+                            } else {
                                 oldNewEmailTF.setText("");
                                 success_notification("Your new email has been saved").show();
-                            } else {
-                                error_message("Failed!", "I was not able to save your new email").show();
                             }
                         }
                         show_admin_info();
@@ -842,7 +874,7 @@ public class DeskUI extends Issues implements Initializable {
             return;
         }
         if (jfxTextField.equals(stockParameterTF)) {
-            display_stock_items_based_on_observableList_param(get_stock_items_based_on_param(jfxTextField.getText().trim()));
+            Platform.runLater(() -> display_stock_items_based_on_observableList_param(get_stock_items_based_on_param(jfxTextField.getText().trim())));
         } else if (jfxTextField.equals(prodCodeUpParTF)) {
             if (jfxTextField.getText().trim().isEmpty() || jfxTextField.getText() == null) {
                 empty_and_null_pointer_message(jfxTextField).show();
@@ -916,7 +948,7 @@ public class DeskUI extends Issues implements Initializable {
             new SlideOutLeft(topBarPane).play();
             new SlideOutUp(leftSideMenuPane).play();
             new FadeOut(deskPane).play();
-            RootUI.logoutThread.start();
+            Sample.logoutThread.start();
         }
     }
 
@@ -938,7 +970,6 @@ public class DeskUI extends Issues implements Initializable {
 
     @FXML
     void reload_accounts(@NotNull MouseEvent event) {
-
         accountParamTF.setText("");
         set_up_accounts();
         final Node node = (Node) event.getSource();
@@ -1059,10 +1090,10 @@ public class DeskUI extends Issues implements Initializable {
     }
 
     @FXML
-    void update_stock_details(ActionEvent event) {
+    void update_product_details(ActionEvent event) {
         if (event != null) {
             try {
-                if (product == null) {
+                if (myProduct == null) {
                     error_message("Failed!", "Please search an item first to continue").show();
                     return;
                 }
@@ -1072,8 +1103,8 @@ public class DeskUI extends Issues implements Initializable {
                         return;
                     }
                     if (!newProdSerialTF.getText().isEmpty()) {
-                        if (!product.getSerial().equals(newProdSerialTF.getText().trim())) {
-                            productToUpdate.setSerial(newProdSerialTF.getText().trim());
+                        if (!myProduct.getSerial_number().equals(newProdSerialTF.getText().trim())) {
+                            productToUpdate.setSerial_number(newProdSerialTF.getText().trim());
                         }
                     }
                 }
@@ -1082,26 +1113,26 @@ public class DeskUI extends Issues implements Initializable {
                         if (Integer.parseInt(newProdQtyTF.getText()) < 0) {
                             newProdQtyTF.setText("0");
                         }
-                        if (!product.getStockQuantity().equals(Integer.parseInt(newProdQtyTF.getText().trim()))) {
-                            productToUpdate.setStockQuantity(Integer.parseInt(newProdQtyTF.getText().trim()));
+                        if (!myProduct.getStock().equals(Integer.parseInt(newProdQtyTF.getText().trim()))) {
+                            productToUpdate.setStock(Integer.parseInt(newProdQtyTF.getText().trim()));
                         }
                     }
                 }
                 if (newProdStarsCbx.getSelectionModel().getSelectedIndex() != 0 || newProdStarsCbx.getSelectionModel().getSelectedItem() != null) {
-                    if (!product.getStarCount().equals(newProdStarsCbx.getSelectionModel().getSelectedItem())) {
-                        productToUpdate.setStarCount(newProdStarsCbx.getSelectionModel().getSelectedItem());
+                    if (!myProduct.getRating().equals(newProdStarsCbx.getSelectionModel().getSelectedItem())) {
+                        productToUpdate.setRating(newProdStarsCbx.getSelectionModel().getSelectedItem());
                     }
                 }
                 if (!newProdNameTF.getText().trim().isEmpty() || newProdNameTF.getText() != null) {
                     if (!newProdNameTF.getText().trim().equals("")) {
-                        if (!product.getName().equals(newProdNameTF.getText().trim())) {
+                        if (!myProduct.getName().equals(newProdNameTF.getText().trim())) {
                             productToUpdate.setName(newProdNameTF.getText().trim());
                         }
                     }
                 }
                 if (!newDescriptionTA.getText().trim().isEmpty() || newDescriptionTA.getText() != null) {
                     if (!newDescriptionTA.getText().trim().equals("")) {
-                        if (!(product.getDescription().equals(newDescriptionTA.getText().trim()))) {
+                        if (!(myProduct.getDescription().equals(newDescriptionTA.getText().trim()))) {
                             productToUpdate.setDescription(newDescriptionTA.getText().trim());
                         }
                     }
@@ -1111,7 +1142,7 @@ public class DeskUI extends Issues implements Initializable {
                         if (Double.parseDouble(newMarkedPriceTF.getText().trim()) < 0) {
                             newMarkedPriceTF.setText("0");
                         }
-                        if (!product.getMarkedPrice().equals(Double.parseDouble(newMarkedPriceTF.getText().trim()))) {
+                        if (!myProduct.getMarkedPrice().equals(Double.parseDouble(newMarkedPriceTF.getText().trim()))) {
                             productToUpdate.setMarkedPrice(Double.parseDouble(newMarkedPriceTF.getText().trim()));
                         }
                     }
@@ -1121,20 +1152,26 @@ public class DeskUI extends Issues implements Initializable {
                         if (Double.parseDouble(newBuyingPriceTF.getText().trim()) < 0) {
                             newBuyingPriceTF.setText("0");
                         }
-                        if (!product.getBuyingPrice().equals(Double.parseDouble(newBuyingPriceTF.getText().trim()))) {
+                        if (!myProduct.getBuyingPrice().equals(Double.parseDouble(newBuyingPriceTF.getText().trim()))) {
                             productToUpdate.setBuyingPrice(Double.parseDouble(newBuyingPriceTF.getText().trim()));
                         }
                     }
                 }
-                if (PATH_TO_IMAGE_OF_UPDATED_PRODUCT != null) {
-                    if (PATH_TO_IMAGE_OF_UPDATED_PRODUCT.equals(INPUT_STREAM_TO_NO_IMAGE)) {
-                        PATH_TO_IMAGE_OF_UPDATED_PRODUCT = null;
-                    } else {
-                        PATH_TO_IMAGE_OF_UPDATED_PRODUCT = new File(PATH_TO_IMAGE_OF_UPDATED_PRODUCT).getName();
+                if (PATH_TO_IMAGE_OF_UPDATED_PRODUCT == null || PATH_TO_IMAGE_OF_UPDATED_PRODUCT.equals(INPUT_STREAM_TO_NO_IMAGE)) {
+                    productToAdd.setImage(null);
+                } else {
+                    try {
+                        byte[] imageAsBytes = FileUtils.readFileToByteArray(new File(PATH_TO_IMAGE_OF_UPDATED_PRODUCT));
+                        String encodedImage = Base64.getEncoder().encodeToString(imageAsBytes);
+                        productToAdd.setImage(encodedImage);
+                    } catch (IOException e) {
+                        productToAdd.setImage(null);
+                        e.printStackTrace();
+                        programmer_error(e).show();
                     }
                 }
                 if (i_am_sure_of_it("update this item")) {
-                    if (update_a_stock_item(productToUpdate, PATH_TO_IMAGE_OF_UPDATED_PRODUCT, product.getSerial())) {
+                    if (update_a_stock_item(myProduct.getSerial_number(), productToUpdate)) {
                         setup_stock_pane();
                         productToUpdate.clear();
                         PATH_TO_IMAGE_OF_UPDATED_PRODUCT = null;
@@ -1146,10 +1183,10 @@ public class DeskUI extends Issues implements Initializable {
                     }
                 }
             } catch (Exception e) {
-                new Thread(new Issues().write_log("\n\n" + new Issues().time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
-                new Thread(new Issues().stack_trace_printing(e.getStackTrace())).start();
+                new Thread(new Watchdog().write_log("\n\n" + new Watchdog().time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
+                new Thread(new Watchdog().stack_trace_printing(e)).start();
                 e.printStackTrace();
-                new Issues().programmer_error(e).show();
+                new Watchdog().programmer_error(e).show();
             }
         }
     }
@@ -1198,18 +1235,38 @@ public class DeskUI extends Issues implements Initializable {
                 prodBuyingPriceTF.setText("0");
             }
             productToAdd.clear();
-            productToAdd.setSerial(prodSerialTF.getText().trim());
+            productToAdd.setSerial_number(prodSerialTF.getText().trim());
             productToAdd.setName(prodNameTF.getText().trim());
             productToAdd.setDescription(prodDescriptionTF.getText().trim());
-            productToAdd.setStockQuantity(Integer.parseInt(prodQtyTF.getText().trim()));
-            productToAdd.setStarCount(prodRatingsCbx.getSelectionModel().getSelectedItem());
+            productToAdd.setStock(Integer.parseInt(prodQtyTF.getText().trim()));
+            productToAdd.setRating(prodRatingsCbx.getSelectionModel().getSelectedItem());
             productToAdd.setMarkedPrice(Double.parseDouble(prodMarkedPriceTF.getText().trim()));
             productToAdd.setBuyingPrice(Double.parseDouble(prodBuyingPriceTF.getText().trim()));
-            PATH_TO_IMAGE_OF_NEW_PRODUCT = new File(PATH_TO_IMAGE_OF_NEW_PRODUCT).getName();
-            if (add_product_to_stock(productToAdd, PATH_TO_IMAGE_OF_NEW_PRODUCT)) {
+            String nameOfImage;
+            if (PATH_TO_IMAGE_OF_NEW_PRODUCT == null || PATH_TO_IMAGE_OF_NEW_PRODUCT.equals(INPUT_STREAM_TO_NO_IMAGE)) {
+                nameOfImage = "";
+                productToAdd.setImage(null);
+            } else {
+                nameOfImage = new File(PATH_TO_IMAGE_OF_NEW_PRODUCT).getName();
+                try {
+                    byte[] imageAsBytes = FileUtils.readFileToByteArray(new File(PATH_TO_IMAGE_OF_NEW_PRODUCT));
+                    String encodedImage = Base64.getEncoder().encodeToString(imageAsBytes);
+                    productToAdd.setImage(encodedImage);
+                } catch (IOException e) {
+                    productToAdd.setImage(null);
+                    e.printStackTrace();
+                    programmer_error(e).show();
+                    return;
+                }
+            }
+            if (nameOfImage.isEmpty()) {
+                error_message("Image not found!", "The path to the image seems broken or is bad, but don't worry the default one has been set").show();
+            }
+            if (add_product_to_stock(productToAdd)) {
                 new Thread(reset_add_stock_item_pane_for_the_next_one()).start();
                 productToAdd.clear();
                 setup_stock_pane();
+                PATH_TO_IMAGE_OF_NEW_PRODUCT = null;
                 success_notification("Product has been added").show();
             } else {
                 error_message("Failed!", "The product was not added to stock").show();
@@ -1412,7 +1469,7 @@ public class DeskUI extends Issues implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         set_up_UX();
-        breath_of_life();
+        Platform.runLater(this::breath_of_life);
     }
 
     private void breath_of_life() {
@@ -1447,7 +1504,7 @@ public class DeskUI extends Issues implements Initializable {
         prodRatingsCbx.getItems().addAll(1, 2, 3, 4, 5);
         newProdStarsCbx.getItems().addAll(1, 2, 3, 4, 5);
         monthCbx.getItems().clear();
-        monthCbx.setItems(get_data_from_properties_file_based_on_param("months"));
+        monthCbx.setItems(get_data_from_properties_file());
     }
 
     private void set_up_accounts() {
@@ -1466,6 +1523,7 @@ public class DeskUI extends Issues implements Initializable {
         listOfAllUsernames.addAll(listOfIn_ActiveStaffUsername);
         update_autoComplete_suggestions(staffUsernameSuggestionsPopup1, listOfAllUsernames);
         display_all_users(get_all_users());
+        userFullnameTF.setText(Brain.myAccount.getFname().concat(" ").concat(Brain.myAccount.getSurname()));
     }
 
     private void display_all_users(ObservableList<User> users) {
@@ -1493,36 +1551,36 @@ public class DeskUI extends Issues implements Initializable {
                 }
                 Platform.runLater(() -> accountsBox.getChildren().add(node));
             } catch (IOException e) {
-                new Thread(new Issues().write_log("\n\n" + new Issues().time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
-                new Thread(new Issues().stack_trace_printing(e.getStackTrace())).start();
+                new Thread(new Watchdog().write_log("\n\n" + new Watchdog().time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
+                new Thread(new Watchdog().stack_trace_printing(e)).start();
                 e.printStackTrace();
-                new Issues().programmer_error(e).show();
+                new Watchdog().programmer_error(e).show();
             }
         }
 
     }
 
     private void show_admin_info() {
-        accountObjForUserWhoJustLoggedIn = get_details_of_a_user(RootUI.LOGGED_IN_USER, true);
-        if (accountObjForUserWhoJustLoggedIn == null) {
+        Brain.myAccount = get_user_account(myAccount.getUsername(), null);
+        if (Brain.myAccount == null) {
             return;
         }
-        oldNewFirstnameTF.setText(accountObjForUserWhoJustLoggedIn.getFirstname());
-        oldNewSurnameTF.setText(accountObjForUserWhoJustLoggedIn.getSurname());
-        oldNewEmailTF.setText(accountObjForUserWhoJustLoggedIn.getEmail());
-        oldNewUsernameTF.setText(accountObjForUserWhoJustLoggedIn.getUsername());
+        oldNewFirstnameTF.setText(Brain.myAccount.getFname());
+        oldNewSurnameTF.setText(Brain.myAccount.getSurname());
+        oldNewEmailTF.setText(Brain.myAccount.getEmail());
+        oldNewUsernameTF.setText(Brain.myAccount.getUsername());
     }
 
-    private void display_users_based_on_observableList_param(ObservableList<Account> accountObservableList) {
-        final JFXTreeTableView<Account> jfxTreeTableView = accountsTable;
+    private void display_users_based_on_observableList_param(ObservableList<AccountModel> accountModelObservableList) {
+        final JFXTreeTableView<AccountModel> jfxTreeTableView = accountsTable;
         accUsernameCol.setCellValueFactory(param -> param.getValue().getValue().username);
         accFirstnameCol.setCellValueFactory(param -> param.getValue().getValue().firstname);
         accSurnameCol.setCellValueFactory(param -> param.getValue().getValue().surname);
         accEmailCol.setCellValueFactory(param -> param.getValue().getValue().email);
-        final TreeItem<Account> root = new RecursiveTreeItem<>(accountObservableList, RecursiveTreeObject::getChildren);
+        final TreeItem<AccountModel> root = new RecursiveTreeItem<>(accountModelObservableList, RecursiveTreeObject::getChildren);
         jfxTreeTableView.setRoot(root);
         jfxTreeTableView.setShowRoot(false);
-        if (!accountObservableList.isEmpty()) {
+        if (!accountModelObservableList.isEmpty()) {
             jfxTreeTableView.refresh();
         }
     }
@@ -1534,11 +1592,11 @@ public class DeskUI extends Issues implements Initializable {
 
     private void plot_line_graph_based_on_profit_per_month(@NotNull HashMap<String, Double> data, String requestedYear) {
         load_profit_of_every_month(data);
-        XYChart.Series<String, Double> dataSeries = new XYChart.Series<>();
+        final XYChart.Series<String, Double> dataSeries = new XYChart.Series<>();
         if (areaChart.getData().size() > 0) {
             areaChart.getData().clear();
         }
-        String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        final String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         for (String month : months) {
             dataSeries.getData().add(new XYChart.Data<>(month.toUpperCase(), data.get(month)));
         }
@@ -1570,7 +1628,7 @@ public class DeskUI extends Issues implements Initializable {
 
     @NotNull
     @Contract(value = "_ -> new", pure = true)
-    private Task<Object> display_cheques(List<ChequeObj> chequeObjObservableList) {
+    private Task<Object> display_cheques(List<Cheque> chequeObservableList) {
         return new Task<Object>() {
             @Override
             protected Object call() {
@@ -1581,9 +1639,9 @@ public class DeskUI extends Issues implements Initializable {
                         chequeBox.getChildren().remove(node);
                     });
                 }
-                for (ChequeObj chequeObj : chequeObjObservableList) {
+                for (Cheque cheque : chequeObservableList) {
                     try {
-                        ChequeUI.globalChequeObj = chequeObj;
+                        ChequeUI.globalCheque = cheque;
                         final Node node = FXMLLoader.load(getClass().getResource("/org/_brown_tech/_fxml/chequeUI.fxml"));
                         Platform.runLater(() -> {
                             chequeBox.getChildren().add(node);
@@ -1593,7 +1651,7 @@ public class DeskUI extends Issues implements Initializable {
                         e.printStackTrace();
                         programmer_error(e);
                         new Thread(write_log("\n\n" + time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
-                        new Thread(stack_trace_printing(e.getStackTrace())).start();
+                        new Thread(stack_trace_printing(e)).start();
                         Platform.runLater(() -> error_message_alert("IOException: ", e.getLocalizedMessage()).show());
                     }
                 }
@@ -1603,33 +1661,48 @@ public class DeskUI extends Issues implements Initializable {
     }
 
     private void set_up_cheque() {
-        final int pendingOnes = get_no_of_cheques_that_have_being_approved_or_not(false);
-        final int approvedOnes = get_no_of_cheques_that_have_being_approved_or_not(true);
+        final JsonObject jsonObject = get_cheque_data();
+
+        final JsonObject approved = jsonObject.get("approved").getAsJsonObject();
+        final int approvedOnes = approved.get("count").getAsInt();
+        final double amountApproved = approved.get("amount").getAsDouble();
+
+        final JsonObject pending = jsonObject.get("pending").getAsJsonObject();
+        final int pendingOnes = pending.get("count").getAsInt();
+        final double amountPending = pending.get("amount").getAsDouble();
+
         final ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         pieChartData.addAll(new PieChart.Data("Pending", pendingOnes), new PieChart.Data("Approved", approvedOnes));
         chequePieChart.setData(pieChartData);
+
         final int noOfCheques = (pendingOnes + approvedOnes);
         chequeCountLbl.setText(String.format("%d", noOfCheques));
-        final double amountApproved = get_amount_of_cheques_that_have_being_approved_or_not(false);
-        final double amountPending = get_amount_of_cheques_that_have_being_approved_or_not(true);
+
         aprvdChqLbl.setText("Ksh ".concat(String.format("%,.1f", amountApproved)));
         pndChqLbl.setText("Ksh ".concat(String.format("%,.1f", amountPending)));
+
         new Thread(display_cheques(get_pending_cheques())).start();
     }
 
     private void set_up_payments_pane() {
-        final double cashAmount = get_sum_of_all_payments_based_on_type_param(0);
-        final double chequeAmount = get_sum_of_all_payments_based_on_type_param(1);
-        final double mpesaAmount = get_sum_of_all_payments_based_on_type_param(2);
-        cashReturnsLbl.setText("Ksh ".concat(String.format("%,.1f", cashAmount)));
-        chequeReturnsLbl.setText("Ksh ".concat(String.format("%,.1f", chequeAmount)));
-        mpesaReturnsLbl.setText("Ksh ".concat(String.format("%,.1f", mpesaAmount)));
-        final double totalReturns = (cashAmount + chequeAmount + mpesaAmount);
-        sum_of_returnsLbl.setText("Ksh ".concat(String.format("%,.1f", totalReturns)));
-        final ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-        pieChartData.addAll(new PieChart.Data("Cash", cashAmount), new PieChart.Data("Cheque", chequeAmount), new PieChart.Data("M-Pesa", mpesaAmount));
-        paymentsPieChart.setData(pieChartData);
-        set_up_cheque();
+        JsonObject jsonObject = get_sum_of_payment_methods();
+        if (jsonObject != null) {
+            final double cashAmount = jsonObject.get("cash").getAsDouble();
+            final double chequeAmount = jsonObject.get("cheque").getAsDouble();
+            final double mpesaAmount = jsonObject.get("mpesa").getAsDouble();
+            cashReturnsLbl.setText("Ksh ".concat(String.format("%,.1f", cashAmount)));
+            chequeReturnsLbl.setText("Ksh ".concat(String.format("%,.1f", chequeAmount)));
+            mpesaReturnsLbl.setText("Ksh ".concat(String.format("%,.1f", mpesaAmount)));
+
+            final double totalReturns = (cashAmount + chequeAmount + mpesaAmount);
+            sum_of_returnsLbl.setText("Ksh ".concat(String.format("%,.1f", totalReturns)));
+
+            final ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+            pieChartData.addAll(new PieChart.Data("Cash", cashAmount), new PieChart.Data("Cheque", chequeAmount), new PieChart.Data("M-Pesa", mpesaAmount));
+            paymentsPieChart.setData(pieChartData);
+
+            set_up_cheque();
+        }
     }
 
     @NotNull
@@ -1669,16 +1742,16 @@ public class DeskUI extends Issues implements Initializable {
         update_autoComplete_suggestions(receiptNumberSuggestionsPopup, receipts);
     }
 
-    private void display_receipts_based_on_observableList_param(ObservableList<Receipt> purchaseObservableList) {
-        final JFXTreeTableView<Receipt> jfxTreeTableView = receiptsTable;
-        receiptCol.setCellValueFactory(param -> param.getValue().getValue().receiptNumber);
-        rcptDateCol.setCellValueFactory(param -> param.getValue().getValue().dateAndTime);
-        codeCol.setCellValueFactory(param -> param.getValue().getValue().productSerial);
-        qtyCol.setCellValueFactory(param -> param.getValue().getValue().productSerial);
-        sellingPriceCol.setCellValueFactory(param -> param.getValue().getValue().sellingPrice);
-        buyPricePriceCol.setCellValueFactory(param -> param.getValue().getValue().buyingPrice);
+    private void display_receipts_based_on_observableList_param(ObservableList<ReceiptModel> purchaseObservableList) {
+        final JFXTreeTableView<ReceiptModel> jfxTreeTableView = receiptsTable;
+        receiptCol.setCellValueFactory(param -> param.getValue().getValue().receipt_no);
+        rcptDateCol.setCellValueFactory(param -> param.getValue().getValue().date_time);
+        codeCol.setCellValueFactory(param -> param.getValue().getValue().serial_number);
+        qtyCol.setCellValueFactory(param -> param.getValue().getValue().serial_number);
+        sellingPriceCol.setCellValueFactory(param -> param.getValue().getValue().selling_price);
+        buyPricePriceCol.setCellValueFactory(param -> param.getValue().getValue().buying_price);
         typeOfStockCol.setCellValueFactory(param -> param.getValue().getValue().typeOfStock);
-        final TreeItem<Receipt> root = new RecursiveTreeItem<>(purchaseObservableList, RecursiveTreeObject::getChildren);
+        final TreeItem<ReceiptModel> root = new RecursiveTreeItem<>(purchaseObservableList, RecursiveTreeObject::getChildren);
         jfxTreeTableView.setRoot(root);
         jfxTreeTableView.setShowRoot(false);
         if (!purchaseObservableList.isEmpty()) {
@@ -1686,17 +1759,17 @@ public class DeskUI extends Issues implements Initializable {
         }
     }
 
-    private void display_purchases_based_on_observableList_param(ObservableList<Purchase> purchaseObservableList) {
-        final JFXTreeTableView<Purchase> jfxTreeTableView = salesTable;
-        dateCol.setCellValueFactory(param -> param.getValue().getValue().dateTime);
-        saleRcptCol.setCellValueFactory(param -> param.getValue().getValue().receiptNumber);
+    private void display_purchases_based_on_observableList_param(ObservableList<PurchaseModel> purchaseModelObservableList) {
+        final JFXTreeTableView<PurchaseModel> jfxTreeTableView = salesTable;
+        dateCol.setCellValueFactory(param -> param.getValue().getValue().date_time);
+        saleRcptCol.setCellValueFactory(param -> param.getValue().getValue().receipt_no);
         saleAmtCol.setCellValueFactory(param -> param.getValue().getValue().billAmount);
-        paidAsCol.setCellValueFactory(param -> param.getValue().getValue().paymentMethod);
-        soldByCol.setCellValueFactory(param -> param.getValue().getValue().nameOfStaffWhoMadeTheSale);
-        final TreeItem<Purchase> root = new RecursiveTreeItem<>(purchaseObservableList, RecursiveTreeObject::getChildren);
+        paidAsCol.setCellValueFactory(param -> param.getValue().getValue().amount);
+        soldByCol.setCellValueFactory(param -> param.getValue().getValue().username);
+        final TreeItem<PurchaseModel> root = new RecursiveTreeItem<>(purchaseModelObservableList, RecursiveTreeObject::getChildren);
         jfxTreeTableView.setRoot(root);
         jfxTreeTableView.setShowRoot(false);
-        if (!purchaseObservableList.isEmpty()) {
+        if (!purchaseModelObservableList.isEmpty()) {
             jfxTreeTableView.refresh();
         }
     }
@@ -1722,11 +1795,25 @@ public class DeskUI extends Issues implements Initializable {
                 delResultsPane.setDisable(true);
             }
         } else {
-            view_image_with_dropShadow_effect(product.getItemImage(), delProdImageView);
+            Image image;
+            if (product.getImage() == null) {
+                image = new Image(getClass().getResourceAsStream(INPUT_STREAM_TO_NO_IMAGE));
+            } else {
+                try {
+                    byte[] decodedImage = Base64.getDecoder().decode(product.getImage());
+                    File productImageFile = new File(FileUtils.getTempDirectoryPath().concat("\\_brownTech\\_gallery\\").concat(RandomStringUtils.randomAlphabetic(10)).concat(".png"));
+                    FileUtils.writeByteArrayToFile(productImageFile, decodedImage);
+                    image = new Image(new FileInputStream(productImageFile));
+                    productImageFile.deleteOnExit();
+                } catch (Exception e) {
+                    image = new Image(getClass().getResourceAsStream(INPUT_STREAM_TO_NO_IMAGE));
+                }
+            }
+            view_image_with_dropShadow_effect(image, delProdImageView);
             delProdNameLbl.setText(product.getName());
             delDescriptionLbl.setText(product.getDescription());
-            delRatingsImageView.setImage(get_image_of_ratings(product.getStarCount()));
-            delStockQuantityLbl.setText(String.format("%d", product.getStockQuantity()));
+            delRatingsImageView.setImage(get_image_of_ratings(product.getRating()));
+            delStockQuantityLbl.setText(String.format("%d", product.getStock()));
             delBuyingPriceLbl.setText("Ksh ".concat(String.format("%,.1f", product.getBuyingPrice())));
             delMarkedPriceLbl.setText("Ksh ".concat(String.format("%,.1f", product.getMarkedPrice())));
             if (delSearchResultLbl.getOpacity() > 0) {
@@ -1779,39 +1866,34 @@ public class DeskUI extends Issues implements Initializable {
         String nameOfNewImage = INPUT_STREAM_TO_NO_IMAGE;
         try {
             final FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PNG only", "*.png"));
             final File SOURCE_FILE = fileChooser.showOpenDialog(Main.stage);
             if (SOURCE_FILE == null) {
                 error_message("No image selected", "Try again..").show();
-                return nameOfNewImage;
-            }
-            if (SOURCE_FILE.getName().endsWith(".png") || SOURCE_FILE.getName().endsWith(".jpg") || SOURCE_FILE.getName().endsWith(".jpeg")) {
+            } else {
                 final File destination_folder = new File(Main.RESOURCE_PATH.getAbsolutePath().concat("\\_gallery\\"));
                 try {
                     FileUtils.copyFileToDirectory(SOURCE_FILE, destination_folder);
                     nameOfNewImage = destination_folder.getAbsolutePath().concat("\\".concat(SOURCE_FILE.getName()));
-                    imageView.setImage(new Image(new FileInputStream(nameOfNewImage)));
+                    imageView.setImage(new Image(new FileInputStream(destination_folder.getAbsolutePath().concat("\\".concat(SOURCE_FILE.getName())))));
                 } catch (IOException e) {
                     if (e.getLocalizedMessage().contains("are the same")) {
                         warning_message("Duplicate image id found", "The image you have selected already exists in the my gallery.").show();
-                        nameOfNewImage = destination_folder.getAbsolutePath().concat("\\".concat(SOURCE_FILE.getName()));
-                        imageView.setImage(new Image(new FileInputStream(nameOfNewImage)));
-                        return nameOfNewImage;
+                        imageView.setImage(new Image(new FileInputStream(destination_folder.getAbsolutePath().concat("\\".concat(SOURCE_FILE.getName())))));
+                    } else {
+                        imageView.setImage(new Image(getClass().getResourceAsStream(INPUT_STREAM_TO_NO_IMAGE)));
+                        e.printStackTrace();
+                        programmer_error(e).show();
+                        new Thread(write_log("\n\n" + time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
+                        new Thread(stack_trace_printing(e)).start();
                     }
-                    no_image_for_product(imageView);
-                    e.printStackTrace();
-                    programmer_error(e).show();
-                    new Thread(write_log("\n\n" + time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
-                    new Thread(stack_trace_printing(e.getStackTrace())).start();
                 }
-            } else {
-                no_image_for_product(imageView);
-                error_message("Unknown extension", "The file you have selected is NOT a PNG or JPG or JPEG image file.").show();
             }
         } catch (Exception e) {
             e.printStackTrace();
             programmer_error(e).show();
             new Thread(write_log("\n\n" + time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
-            new Thread(stack_trace_printing(e.getStackTrace())).start();
+            new Thread(stack_trace_printing(e)).start();
         }
         return nameOfNewImage;
     }
@@ -1837,11 +1919,25 @@ public class DeskUI extends Issues implements Initializable {
                 updateDetailsPane.setDisable(true);
             }
         } else {
-            view_image_with_dropShadow_effect(product.getItemImage(), oldProdImageView);
+            Image image;
+            if (product.getImage() == null) {
+                image = new Image(getClass().getResourceAsStream(INPUT_STREAM_TO_NO_IMAGE));
+            } else {
+                try {
+                    byte[] decodedImage = Base64.getDecoder().decode(product.getImage());
+                    File productImageFile = new File(FileUtils.getTempDirectoryPath().concat("\\_brownTech\\_gallery\\").concat(RandomStringUtils.randomAlphabetic(10)).concat(".png"));
+                    FileUtils.writeByteArrayToFile(productImageFile, decodedImage);
+                    image = new Image(new FileInputStream(productImageFile));
+                    productImageFile.deleteOnExit();
+                } catch (Exception e) {
+                    image = new Image(getClass().getResourceAsStream(INPUT_STREAM_TO_NO_IMAGE));
+                }
+            }
+            view_image_with_dropShadow_effect(image, oldProdImageView);
             oldProdNameLbl.setText(product.getName());
             oldDescriptionLbl.setText(product.getDescription());
-            oldRatingsImageView.setImage(get_image_of_ratings(product.getStarCount()));
-            oldStockQuantityLbl.setText(String.format("%d", product.getStockQuantity()));
+            oldRatingsImageView.setImage(get_image_of_ratings(product.getRating()));
+            oldStockQuantityLbl.setText(String.format("%d", product.getStock()));
             oldBuyingPriceLbl.setText("Ksh ".concat(String.format("%,.1f", product.getBuyingPrice())));
             oldMarkedPriceLbl.setText("Ksh ".concat(String.format("%,.1f", product.getMarkedPrice())));
             if (updateSearchResultLbl.getOpacity() > 0) {
@@ -1854,7 +1950,7 @@ public class DeskUI extends Issues implements Initializable {
                 updateDetailsPane.setDisable(false);
             }
         }
-        this.product = product;
+        this.myProduct = product;
     }
 
     @NotNull
@@ -1941,7 +2037,7 @@ public class DeskUI extends Issues implements Initializable {
 
     private void setup_stock_pane() {
         prodView.setImage(new Image(getClass().getResourceAsStream(INPUT_STREAM_TO_NO_IMAGE)));
-        display_stock_items_based_on_observableList_param(get_stock_items_based_on_param(""));
+        Platform.runLater(() -> display_stock_items_based_on_observableList_param(get_stock_items_based_on_param("#all")));
         if (!stockSearchSuggestions.isEmpty()) {
             stockSearchSuggestions.clear();
         }
@@ -1971,7 +2067,7 @@ public class DeskUI extends Issues implements Initializable {
         jfxAutoCompletePopup.setSelectionHandler(event -> {
             jfxTextField.setText(event.getObject());
             if (jfxTextField.equals(stockParameterTF)) {
-                display_stock_items_based_on_observableList_param(get_stock_items_based_on_param(jfxTextField.getText().trim()));
+                Platform.runLater(() -> display_stock_items_based_on_observableList_param(get_stock_items_based_on_param(jfxTextField.getText().trim())));
             } else if (jfxTextField.equals(prodSerialTF)) {
                 if (stockSerials.contains(jfxTextField.getText().trim())) {
                     error_message("Serial number is known!", "The serial already exists, enter a new one").show();
@@ -1993,7 +2089,7 @@ public class DeskUI extends Issues implements Initializable {
                     display_users_based_on_observableList_param(get_staff_users_based_on_param(jfxTextField.getText().trim()));
                 }
             } else if (jfxTextField.equals(newUsernameTF)) {
-                if (listOfIn_ActiveStaffUsername.contains(jfxTextField.getText().trim()) || listOfActiveStaffUsername.contains(jfxTextField.getText().trim()) || RootUI.LOGGED_IN_USER.equals(jfxTextField.getText().trim())) {
+                if (listOfIn_ActiveStaffUsername.contains(jfxTextField.getText().trim()) || listOfActiveStaffUsername.contains(jfxTextField.getText().trim()) || myAccount.getUsername().equals(jfxTextField.getText().trim())) {
                     warning_message("Taken!", "The username you have selected is already taken, enter a new one").show();
                 }
             }
@@ -2008,8 +2104,8 @@ public class DeskUI extends Issues implements Initializable {
         });
     }
 
-    private void display_stock_items_based_on_observableList_param(ObservableList<Stock> stockObservableList) {
-        final JFXTreeTableView<Stock> jfxTreeTableView = stockTable;
+    private void display_stock_items_based_on_observableList_param(ObservableList<StockModel> stockModelObservableList) {
+        final JFXTreeTableView<StockModel> jfxTreeTableView = stockTable;
         prodCodeCol.setCellValueFactory(param -> param.getValue().getValue().serial);
         prodNameCol.setCellValueFactory(param -> param.getValue().getValue().name);
         prodDescriptionCol.setCellValueFactory(param -> param.getValue().getValue().description);
@@ -2018,18 +2114,19 @@ public class DeskUI extends Issues implements Initializable {
         prodBuyPriceCol.setCellValueFactory(param -> param.getValue().getValue().buyingPrice);
         prodMarkedPriceCol.setCellValueFactory(param -> param.getValue().getValue().markedPrice);
         prodStatusCol.setCellValueFactory(param -> param.getValue().getValue().status);
-        final TreeItem<Stock> root = new RecursiveTreeItem<>(stockObservableList, RecursiveTreeObject::getChildren);
+        final TreeItem<StockModel> root = new RecursiveTreeItem<>(stockModelObservableList, RecursiveTreeObject::getChildren);
         jfxTreeTableView.setRoot(root);
         jfxTreeTableView.setShowRoot(false);
-        if (!stockObservableList.isEmpty()) {
+        if (!stockModelObservableList.isEmpty()) {
             jfxTreeTableView.refresh();
         }
     }
 
     private void setup_Dashboard() {
         final String dateToday = new SimpleDateFormat("dd-MMM-yyyy").format(Calendar.getInstance().getTime());
-        final double productTotal = get_sum_of_all_products_sold_in_the_given_timeline_param(dateToday);
-        final double serviceTotal = get_sum_of_all_services_charged_in_the_given_timeline_param(dateToday);
+        final JsonObject jsonObject = get_dashboard_values(dateToday);
+        final double productTotal = jsonObject.get("productReturns").getAsDouble();
+        final double serviceTotal = jsonObject.get("serviceReturns").getAsDouble();
         final ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         pieChartData.addAll(new PieChart.Data("Product", productTotal), new PieChart.Data("Services", serviceTotal));
         productVersusServicesPie.setData(pieChartData);
@@ -2330,7 +2427,7 @@ public class DeskUI extends Issues implements Initializable {
 
     @NotNull
     private Boolean animate_show_accounts(JFXButton jfxButton) {
-        boolean animation_has_occurred =  false;
+        boolean animation_has_occurred = false;
         if (accountsPane.getOpacity() < 1) {
             for (int index = 1; index <= 6; ++index) {
                 if (index != 6) {
@@ -2359,7 +2456,7 @@ public class DeskUI extends Issues implements Initializable {
                 }
             }
             set_background_color_for_active_buttons(jfxButton);
-            animation_has_occurred =  true;
+            animation_has_occurred = true;
         }
         return animation_has_occurred;
     }

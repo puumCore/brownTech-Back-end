@@ -5,6 +5,7 @@
       <w>awww</w>
       <w>confrim</w>
       <w>firstname</w>
+      <w>fname</w>
       <w>fullname</w>
       <w>hashmap</w>
       <w>hashmaps</w>
@@ -12,8 +13,12 @@
       <w>mpesa</w>
       <w>noimage</w>
       <w>pesa</w>
+      <w>pswd</w>
+      <w>rowid</w>
       <w>siri</w>
+      <w>smtp</w>
       <w>sqlite</w>
+      <w>starttls</w>
       <w>usernames</w>
     </words>
   </dictionary>

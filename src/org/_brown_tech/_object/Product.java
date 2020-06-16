@@ -1,44 +1,35 @@
 package org._brown_tech._object;
 
 import com.google.gson.Gson;
-import javafx.scene.image.Image;
 
 import java.io.Serializable;
 
 /**
- * @author Mandela
+ * @author Mandela aka puumInc
+ * @version 1.0.0
  */
 public class Product implements Serializable {
 
-    public static final long serialVersionUID = 42L;
+    public static final long serialVersionUID = 5L;
 
-    public String serial, name, description;
-    public Integer starCount, stockQuantity;
-    public Double markedPrice, buyingPrice;
-    public Image itemImage;
-    public Boolean isAvailable;
+    private String serial_number;
+    private String name;
+    private String description;
+    private Integer rating, stock;
+    private Double markedPrice;
+    private Double buyingPrice;
+    private String image;
+    private Boolean isAvailable;
 
     public Product() {
     }
 
-    public Product (String serial, String name, String description, Integer starCount, Integer stockQuantity, Double markedPrice, Double buyingPrice, Image itemImage, Boolean isAvailable) {
-        this.serial = serial;
-        this.name = name;
-        this.description = description;
-        this.starCount = starCount;
-        this.stockQuantity = stockQuantity;
-        this.markedPrice = markedPrice;
-        this.buyingPrice = buyingPrice;
-        this.itemImage = itemImage;
-        this.isAvailable = isAvailable;
+    public String getSerial_number() {
+        return serial_number;
     }
 
-    public String getSerial() {
-        return serial;
-    }
-
-    public void setSerial(String serial) {
-        this.serial = serial;
+    public void setSerial_number(String serial_number) {
+        this.serial_number = serial_number;
     }
 
     public String getName() {
@@ -57,20 +48,20 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public Integer getStarCount() {
-        return starCount;
+    public Integer getRating() {
+        return rating;
     }
 
-    public void setStarCount(Integer starCount) {
-        this.starCount = starCount;
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
-    public Integer getStockQuantity() {
-        return stockQuantity;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setStockQuantity(Integer stockQuantity) {
-        this.stockQuantity = stockQuantity;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Double getMarkedPrice() {
@@ -89,12 +80,12 @@ public class Product implements Serializable {
         this.buyingPrice = buyingPrice;
     }
 
-    public Image getItemImage() {
-        return itemImage;
+    public String getImage() {
+        return image;
     }
 
-    public void setItemImage(Image itemImage) {
-        this.itemImage = itemImage;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Boolean getAvailable() {
@@ -106,14 +97,14 @@ public class Product implements Serializable {
     }
 
     public void clear() {
-        setSerial(null);
+        setSerial_number(null);
         setName(null);
         setDescription(null);
-        setStarCount(null);
-        setStockQuantity(null);
+        setRating(null);
+        setStock(null);
         setMarkedPrice(null);
         setBuyingPrice(null);
-        setItemImage(null);
+        setImage(null);
         setAvailable(null);
     }
 

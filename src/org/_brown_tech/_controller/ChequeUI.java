@@ -9,20 +9,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import org._brown_tech._custom.Issues;
-import org._brown_tech._object.ChequeObj;
+import org._brown_tech._custom.Brain;
+import org._brown_tech._object._payments.Cheque;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @author Mandela
+ * @author Mandela aka puumInc
+ * @version 1.0.0
  */
-public class ChequeUI extends Issues implements Initializable {
+public class ChequeUI extends Brain implements Initializable {
 
-    protected static ChequeObj globalChequeObj;
-    private ChequeObj chequeObj;
+    protected static Cheque globalCheque;
+    private Cheque cheque;
 
     @FXML
     private Label receiptLbl;
@@ -42,7 +43,7 @@ public class ChequeUI extends Issues implements Initializable {
     @FXML
     void approveCheque(@NotNull ActionEvent event) {
         if (i_am_sure_of_it("approve this cheque")) {
-            if (approve_cheque(chequeObj.getDateTime())) {
+            if (approve_cheque(cheque.getDateTime())) {
                 final JFXButton jfxButton = (JFXButton) event.getSource();
                 final StackPane stackPane = (StackPane) jfxButton.getParent().getParent();
                 final VBox vBox = (VBox) stackPane.getParent();
@@ -57,11 +58,11 @@ public class ChequeUI extends Issues implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.chequeObj = ChequeUI.globalChequeObj;
-        receiptLbl.setText(chequeObj.getReceiptNumber());
-        chqNoLbl.setText(chequeObj.getChequeNo());
-        dueDateLbl.setText(chequeObj.getMaturityDate());
-        bankLbl.setText(chequeObj.getBankName());
-        amtLbl.setText(chequeObj.getAmount());
+        this.cheque = ChequeUI.globalCheque;
+        receiptLbl.setText(cheque.getReceiptNumber().toString());
+        chqNoLbl.setText(cheque.getChequeNumber().toString());
+        dueDateLbl.setText(cheque.getMaturityDate());
+        bankLbl.setText(cheque.getBank());
+        amtLbl.setText("Ksh ".concat(String.format("%,.1f", cheque.getAmount())));
     }
 }

@@ -3,14 +3,19 @@
     <output-path>$PROJECT_DIR$/out/artifacts/brownTech_Back_end</output-path>
     <properties id="javafx-properties">
       <options>
-        <option name="alias" value="" />
+        <option name="alias" value="backEnd" />
         <option name="appClass" value="org._brown_tech.Main" />
-        <option name="description" value="Admin interface for the admin" />
+        <option name="convertCss2Bin" value="true" />
+        <option name="description" value="The business owner may see records of sale activities from this end point" />
+        <option name="enabledSigning" value="true" />
         <option name="htmlPlaceholderId" value="" />
-        <option name="keystore" value="" />
+        <option name="keypass" value="YXNSbmx5ZWxhRg==" />
+        <option name="keystore" value="C:\Users\Mandela\Documents\Key stores\brown_tech#key\keystore.ks" />
         <option name="nativeBundle" value="all" />
-        <option name="title" value="Brown Tech BE" />
-        <option name="vendor" value="Mandela Muriithi" />
+        <option name="selfSigning" value="false" />
+        <option name="storepass" value="YXNSbmx5ZWxhRg==" />
+        <option name="title" value="brownTech: Backend" />
+        <option name="vendor" value="Mandela Murithi" />
         <option name="version" value="1.0.0" />
       </options>
     </properties>
@@ -24,19 +29,13 @@
       <element id="directory" name="lib">
         <element id="library" level="application" name="AnimateFX-1.2.0" />
         <element id="library" level="application" name="annotations-17.0.0" />
-        <element id="library" level="application" name="sqlite-jdbc-3.23.1" />
         <element id="library" level="application" name="gson-2.8.2" />
         <element id="library" level="application" name="httpclient JAR 4.5" />
         <element id="library" level="application" name="jfoenix-8.0.8" />
         <element id="library" level="application" name="fontawesomefx-8.9" />
         <element id="library" level="application" name="controlsfx-8.40.11" />
         <element id="library" level="application" name="commons-io-2.6_COPY_FILES_FROM_PLACE_TO_PLACE" />
-        <element id="library" level="application" name="excel 2007" />
         <element id="library" level="application" name="GEN RANDOM WORDS" />
-        <element id="library" level="application" name="EMAIL" />
-      </element>
-      <element id="directory" name="_fonts">
-        <element id="dir-copy" path="$PROJECT_DIR$/_fonts" />
       </element>
     </root>
   </artifact>
