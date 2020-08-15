@@ -765,7 +765,7 @@
                                             <children>
                                                 <StackPane layoutX="19.0" layoutY="10.0" prefHeight="43.0" prefWidth="311.0" style="-fx-background-color: #F1F1F1; -fx-background-radius: 30px;">
                                                     <children>
-                                                        <JFXTextField fx:id="rcptNoParamTF" focusColor="#405aa800" onAction="#load_specific_receipt_data" prefHeight="48.0" prefWidth="311.0" promptText="Type a receipt number..." styleClass="search_text" unFocusColor="#4d4d4d00">
+                                                        <JFXTextField fx:id="rcptNoParamTF" focusColor="#405aa800" onAction="#load_specific_receipt_data" prefHeight="48.0" prefWidth="311.0" promptText="Type a receiptObj number..." styleClass="search_text" unFocusColor="#4d4d4d00">
                                                             <padding>
                                                                 <Insets left="40.0" right="20.0" />
                                                             </padding>
@@ -1067,12 +1067,12 @@
                                                 <DropShadow color="#00000039" />
                                             </effect>
                                         </AnchorPane>
-                                        <StackPane fx:id="oldBioPane" layoutX="68.0" layoutY="150.0" prefHeight="613.0" prefWidth="413.0">
+                                        <StackPane layoutX="68.0" layoutY="150.0" prefHeight="613.0" prefWidth="413.0">
                                             <children>
                                                 <VBox fx:id="updateResultsPane" alignment="TOP_CENTER" opacity="0.0" spacing="15.0">
                                                     <children>
                                                         <Label styleClass="dashboard_titles" text="Old Bio" textFill="#a8a8a8" />
-                                                        <AnchorPane fx:id="resultPane" prefHeight="582.0" prefWidth="354.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 3px;">
+                                                        <AnchorPane prefHeight="582.0" prefWidth="354.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 3px;">
                                                             <effect>
                                                                 <DropShadow color="#0000002d" height="12.1" radius="5.55" width="12.1" />
                                                             </effect>

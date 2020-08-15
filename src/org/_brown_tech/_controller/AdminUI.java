@@ -3,7 +3,7 @@ package org._brown_tech._controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import org._brown_tech._object._actors.User;
+import org._brown_tech._model._object._actors.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;

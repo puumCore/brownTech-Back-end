@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="brownTech_Back_end.jnlp">
+  <information>
+    <title>brownTech: Backend</title>
+    <vendor>Mandela Murithi</vendor>
+    <description>The business owner may see records of sale activities from this end point</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="brownTech_Back_end.jar" size="732646" download="eager" />
+    <jar href="lib\AnimateFX-1.2.0.jar" size="85823" download="eager" />
+    <jar href="lib\annotations-17.0.0.jar" size="19014" download="eager" />
+    <jar href="lib\commons-codec-1.10.jar" size="284184" download="eager" />
+    <jar href="lib\commons-io-2.6.jar" size="214788" download="eager" />
+    <jar href="lib\commons-lang3-3.9.jar" size="503880" download="eager" />
+    <jar href="lib\commons-logging-1.2.jar" size="61829" download="eager" />
+    <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
+    <jar href="lib\gson-2.8.2.jar" size="232932" download="eager" />
+    <jar href="lib\httpclient-4.5.6.jar" size="767140" download="eager" />
+    <jar href="lib\httpcore-4.4.10.jar" size="326356" download="eager" />
+    <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <jfx:javafx-desc  width="600" height="400" main-class="org._brown_tech.Main"  name="brownTech Back end" />
+  <update check="background"/>
+</jnlp>

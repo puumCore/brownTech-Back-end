@@ -1,12 +1,12 @@
 package org._brown_tech._custom;
 
 import animatefx.animation.Shake;
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -16,6 +16,8 @@ import org.controlsfx.control.Notifications;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -27,11 +29,29 @@ import java.util.Optional;
 /**
  * @author Mandela
  */
-public class Watchdog {
+public abstract class Watchdog {
 
     private final String pathToErrorFolder = Main.RESOURCE_PATH.getAbsolutePath() + "\\_watchDog\\_error\\";
     private final String pathToInfoFolder = Main.RESOURCE_PATH.getAbsolutePath() + "\\_watchDog\\_info\\";
 
+    protected final @NotNull Alert server_error(final String description) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initOwner(Main.stage);
+        alert.setTitle("SERVER ERROR");
+        alert.setHeaderText("The server encountered an error");
+        alert.setContentText("This dialog is a detailed explanation of the error that has occurred");
+        Label label = new Label("The exception stacktrace was: ");
+        TextArea textArea = new TextArea(description);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+        VBox vBox = new VBox();
+        vBox.getChildren().add(label);
+        vBox.getChildren().add(textArea);
+        alert.getDialogPane().setExpandableContent(vBox);
+        return alert;
+    }
 
     /**
      * <p>
@@ -184,18 +204,6 @@ public class Watchdog {
     }
 
     @NotNull
-    @Contract(value = "_ -> new", pure = true)
-    public final Task<Object> stack_trace_printing(Exception exception) {
-        return new Task<Object>() {
-            @Override
-            public Object call() {
-                write_stack_trace(exception);
-                return false;
-            }
-        };
-    }
-
-    @NotNull
     @Contract(value = "_, _ -> new", pure = true)
     public final Task<Object> write_log(String string, int q) {
         return new Task<Object>() {
@@ -215,7 +223,7 @@ public class Watchdog {
     public final void activityLog(String message) {
         BufferedWriter bw = null;
         try {
-            File log = new File(pathToInfoFolder.concat("\\Account for {" + gate_date_for_file_name() + "}.txt"));
+            File log = new File(pathToInfoFolder.concat("\\AccountObj for {" + gate_date_for_file_name() + "}.txt"));
             if (!log.exists()) {
                 if (log.createNewFile()) {
                     if (log.canWrite() & log.canRead()) {
@@ -290,39 +298,42 @@ public class Watchdog {
         return new SimpleDateFormat("dd-MMM-yyyy").format(Calendar.getInstance().getTime());
     }
 
-    public final void write_stack_trace(Exception exception) {
-        BufferedWriter bw = null;
-        try {
-            File log = new File(pathToErrorFolder.concat(gate_date_for_file_name().concat(" stackTrace_log.txt")));
-            if (!log.exists()) {
-                FileWriter fw = new FileWriter(log);
-                fw.write("\nThis is a newly created file [ " + time_stamp() + " ].");
-            }
-            if (log.canWrite() & log.canRead()) {
-                FileWriter fw = new FileWriter(log, true);
-                bw = new BufferedWriter(fw);
-                StringWriter stringWriter = new StringWriter();
-                PrintWriter printWriter = new PrintWriter(stringWriter);
-                exception.printStackTrace(printWriter);
-                String exceptionText = stringWriter.toString();
-                bw.write("\n ##################################################################################################"
-                        + " \n " + time_stamp()
-                        + "\n " + exceptionText
-                        + "\n\n");
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            programmer_error(ex).show();
-        } finally {
+    @Contract(pure = true)
+    public final @NotNull Runnable write_stack_trace(Exception exception) {
+        return () -> {
+            BufferedWriter bw = null;
             try {
-                if (bw != null) {
-                    bw.close();
+                File log = new File(pathToErrorFolder.concat(gate_date_for_file_name().concat(" stackTrace_log.txt")));
+                if (!log.exists()) {
+                    FileWriter fw = new FileWriter(log);
+                    fw.write("\nThis is a newly created file [ " + time_stamp() + " ].");
                 }
-            } catch (Exception ex) {
+                if (log.canWrite() & log.canRead()) {
+                    FileWriter fw = new FileWriter(log, true);
+                    bw = new BufferedWriter(fw);
+                    StringWriter stringWriter = new StringWriter();
+                    PrintWriter printWriter = new PrintWriter(stringWriter);
+                    exception.printStackTrace(printWriter);
+                    String exceptionText = stringWriter.toString();
+                    bw.write("\n ##################################################################################################"
+                            + " \n " + time_stamp()
+                            + "\n " + exceptionText
+                            + "\n\n");
+                }
+            } catch (IOException ex) {
                 ex.printStackTrace();
                 programmer_error(ex).show();
+            } finally {
+                try {
+                    if (bw != null) {
+                        bw.close();
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    programmer_error(ex).show();
+                }
             }
-        }
+        };
     }
 
     private @NotNull String gate_date_for_file_name() {
@@ -354,16 +365,18 @@ public class Watchdog {
         return alert;
     }
 
-    public final Notifications information_message(String message) {
-        MaterialDesignIconView icon = new MaterialDesignIconView(MaterialDesignIcon.INFORMATION_OUTLINE);
-        icon.setGlyphSize(30);
-        icon.setGlyphStyle("-fx-fill : rgb(0, 80, 143);");
-        return Notifications.create()
-                .title("Info")
-                .text(message)
-                .graphic(icon)
-                .hideAfter(Duration.seconds(8))
-                .position(Pos.BASELINE_RIGHT);
+    public final void information_message(String message) {
+        try {
+            SystemTray systemTray = SystemTray.getSystemTray();
+            java.awt.image.BufferedImage bufferedImage = ImageIO.read(getClass().getResource("/org/_brown_tech/_images/_pictures/icon.png"));
+            TrayIcon trayIcon = new TrayIcon(bufferedImage);
+            trayIcon.setImageAutoSize(true);
+            systemTray.add(trayIcon);
+            trayIcon.displayMessage("Information", message, TrayIcon.MessageType.NONE);
+        } catch (IOException | AWTException exception) {
+            exception.printStackTrace();
+            programmer_error(exception).show();
+        }
     }
 
     protected final Notifications warning_message(String title, String text) {
@@ -393,6 +406,7 @@ public class Watchdog {
     @NotNull
     public final Alert error_message_alert(String header, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initOwner(Main.stage);
         alert.setTitle("Brown tech encountered an Error");
         alert.setHeaderText(header);
         alert.setContentText(message);

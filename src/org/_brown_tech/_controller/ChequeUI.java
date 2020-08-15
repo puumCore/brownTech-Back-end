@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import org._brown_tech._custom.Brain;
-import org._brown_tech._object._payments.Cheque;
+import org._brown_tech._model._object._payments.Cheque;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;

@@ -16,7 +16,7 @@ import org._brown_tech.Main;
 
 public class PasswordDialog extends Dialog<String> {
 
-    private PasswordField passwordField;
+    private final PasswordField passwordField;
 
     public PasswordDialog() {
         initOwner(Main.stage);
@@ -36,7 +36,7 @@ public class PasswordDialog extends Dialog<String> {
 
         getDialogPane().setContent(hBox);
 
-        Platform.runLater(()-> passwordField.requestFocus());
+        Platform.runLater(passwordField::requestFocus);
 
         setResultConverter(dialogButton -> {
             if (dialogButton == passwordButtonType) {

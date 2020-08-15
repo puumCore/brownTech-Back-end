@@ -765,7 +765,7 @@
                                             <children>
                                                 <StackPane layoutX="19.0" layoutY="10.0" prefHeight="43.0" prefWidth="311.0" style="-fx-background-color: #F1F1F1; -fx-background-radius: 30px;">
                                                     <children>
-                                                        <JFXTextField fx:id="rcptNoParamTF" focusColor="#405aa800" onAction="#load_specific_receipt_data" prefHeight="48.0" prefWidth="311.0" promptText="Type a receipt number..." styleClass="search_text" unFocusColor="#4d4d4d00">
+                                                        <JFXTextField fx:id="rcptNoParamTF" focusColor="#405aa800" onAction="#load_specific_receipt_data" prefHeight="48.0" prefWidth="311.0" promptText="Type a receiptObj number..." styleClass="search_text" unFocusColor="#4d4d4d00">
                                                             <padding>
                                                                 <Insets left="40.0" right="20.0" />
                                                             </padding>

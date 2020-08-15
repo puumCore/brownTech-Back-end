@@ -35,17 +35,16 @@ import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import org._brown_tech.Main;
 import org._brown_tech._custom.Brain;
-import org._brown_tech._custom.Watchdog;
-import org._brown_tech._object.Product;
-import org._brown_tech._object._actors.Account;
-import org._brown_tech._object._actors.User;
-import org._brown_tech._object._payments.Cheque;
+import org._brown_tech._model._object.Product;
+import org._brown_tech._model._object._actors.AccountObj;
+import org._brown_tech._model._object._actors.User;
+import org._brown_tech._model._object._payments.Cheque;
+import org._brown_tech._model._table.Account;
+import org._brown_tech._model._table.ProductStock;
+import org._brown_tech._model._table.Purchase;
+import org._brown_tech._model._table.Receipt;
 import org._brown_tech._outsourced.BCrypt;
 import org._brown_tech._outsourced.PasswordDialog;
-import org._brown_tech._table_model.AccountModel;
-import org._brown_tech._table_model.PurchaseModel;
-import org._brown_tech._table_model.ReceiptModel;
-import org._brown_tech._table_model.StockModel;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.jetbrains.annotations.Contract;
@@ -250,19 +249,19 @@ public class DeskUI extends Brain implements Initializable {
     private StackPane accountsAddPane;
 
     @FXML
-    private JFXTreeTableView<AccountModel> accountsTable;
+    private JFXTreeTableView<Account> accountsTable;
 
     @FXML
-    private TreeTableColumn<AccountModel, String> accUsernameCol;
+    private TreeTableColumn<Account, String> accUsernameCol;
 
     @FXML
-    private TreeTableColumn<AccountModel, String> accFirstnameCol;
+    private TreeTableColumn<Account, String> accFirstnameCol;
 
     @FXML
-    private TreeTableColumn<AccountModel, String> accSurnameCol;
+    private TreeTableColumn<Account, String> accSurnameCol;
 
     @FXML
-    private TreeTableColumn<AccountModel, String> accEmailCol;
+    private TreeTableColumn<Account, String> accEmailCol;
 
     @FXML
     private StackPane statisticsPane;
@@ -358,49 +357,49 @@ public class DeskUI extends Brain implements Initializable {
     private JFXTextField rcptNoParamTF;
 
     @FXML
-    private JFXTreeTableView<ReceiptModel> receiptsTable;
+    private JFXTreeTableView<Receipt> receiptsTable;
 
     @FXML
-    private TreeTableColumn<ReceiptModel, String> receiptCol;
+    private TreeTableColumn<Receipt, String> receiptCol;
 
     @FXML
-    private TreeTableColumn<ReceiptModel, String> rcptDateCol;
+    private TreeTableColumn<Receipt, String> rcptDateCol;
 
     @FXML
-    private TreeTableColumn<ReceiptModel, String> codeCol;
+    private TreeTableColumn<Receipt, String> codeCol;
 
     @FXML
-    private TreeTableColumn<ReceiptModel, String> qtyCol;
+    private TreeTableColumn<Receipt, String> qtyCol;
 
     @FXML
-    private TreeTableColumn<ReceiptModel, String> sellingPriceCol;
+    private TreeTableColumn<Receipt, String> sellingPriceCol;
 
     @FXML
-    private TreeTableColumn<ReceiptModel, String> buyPricePriceCol;
+    private TreeTableColumn<Receipt, String> buyPricePriceCol;
 
     @FXML
-    private TreeTableColumn<ReceiptModel, String> typeOfStockCol;
+    private TreeTableColumn<Receipt, String> typeOfStockCol;
 
     @FXML
     private StackPane purchaseSummaryPane;
 
     @FXML
-    private JFXTreeTableView<PurchaseModel> salesTable;
+    private JFXTreeTableView<Purchase> salesTable;
 
     @FXML
-    private TreeTableColumn<PurchaseModel, String> dateCol;
+    private TreeTableColumn<Purchase, String> dateCol;
 
     @FXML
-    private TreeTableColumn<PurchaseModel, String> saleRcptCol;
+    private TreeTableColumn<Purchase, String> saleRcptCol;
 
     @FXML
-    private TreeTableColumn<PurchaseModel, String> saleAmtCol;
+    private TreeTableColumn<Purchase, String> saleAmtCol;
 
     @FXML
-    private TreeTableColumn<PurchaseModel, String> paidAsCol;
+    private TreeTableColumn<Purchase, String> paidAsCol;
 
     @FXML
-    private TreeTableColumn<PurchaseModel, String> soldByCol;
+    private TreeTableColumn<Purchase, String> soldByCol;
 
     @FXML
     private JFXRadioButton allRb;
@@ -490,13 +489,7 @@ public class DeskUI extends Brain implements Initializable {
     private JFXTextField newProdNameTF;
 
     @FXML
-    private StackPane oldBioPane;
-
-    @FXML
     private VBox updateResultsPane;
-
-    @FXML
-    private AnchorPane resultPane;
 
     @FXML
     private ImageView oldProdImageView;
@@ -556,31 +549,31 @@ public class DeskUI extends Brain implements Initializable {
     private JFXTextField stockParameterTF;
 
     @FXML
-    private JFXTreeTableView<StockModel> stockTable;
+    private JFXTreeTableView<ProductStock> stockTable;
 
     @FXML
-    private TreeTableColumn<StockModel, String> prodCodeCol;
+    private TreeTableColumn<ProductStock, String> prodCodeCol;
 
     @FXML
-    private TreeTableColumn<StockModel, String> prodNameCol;
+    private TreeTableColumn<ProductStock, String> prodNameCol;
 
     @FXML
-    private TreeTableColumn<StockModel, String> prodDescriptionCol;
+    private TreeTableColumn<ProductStock, String> prodDescriptionCol;
 
     @FXML
-    private TreeTableColumn<StockModel, String> prodCountCol;
+    private TreeTableColumn<ProductStock, String> prodCountCol;
 
     @FXML
-    private TreeTableColumn<StockModel, ImageView> prodRatingsCol;
+    private TreeTableColumn<ProductStock, ImageView> prodRatingsCol;
 
     @FXML
-    private TreeTableColumn<StockModel, String> prodBuyPriceCol;
+    private TreeTableColumn<ProductStock, String> prodBuyPriceCol;
 
     @FXML
-    private TreeTableColumn<StockModel, String> prodMarkedPriceCol;
+    private TreeTableColumn<ProductStock, String> prodMarkedPriceCol;
 
     @FXML
-    private TreeTableColumn<StockModel, String> prodStatusCol;
+    private TreeTableColumn<ProductStock, String> prodStatusCol;
 
     @FXML
     private StackPane dashBoardPane;
@@ -622,27 +615,28 @@ public class DeskUI extends Brain implements Initializable {
             final ObservableList<String> listOfAllUsernames = FXCollections.observableArrayList();
             listOfAllUsernames.addAll(listOfActiveStaffUsername);
             listOfAllUsernames.addAll(listOfIn_ActiveStaffUsername);
-            if (listOfAllUsernames.contains(newUsernameTF.getText().trim()) || myAccount.getUsername().equals(newUsernameTF.getText().trim())) {
+            if (listOfAllUsernames.contains(newUsernameTF.getText().trim())
+                    || myAccountObj.getUsername().equals(newUsernameTF.getText().trim())) {
                 warning_message("Taken!", "The username you have selected is already taken, enter a new one").show();
                 return;
             }
             final String passwordForNewAccount = BCrypt.hashpw("1234", BCrypt.gensalt(14));
-            final Account newUserAccount = new Account();
-            newUserAccount.setFname(newFirstNameTF.getText().trim());
-            newUserAccount.setSurname(newSurnameTF.getText().trim());
-            newUserAccount.setEmail(newEmailTF.getText().trim());
-            newUserAccount.setUsername(newUsernameTF.getText().trim());
-            newUserAccount.setAdmin(false);
-            newUserAccount.setPassword(passwordForNewAccount);
-            if (create_new_account_for_staff(newUserAccount)) {
+            final AccountObj newUserAccountObj = new AccountObj();
+            newUserAccountObj.setFname(newFirstNameTF.getText().trim());
+            newUserAccountObj.setSurname(newSurnameTF.getText().trim());
+            newUserAccountObj.setEmail(newEmailTF.getText().trim());
+            newUserAccountObj.setUsername(newUsernameTF.getText().trim());
+            newUserAccountObj.setAdmin(false);
+            newUserAccountObj.setPassword(passwordForNewAccount);
+            if (create_new_account_for_staff(newUserAccountObj)) {
                 set_up_accounts();
                 newFirstNameTF.setText("");
                 newSurnameTF.setText("");
                 newEmailTF.setText("");
                 newUsernameTF.setText("");
-                success_notification("AccountModel has been created").show();
+                success_notification("Account has been created").show();
             } else {
-                error_message("Failed!", "AccountModel account was not created").show();
+                error_message("Failed!", "Account account was not created").show();
             }
         }
     }
@@ -708,29 +702,29 @@ public class DeskUI extends Brain implements Initializable {
         if (event == null) {
             return;
         }
-        final Account updatedAdminAccount = new Account();
+        final AccountObj updatedAdminAccountObj = new AccountObj();
         if (!oldNewFirstnameTF.getText().trim().isEmpty() || !oldNewFirstnameTF.getText().isEmpty() || oldNewFirstnameTF.getText() != null) {
-            if (!Brain.myAccount.getFname().equals(oldNewFirstnameTF.getText().trim())) {
-                updatedAdminAccount.setFname(oldNewFirstnameTF.getText().trim());
+            if (!Brain.myAccountObj.getFname().equals(oldNewFirstnameTF.getText().trim())) {
+                updatedAdminAccountObj.setFname(oldNewFirstnameTF.getText().trim());
             }
         }
         if (!oldNewSurnameTF.getText().trim().isEmpty() || !oldNewSurnameTF.getText().isEmpty() || oldNewSurnameTF.getText() != null) {
-            if (!Brain.myAccount.getSurname().equals(oldNewSurnameTF.getText().trim())) {
-                updatedAdminAccount.setSurname(oldNewSurnameTF.getText().trim());
+            if (!Brain.myAccountObj.getSurname().equals(oldNewSurnameTF.getText().trim())) {
+                updatedAdminAccountObj.setSurname(oldNewSurnameTF.getText().trim());
             }
         }
         if (!oldNewEmailTF.getText().trim().isEmpty() || !oldNewEmailTF.getText().isEmpty() || oldNewEmailTF.getText() != null) {
-            if (!Brain.myAccount.getEmail().equals(oldNewEmailTF.getText().trim())) {
+            if (!Brain.myAccountObj.getEmail().equals(oldNewEmailTF.getText().trim())) {
                 if (!email_is_in_correct_format(newEmailTF.getText().trim())) {
                     error_message("Bad Email address", "The email seems not to be in its correct format").show();
                     return;
                 }
-                updatedAdminAccount.setEmail(oldNewEmailTF.getText().trim());
+                updatedAdminAccountObj.setEmail(oldNewEmailTF.getText().trim());
             }
         }
         if (!oldNewUsernameTF.getText().trim().isEmpty() || !oldNewUsernameTF.getText().isEmpty() || oldNewUsernameTF.getText() != null) {
-            if (!Brain.myAccount.getUsername().equals(oldNewUsernameTF.getText().trim())) {
-                updatedAdminAccount.setUsername(oldNewUsernameTF.getText().trim());
+            if (!Brain.myAccountObj.getUsername().equals(oldNewUsernameTF.getText().trim())) {
+                updatedAdminAccountObj.setUsername(oldNewUsernameTF.getText().trim());
             }
         }
         String newPassword_typeA = "", newPassword_typeB = "";
@@ -768,7 +762,7 @@ public class DeskUI extends Brain implements Initializable {
             return;
         }
         String newSiri = newPassword_typeA;
-        if (updatedAdminAccount.getUsername() == null && updatedAdminAccount.getFname() == null && updatedAdminAccount.getSurname() == null && updatedAdminAccount.getEmail() == null && newSiri.isEmpty()) {
+        if (updatedAdminAccountObj.getUsername() == null && updatedAdminAccountObj.getFname() == null && updatedAdminAccountObj.getSurname() == null && updatedAdminAccountObj.getEmail() == null && newSiri.isEmpty()) {
             warning_message("Wait!", "First edit any detail to continue...").show();
             return;
         }
@@ -779,12 +773,12 @@ public class DeskUI extends Brain implements Initializable {
                 if (password_copy.get().isEmpty()) {
                     error_message("No password entered", "Please type a password to confirm the actions you request to be done.").show();
                 } else {
-                    if (BCrypt.checkpw(password_copy.get(), Brain.myAccount.getPassword())) {
+                    if (BCrypt.checkpw(password_copy.get(), Brain.myAccountObj.getPassword())) {
                         boolean passwordOrUsernameHasBeenUpdated = false;
-                        if (!updatedAdminAccount.getUsername().isEmpty()) {
-                            myAccount.setUsername(updatedAdminAccount.getUsername());
-                            Account account = update_account(myAccount);
-                            if (account == null) {
+                        if (!updatedAdminAccountObj.getUsername().isEmpty()) {
+                            myAccountObj.setUsername(updatedAdminAccountObj.getUsername());
+                            AccountObj accountObj = update_account(myAccountObj);
+                            if (accountObj == null) {
                                 error_message("Failed!", "I was not able to save your new username").show();
                             } else {
                                 oldNewUsernameTF.setText("");
@@ -792,11 +786,11 @@ public class DeskUI extends Brain implements Initializable {
                                 passwordOrUsernameHasBeenUpdated = true;
                             }
                         }
-                        if (!updatedAdminAccount.getPassword().isEmpty()) {
-                            final String newHashedSiri = BCrypt.hashpw(updatedAdminAccount.getPassword(), BCrypt.gensalt(14));
-                            myAccount.setPassword(newHashedSiri);
-                            Account account = update_account(myAccount);
-                            if (account == null) {
+                        if (!updatedAdminAccountObj.getPassword().isEmpty()) {
+                            final String newHashedSiri = BCrypt.hashpw(updatedAdminAccountObj.getPassword(), BCrypt.gensalt(14));
+                            myAccountObj.setPassword(newHashedSiri);
+                            AccountObj accountObj = update_account(myAccountObj);
+                            if (accountObj == null) {
                                 error_message("Failed!", "I was not able to save your new password").show();
                             } else {
                                 passwordTF.setText("");
@@ -807,30 +801,30 @@ public class DeskUI extends Brain implements Initializable {
                                 success_notification("Your new password has been saved").show();
                             }
                         }
-                        if (!updatedAdminAccount.getFname().isEmpty()) {
-                            myAccount.setFname(updatedAdminAccount.getFname());
-                            Account account = update_account(myAccount);
-                            if (account == null) {
+                        if (!updatedAdminAccountObj.getFname().isEmpty()) {
+                            myAccountObj.setFname(updatedAdminAccountObj.getFname());
+                            AccountObj accountObj = update_account(myAccountObj);
+                            if (accountObj == null) {
                                 error_message("Failed!", "I was not able to save your new firstname").show();
                             } else {
                                 oldNewFirstnameTF.setText("");
                                 success_notification("Your new firstname has been saved").show();
                             }
                         }
-                        if (!updatedAdminAccount.getSurname().isEmpty()) {
-                            myAccount.setSurname(updatedAdminAccount.getSurname());
-                            Account account = update_account(myAccount);
-                            if (account == null) {
+                        if (!updatedAdminAccountObj.getSurname().isEmpty()) {
+                            myAccountObj.setSurname(updatedAdminAccountObj.getSurname());
+                            AccountObj accountObj = update_account(myAccountObj);
+                            if (accountObj == null) {
                                 error_message("Failed!", "I was not able to save your new surname").show();
                             } else {
                                 oldNewSurnameTF.setText("");
                                 success_notification("Your new surname has been saved").show();
                             }
                         }
-                        if (!updatedAdminAccount.getEmail().isEmpty()) {
-                            myAccount.setEmail(updatedAdminAccount.getEmail());
-                            Account account = update_account(myAccount);
-                            if (account == null) {
+                        if (!updatedAdminAccountObj.getEmail().isEmpty()) {
+                            myAccountObj.setEmail(updatedAdminAccountObj.getEmail());
+                            AccountObj accountObj = update_account(myAccountObj);
+                            if (accountObj == null) {
                                 error_message("Failed!", "I was not able to save your new email").show();
                             } else {
                                 oldNewEmailTF.setText("");
@@ -948,7 +942,7 @@ public class DeskUI extends Brain implements Initializable {
             new SlideOutLeft(topBarPane).play();
             new SlideOutUp(leftSideMenuPane).play();
             new FadeOut(deskPane).play();
-            Sample.logoutThread.start();
+            Controller.logoutThread.start();
         }
     }
 
@@ -961,7 +955,7 @@ public class DeskUI extends Brain implements Initializable {
         }
         final String parameter = jfxComboBox.getValue().toString().trim();
         if (parameter.length() == 4) {
-            plot_line_graph_based_on_profit_per_month(load_profit_and_loss_trend_across_months_of_a_requested_year(parameter), parameter);
+            Platform.runLater(() -> plot_line_graph_based_on_profit_per_month(load_profit_and_loss_trend_across_months_of_a_requested_year(parameter), parameter));
             if (!customYearCbx.getItems().contains(parameter)) {
                 customYearCbx.getItems().add(parameter);
             }
@@ -1183,10 +1177,10 @@ public class DeskUI extends Brain implements Initializable {
                     }
                 }
             } catch (Exception e) {
-                new Thread(new Watchdog().write_log("\n\n" + new Watchdog().time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
-                new Thread(new Watchdog().stack_trace_printing(e)).start();
+                new Thread(write_log("\n\n" + time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
+                new Thread(write_stack_trace(e)).start();
                 e.printStackTrace();
-                new Watchdog().programmer_error(e).show();
+                programmer_error(e).show();
             }
         }
     }
@@ -1523,7 +1517,7 @@ public class DeskUI extends Brain implements Initializable {
         listOfAllUsernames.addAll(listOfIn_ActiveStaffUsername);
         update_autoComplete_suggestions(staffUsernameSuggestionsPopup1, listOfAllUsernames);
         display_all_users(get_all_users());
-        userFullnameTF.setText(Brain.myAccount.getFname().concat(" ").concat(Brain.myAccount.getSurname()));
+        userFullnameTF.setText(Brain.myAccountObj.getFname().concat(" ").concat(Brain.myAccountObj.getSurname()));
     }
 
     private void display_all_users(ObservableList<User> users) {
@@ -1551,43 +1545,43 @@ public class DeskUI extends Brain implements Initializable {
                 }
                 Platform.runLater(() -> accountsBox.getChildren().add(node));
             } catch (IOException e) {
-                new Thread(new Watchdog().write_log("\n\n" + new Watchdog().time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
-                new Thread(new Watchdog().stack_trace_printing(e)).start();
+                new Thread(write_log("\n\n" + time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
+                new Thread(write_stack_trace(e)).start();
                 e.printStackTrace();
-                new Watchdog().programmer_error(e).show();
+                programmer_error(e).show();
             }
         }
 
     }
 
     private void show_admin_info() {
-        Brain.myAccount = get_user_account(myAccount.getUsername(), null);
-        if (Brain.myAccount == null) {
+        Brain.myAccountObj = get_user_account(myAccountObj.getUsername(), null);
+        if (Brain.myAccountObj == null) {
             return;
         }
-        oldNewFirstnameTF.setText(Brain.myAccount.getFname());
-        oldNewSurnameTF.setText(Brain.myAccount.getSurname());
-        oldNewEmailTF.setText(Brain.myAccount.getEmail());
-        oldNewUsernameTF.setText(Brain.myAccount.getUsername());
+        oldNewFirstnameTF.setText(Brain.myAccountObj.getFname());
+        oldNewSurnameTF.setText(Brain.myAccountObj.getSurname());
+        oldNewEmailTF.setText(Brain.myAccountObj.getEmail());
+        oldNewUsernameTF.setText(Brain.myAccountObj.getUsername());
     }
 
-    private void display_users_based_on_observableList_param(ObservableList<AccountModel> accountModelObservableList) {
-        final JFXTreeTableView<AccountModel> jfxTreeTableView = accountsTable;
+    private void display_users_based_on_observableList_param(ObservableList<Account> accountObservableList) {
+        final JFXTreeTableView<Account> jfxTreeTableView = accountsTable;
         accUsernameCol.setCellValueFactory(param -> param.getValue().getValue().username);
         accFirstnameCol.setCellValueFactory(param -> param.getValue().getValue().firstname);
         accSurnameCol.setCellValueFactory(param -> param.getValue().getValue().surname);
         accEmailCol.setCellValueFactory(param -> param.getValue().getValue().email);
-        final TreeItem<AccountModel> root = new RecursiveTreeItem<>(accountModelObservableList, RecursiveTreeObject::getChildren);
+        final TreeItem<Account> root = new RecursiveTreeItem<>(accountObservableList, RecursiveTreeObject::getChildren);
         jfxTreeTableView.setRoot(root);
         jfxTreeTableView.setShowRoot(false);
-        if (!accountModelObservableList.isEmpty()) {
+        if (!accountObservableList.isEmpty()) {
             jfxTreeTableView.refresh();
         }
     }
 
     private void set_up_statistics() {
         final String DATE_TODAY = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy"));
-        plot_line_graph_based_on_profit_per_month(load_profit_and_loss_trend_across_months_of_a_requested_year(DATE_TODAY), DATE_TODAY);
+        Platform.runLater(() -> plot_line_graph_based_on_profit_per_month(load_profit_and_loss_trend_across_months_of_a_requested_year(DATE_TODAY), DATE_TODAY));
     }
 
     private void plot_line_graph_based_on_profit_per_month(@NotNull HashMap<String, Double> data, String requestedYear) {
@@ -1651,7 +1645,7 @@ public class DeskUI extends Brain implements Initializable {
                         e.printStackTrace();
                         programmer_error(e);
                         new Thread(write_log("\n\n" + time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
-                        new Thread(stack_trace_printing(e)).start();
+                        new Thread(write_stack_trace(e)).start();
                         Platform.runLater(() -> error_message_alert("IOException: ", e.getLocalizedMessage()).show());
                     }
                 }
@@ -1742,8 +1736,8 @@ public class DeskUI extends Brain implements Initializable {
         update_autoComplete_suggestions(receiptNumberSuggestionsPopup, receipts);
     }
 
-    private void display_receipts_based_on_observableList_param(ObservableList<ReceiptModel> purchaseObservableList) {
-        final JFXTreeTableView<ReceiptModel> jfxTreeTableView = receiptsTable;
+    private void display_receipts_based_on_observableList_param(ObservableList<Receipt> purchaseObservableList) {
+        final JFXTreeTableView<Receipt> jfxTreeTableView = receiptsTable;
         receiptCol.setCellValueFactory(param -> param.getValue().getValue().receipt_no);
         rcptDateCol.setCellValueFactory(param -> param.getValue().getValue().date_time);
         codeCol.setCellValueFactory(param -> param.getValue().getValue().serial_number);
@@ -1751,7 +1745,7 @@ public class DeskUI extends Brain implements Initializable {
         sellingPriceCol.setCellValueFactory(param -> param.getValue().getValue().selling_price);
         buyPricePriceCol.setCellValueFactory(param -> param.getValue().getValue().buying_price);
         typeOfStockCol.setCellValueFactory(param -> param.getValue().getValue().typeOfStock);
-        final TreeItem<ReceiptModel> root = new RecursiveTreeItem<>(purchaseObservableList, RecursiveTreeObject::getChildren);
+        final TreeItem<Receipt> root = new RecursiveTreeItem<>(purchaseObservableList, RecursiveTreeObject::getChildren);
         jfxTreeTableView.setRoot(root);
         jfxTreeTableView.setShowRoot(false);
         if (!purchaseObservableList.isEmpty()) {
@@ -1759,17 +1753,17 @@ public class DeskUI extends Brain implements Initializable {
         }
     }
 
-    private void display_purchases_based_on_observableList_param(ObservableList<PurchaseModel> purchaseModelObservableList) {
-        final JFXTreeTableView<PurchaseModel> jfxTreeTableView = salesTable;
+    private void display_purchases_based_on_observableList_param(ObservableList<Purchase> purchaseObservableList) {
+        final JFXTreeTableView<Purchase> jfxTreeTableView = salesTable;
         dateCol.setCellValueFactory(param -> param.getValue().getValue().date_time);
         saleRcptCol.setCellValueFactory(param -> param.getValue().getValue().receipt_no);
         saleAmtCol.setCellValueFactory(param -> param.getValue().getValue().billAmount);
         paidAsCol.setCellValueFactory(param -> param.getValue().getValue().amount);
         soldByCol.setCellValueFactory(param -> param.getValue().getValue().username);
-        final TreeItem<PurchaseModel> root = new RecursiveTreeItem<>(purchaseModelObservableList, RecursiveTreeObject::getChildren);
+        final TreeItem<Purchase> root = new RecursiveTreeItem<>(purchaseObservableList, RecursiveTreeObject::getChildren);
         jfxTreeTableView.setRoot(root);
         jfxTreeTableView.setShowRoot(false);
-        if (!purchaseModelObservableList.isEmpty()) {
+        if (!purchaseObservableList.isEmpty()) {
             jfxTreeTableView.refresh();
         }
     }
@@ -1866,7 +1860,7 @@ public class DeskUI extends Brain implements Initializable {
         String nameOfNewImage = INPUT_STREAM_TO_NO_IMAGE;
         try {
             final FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PNG only", "*.png"));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Profile pictures", "*.png", "*.jpg", "*.jpeg"));
             final File SOURCE_FILE = fileChooser.showOpenDialog(Main.stage);
             if (SOURCE_FILE == null) {
                 error_message("No image selected", "Try again..").show();
@@ -1885,7 +1879,7 @@ public class DeskUI extends Brain implements Initializable {
                         e.printStackTrace();
                         programmer_error(e).show();
                         new Thread(write_log("\n\n" + time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
-                        new Thread(stack_trace_printing(e)).start();
+                        new Thread(write_stack_trace(e)).start();
                     }
                 }
             }
@@ -1893,7 +1887,7 @@ public class DeskUI extends Brain implements Initializable {
             e.printStackTrace();
             programmer_error(e).show();
             new Thread(write_log("\n\n" + time_stamp() + ": The following Exception occurred,\n" + e, 1)).start();
-            new Thread(stack_trace_printing(e)).start();
+            new Thread(write_stack_trace(e)).start();
         }
         return nameOfNewImage;
     }
@@ -2089,7 +2083,7 @@ public class DeskUI extends Brain implements Initializable {
                     display_users_based_on_observableList_param(get_staff_users_based_on_param(jfxTextField.getText().trim()));
                 }
             } else if (jfxTextField.equals(newUsernameTF)) {
-                if (listOfIn_ActiveStaffUsername.contains(jfxTextField.getText().trim()) || listOfActiveStaffUsername.contains(jfxTextField.getText().trim()) || myAccount.getUsername().equals(jfxTextField.getText().trim())) {
+                if (listOfIn_ActiveStaffUsername.contains(jfxTextField.getText().trim()) || listOfActiveStaffUsername.contains(jfxTextField.getText().trim()) || myAccountObj.getUsername().equals(jfxTextField.getText().trim())) {
                     warning_message("Taken!", "The username you have selected is already taken, enter a new one").show();
                 }
             }
@@ -2104,8 +2098,8 @@ public class DeskUI extends Brain implements Initializable {
         });
     }
 
-    private void display_stock_items_based_on_observableList_param(ObservableList<StockModel> stockModelObservableList) {
-        final JFXTreeTableView<StockModel> jfxTreeTableView = stockTable;
+    private void display_stock_items_based_on_observableList_param(ObservableList<ProductStock> productStockObservableList) {
+        final JFXTreeTableView<ProductStock> jfxTreeTableView = stockTable;
         prodCodeCol.setCellValueFactory(param -> param.getValue().getValue().serial);
         prodNameCol.setCellValueFactory(param -> param.getValue().getValue().name);
         prodDescriptionCol.setCellValueFactory(param -> param.getValue().getValue().description);
@@ -2114,10 +2108,10 @@ public class DeskUI extends Brain implements Initializable {
         prodBuyPriceCol.setCellValueFactory(param -> param.getValue().getValue().buyingPrice);
         prodMarkedPriceCol.setCellValueFactory(param -> param.getValue().getValue().markedPrice);
         prodStatusCol.setCellValueFactory(param -> param.getValue().getValue().status);
-        final TreeItem<StockModel> root = new RecursiveTreeItem<>(stockModelObservableList, RecursiveTreeObject::getChildren);
+        final TreeItem<ProductStock> root = new RecursiveTreeItem<>(productStockObservableList, RecursiveTreeObject::getChildren);
         jfxTreeTableView.setRoot(root);
         jfxTreeTableView.setShowRoot(false);
-        if (!stockModelObservableList.isEmpty()) {
+        if (!productStockObservableList.isEmpty()) {
             jfxTreeTableView.refresh();
         }
     }
