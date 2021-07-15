@@ -25,43 +25,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/AdminUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/AdminUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brownTech Back end.iml" beforeDir="false" afterPath="$PROJECT_DIR$/brownTech Back end.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/brownTech_Back_end/bundles/brownTech Back end/brownTech Back end.exe" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/brownTech_Back_end/bundles/brownTech Back end/brownTech Back end.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/META-INF/brownTech Back end.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/ChequeUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/ChequeUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/DeskUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/EmployeeUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_controller/EmployeeUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_custom/Brain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_custom/Brain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_custom/Watchdog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_custom/Watchdog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_fxml/deskUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_fxml/deskUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_object/Product.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_outsourced/PasswordDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_outsourced/PasswordDialog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_controller/AdminUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_controller/AdminUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_controller/ChequeUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_controller/ChequeUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_model/_table/ProductStock.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/brownTech Back end/org/_brown_tech/_model/_table/ProductStock.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_controller/DeskUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_controller/DeskUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_controller/EmployeeUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_controller/EmployeeUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_controller/Sample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_custom/Brain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_custom/Brain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_custom/Watchdog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_custom/Watchdog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_fxml/deskUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_fxml/deskUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_fxml/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_fxml/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_object/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_object/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_object/_actors/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_object/_actors/AccountObj.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_object/_actors/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_object/_actors/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_object/_payments/Cheque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_object/_payments/Cheque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_object/_payments/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_object/_payments/Purchase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_object/_payments/Receipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_object/_payments/ReceiptObj.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_object/_payments/Sale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_object/_payments/Sale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_outsourced/PasswordDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_outsourced/PasswordDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_response_model/StatusResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_response_model/StatusResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_table_model/AccountModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_table/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_table_model/PurchaseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_table/Purchase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_table_model/ReceiptModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_table/Receipt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_table_model/StockModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_table/ProductStock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/_brown_tech/_model/_table/ProductStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/_brown_tech/_model/_table/ProductStock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,10 +130,18 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Key stores/brown_tech#key/keystore.ks" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.18457031" />
     <property name="project.structure.side.proportion" value="0.2764706" />
     <property name="recentsLimit" value="5" />
@@ -249,6 +241,7 @@
       </method>
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -260,11 +253,16 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
+      <workItem from="1601372970844" duration="4818000" />
+      <workItem from="1602414054313" duration="920000" />
+      <workItem from="1604835439140" duration="2721000" />
+      <workItem from="1609925793476" duration="481000" />
+      <workItem from="1612342434003" duration="97000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1302000" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VaadinDesigner.SizePresetsSettingsComponent">
     <option name="sizePresets">
@@ -314,7 +312,6 @@
     <state x="692" y="109" key="#com.intellij.ide.util.MemberChooser" timestamp="1596367452301">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="385" y="-925" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738/-283.-1080.1920.1050@-283.-1080.1920.1050" timestamp="1590239153317" />
     <state x="692" y="109" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1596367452301" />
     <state x="479" y="244" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1595757824507">
       <screen x="0" y="0" width="1366" height="738" />
@@ -323,76 +320,39 @@
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1596366750521">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738/-1280.-111.1280.994@0.0.1366.738" timestamp="1587847898663" />
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738@0.0.1366.738" timestamp="1596366750521" />
-    <state x="272" y="-822" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590246081847">
-      <screen x="-283" y="-1080" width="1920" height="1050" />
+    <state x="231" y="103" key="FileChooserDialogImpl" timestamp="1601373559396">
+      <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="272" y="-822" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738/-283.-1080.1920.1050@-283.-1080.1920.1050" timestamp="1590246081847" />
-    <state x="395" y="181" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1589918738788" />
-    <state x="448" y="188" key="FileChooserDialogImpl" timestamp="1590442602594">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="231" y="103" key="FileChooserDialogImpl/0.30.1366.738@0.30.1366.738" timestamp="1601373559396" />
+    <state width="1284" height="229" key="GridCell.Tab.0.bottom" timestamp="1602414989504">
+      <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="448" y="188" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1590442602594" />
-    <state width="1323" height="346" key="GridCell.Tab.0.bottom" timestamp="1596436896381">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="232" key="GridCell.Tab.0.bottom/0.0.1366.738/-1280.-111.1280.994@0.0.1366.738" timestamp="1587848781486" />
-    <state width="1877" height="317" key="GridCell.Tab.0.bottom/0.0.1366.738/-283.-1080.1920.1050@-283.-1080.1920.1050" timestamp="1590248384969" />
-    <state width="1323" height="346" key="GridCell.Tab.0.bottom/0.0.1366.738/-306.-1080.1920.1050@0.0.1366.738" timestamp="1593257853837" />
     <state width="1323" height="346" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1596436896381" />
-    <state width="1323" height="346" key="GridCell.Tab.0.center" timestamp="1596436896381">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1284" height="229" key="GridCell.Tab.0.bottom/0.30.1366.738/-282.-1080.1920.1050@0.30.1366.738" timestamp="1602414989504" />
+    <state width="1284" height="229" key="GridCell.Tab.0.center" timestamp="1602414989503">
+      <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state width="1323" height="232" key="GridCell.Tab.0.center/0.0.1366.738/-1280.-111.1280.994@0.0.1366.738" timestamp="1587848781486" />
-    <state width="1877" height="317" key="GridCell.Tab.0.center/0.0.1366.738/-283.-1080.1920.1050@-283.-1080.1920.1050" timestamp="1590248384968" />
-    <state width="1323" height="346" key="GridCell.Tab.0.center/0.0.1366.738/-306.-1080.1920.1050@0.0.1366.738" timestamp="1593257853837" />
     <state width="1323" height="346" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1596436896381" />
-    <state width="1323" height="346" key="GridCell.Tab.0.left" timestamp="1596436896380">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1284" height="229" key="GridCell.Tab.0.center/0.30.1366.738/-282.-1080.1920.1050@0.30.1366.738" timestamp="1602414989503" />
+    <state width="1284" height="229" key="GridCell.Tab.0.left" timestamp="1602414989503">
+      <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state width="1323" height="232" key="GridCell.Tab.0.left/0.0.1366.738/-1280.-111.1280.994@0.0.1366.738" timestamp="1587848781486" />
-    <state width="1877" height="317" key="GridCell.Tab.0.left/0.0.1366.738/-283.-1080.1920.1050@-283.-1080.1920.1050" timestamp="1590248384968" />
-    <state width="1323" height="346" key="GridCell.Tab.0.left/0.0.1366.738/-306.-1080.1920.1050@0.0.1366.738" timestamp="1593257853829" />
     <state width="1323" height="346" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1596436896380" />
-    <state width="1323" height="346" key="GridCell.Tab.0.right" timestamp="1596436896381">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1284" height="229" key="GridCell.Tab.0.left/0.30.1366.738/-282.-1080.1920.1050@0.30.1366.738" timestamp="1602414989503" />
+    <state width="1284" height="229" key="GridCell.Tab.0.right" timestamp="1602414989504">
+      <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state width="1323" height="232" key="GridCell.Tab.0.right/0.0.1366.738/-1280.-111.1280.994@0.0.1366.738" timestamp="1587848781486" />
-    <state width="1877" height="317" key="GridCell.Tab.0.right/0.0.1366.738/-283.-1080.1920.1050@-283.-1080.1920.1050" timestamp="1590248384968" />
-    <state width="1323" height="346" key="GridCell.Tab.0.right/0.0.1366.738/-306.-1080.1920.1050@0.0.1366.738" timestamp="1593257853837" />
     <state width="1323" height="346" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1596436896381" />
-    <state x="263" y="104" key="IDE.errors.dialog" timestamp="1590009632554">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1284" height="229" key="GridCell.Tab.0.right/0.30.1366.738/-282.-1080.1920.1050@0.30.1366.738" timestamp="1602414989504" />
+    <state x="190" y="55" width="1040" height="658" key="SettingsEditor" timestamp="1601373233105">
+      <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="263" y="104" key="IDE.errors.dialog/0.0.1366.738@0.0.1366.738" timestamp="1590009632554" />
-    <state x="94" y="37" width="1174" height="677" key="SettingsEditor" timestamp="1590443086184">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="-283" y="-1038" key="SettingsEditor/0.0.1366.738/-283.-1080.1920.1050@-283.-1080.1920.1050" timestamp="1590245474040" />
-    <state x="94" y="37" width="1174" height="677" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1590443086184" />
+    <state x="190" y="55" width="1040" height="658" key="SettingsEditor/0.30.1366.738@0.30.1366.738" timestamp="1601373233105" />
     <state x="493" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596368588215">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="493" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1596368588215" />
-    <state width="602" height="432" key="javadoc.popup" timestamp="1587844471057">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="709" height="429" key="javadoc.popup.new" timestamp="1590239454292">
-      <screen x="-283" y="-1080" width="1920" height="1050" />
-    </state>
-    <state width="504" height="115" key="javadoc.popup.new/0.0.1366.738/-1280.-111.1280.994@0.0.1366.738" timestamp="1587844474429" />
-    <state width="709" height="429" key="javadoc.popup.new/0.0.1366.738/-283.-1080.1920.1050@-283.-1080.1920.1050" timestamp="1590239454292" />
-    <state width="602" height="432" key="javadoc.popup/0.0.1366.738/-1280.-111.1280.994@0.0.1366.738" timestamp="1587844471057" />
-    <state x="244" y="-945" key="refactoring.ChangeSignatureDialog" timestamp="1590239300692">
-      <screen x="-283" y="-1080" width="1920" height="1050" />
-    </state>
-    <state x="244" y="-945" key="refactoring.ChangeSignatureDialog/0.0.1366.738/-283.-1080.1920.1050@-283.-1080.1920.1050" timestamp="1590239300692" />
-    <state x="171" y="-855" width="1010" height="718" key="search.everywhere.popup" timestamp="1590245448071">
-      <screen x="-283" y="-1080" width="1920" height="1050" />
-    </state>
-    <state x="171" y="-855" width="1010" height="718" key="search.everywhere.popup/0.0.1366.738/-283.-1080.1920.1050@-283.-1080.1920.1050" timestamp="1590245448071" />
-    <state x="323" y="158" width="718" height="504" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1589918050977" />
   </component>
   <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
     <option name="sizePresets">

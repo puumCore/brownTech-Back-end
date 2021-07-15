@@ -2197,7 +2197,6 @@ public class DeskUI extends Brain implements Initializable {
     }
 
     private void animate_show_payments(JFXButton jfxButton) {
-
         if (paymentsPane.getOpacity() < 1) {
             for (int index = 1; index <= 6; ++index) {
                 if (index != 4) {
@@ -2230,7 +2229,6 @@ public class DeskUI extends Brain implements Initializable {
     }
 
     private void animate_show_purchases(JFXButton jfxButton) {
-
         if (purchasesPane.getOpacity() < 1) {
             for (int index = 1; index <= 6; ++index) {
                 if (index != 3) {
@@ -2295,7 +2293,6 @@ public class DeskUI extends Brain implements Initializable {
     }
 
     private void animate_show_dashboard(JFXButton jfxButton) {
-
         if (dashBoardPane.getOpacity() < 1) {
             for (int index = 1; index <= 6; ++index) {
                 if (index != 1) {

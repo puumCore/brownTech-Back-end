@@ -1073,7 +1073,6 @@ public abstract class Brain extends Watchdog {
                     warning_message("Failed!", standardResponse.getMessage()).show();
                 }
             } else {
-                accountObj = null;
                 error_message("Error From Server : " + statusCode, "Reason: ".concat(closeableHttpResponse.getStatusLine().getReasonPhrase())).show();
             }
         } catch (IOException e) {

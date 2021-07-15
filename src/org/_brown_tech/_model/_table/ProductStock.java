@@ -12,14 +12,14 @@ import javafx.scene.image.ImageView;
  */
 public class ProductStock extends RecursiveTreeObject<ProductStock> {
 
-    public StringProperty serial;
-    public StringProperty name;
-    public StringProperty description;
-    public SimpleObjectProperty<ImageView> imageView;
-    public StringProperty quantity;
-    public StringProperty buyingPrice;
-    public StringProperty markedPrice;
-    public StringProperty status;
+    public StringProperty serial= new SimpleStringProperty();;
+    public StringProperty name = new SimpleStringProperty();;
+    public StringProperty description = new SimpleStringProperty();;
+    public SimpleObjectProperty<ImageView> imageView  = new SimpleObjectProperty<>();
+    public StringProperty quantity = new SimpleStringProperty();;
+    public StringProperty buyingPrice = new SimpleStringProperty();;
+    public StringProperty markedPrice = new SimpleStringProperty();;
+    public StringProperty status = new SimpleStringProperty();;
 
     public void setSerial(String serial) {
         this.serial.set(serial);
